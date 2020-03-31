@@ -57,3 +57,8 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# config api
+src/config/api.js
+
+google-services.json
