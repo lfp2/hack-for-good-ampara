@@ -29,8 +29,6 @@ routes.get('/service/health/:health_professional_id', Auth.healthProfessional, H
 
 routes.post('/avaliable/:volunteer_id', AvaliableTimesController.store);
 
-routes.post('/service/:volunteer_id/:health_professional_id', ServiceController.store);
-
-routes.get('/avaliable', AvaliableTimesController.index);
+routes.post('/service', ServiceController.store);
 
 export default routes;
