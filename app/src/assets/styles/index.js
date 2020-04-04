@@ -8,7 +8,7 @@ export const ViewCenter = styled.View`
 `;
 
 export const ScreenCenter = styled(ViewCenter)`
-  background: #d9d9d9;
+  background: #ffffff;
 `;
 
 export const TextCenter = styled.Text`
@@ -20,4 +20,25 @@ export const BackgroundImage = styled.Image`
     resizeMode: cover;
     justifyContent: center;
     position: absolute;
+`;
+
+export const Button = styled.TouchableOpacity`
+  background: #ffffff;
+  width: 250px;
+  height: 40px;
+  padding: 12px;
+  border-radius: 10px;
+`;
+
+export const PrimaryButton = styled(Button)`
+    background: #76b1e6; 
+`;
+
+export const TextButton = styled(TextCenter)`
+    color: #000000;
+    font-size: 15px;
+`;
+
+export const PrimaryTextButton = styled(TextButton)`
+    color: #ffffff;
 `;
