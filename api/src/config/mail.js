@@ -1,4 +1,5 @@
-import dotenv from 'dotenv/config';
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default {
   host: 'smtp.sendgrid.net',
