@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "@sendgrid/mail": "^7.0.0",
     "bcryptjs": "^2.4.3",
-    "bee-queue": "^1.2.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "date-fns": "^2.0.0-beta.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -13,7 +13,8 @@
     "pg": "^7.17.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.3",
-    "yup": "^0.28.0"
+    "sequelize-cli": "^5.5.1",
+    "sucrase": "^3.12.1"
   },
   "name": "modulo2",
   "version": "1.0.0",
@@ -21,7 +22,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "queue": "nodemon src/queue.js"
+    "start": "sucrase-node src/server.js"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.16.0",
@@ -32,8 +33,6 @@
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-prettier": "^3.1.2",
     "nodemon": "^2.0.2",
-    "prettier": "^1.19.1",
-    "sequelize-cli": "^5.5.1",
-    "sucrase": "^3.12.1"
+    "prettier": "^1.19.1"
   }
 }

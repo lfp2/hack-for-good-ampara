@@ -1,6 +1,6 @@
 import express from 'express';
-import { resolve } from 'path';
-import hbs from 'express-handlebars';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
 import routes from './routes';
 
@@ -16,6 +16,8 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
+    this.server.use(bodyParser.urlencoded({ extended: false }));
+    this.server.use(cors());
   }
 
   routes() {
