@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
     ScreenCenter,
     Button,
-    PrimaryTextButton,
+    TextButton,
 } from '../assets/styles';
 
 import {
     CircleButton,
+    ViewInput,
+    Input,
 } from '../assets/styles/volunteersignup';
 
-import api from '../../services/api';
+import api from '../services/api';
 
+import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 export default function VolunteerSignUpScreen() {
@@ -42,46 +45,45 @@ export default function VolunteerSignUpScreen() {
             await AsyncStorage.setItem('@AmparaApp:token', response.data.token);
 
             navigation.navigate('SignIn');
-        } catch (_err) {
-            this.setState({ error: 'Houve um problema com o cadastro.' });
+        } catch (error) {
+            console.log(error);
         }
     }
-}
 
-return (
-    <ScreenCenter>
-        <CircleButton>
-        </CircleButton>
-        <ViewInputs>
-            <Input placeholder="Nome" onChangeText={data => setNome(data)} />
-        </ViewInputs>
-        <ViewInputs>
-            <Input placeholder="Biografia" onChangeText={data => setBiografia(data)} />
-        </ViewInputs>
-        <ViewInputs>
-            <Input placeholder="Profissão" onChangeText={data => setProfissao(data)} />
-        </ViewInputs>
-        <ViewInputs>
-            <Input placeholder="Número de registro profissional" onChangeText={data => setRegistro(data)} />
-        </ViewInputs>
-        <ViewInputs>
-            <Input placeholder="Cidade de atuação" onChangeText={data => setCidade(data)} />
-        </ViewInputs>
-        <ViewInputs>
-            <Input placeholder="Telefone" onChangeText={data => setTelefone(data)} />
-        </ViewInputs>
-        <ViewInputs>
-            <Input placeholder="Email" onChangeText={data => setEmail(data)} />
-        </ViewInputs>
-        <ViewInputs>
-            <Input
-                placeholder="Senha"
-                onChangeText={data => setPassword(data)}
-            />
-        </ViewInputs>
-        <Button onPress={() => handleSignUpPress()}>
-            <TextButton>CADASTRAR</TextButton>
-        </Button>
-    </ScreenCenter>
-);
+    return (
+        <ScreenCenter>
+            <CircleButton>
+            </CircleButton>
+            <ViewInput>
+                <Input placeholder="Nome" onChangeText={data => setName(data)} />
+            </ViewInput>
+            <ViewInput>
+                <Input placeholder="Biografia" onChangeText={data => setBio(data)} />
+            </ViewInput>
+            <ViewInput>
+                <Input placeholder="Cidade" onChangeText={data => setCity(data)} />
+            </ViewInput>
+            <ViewInput>
+                <Input placeholder="UF" onChangeText={data => setUf(data)} />
+            </ViewInput>
+            <ViewInput>
+                <Input placeholder="Número de registro profissional" onChangeText={data => setNumberRegistry(data)} />
+            </ViewInput>
+            <ViewInput>
+                <Input placeholder="Telefone" onChangeText={data => setPhone(data)} />
+            </ViewInput>
+            <ViewInput>
+                <Input placeholder="Email" onChangeText={data => setEmail(data)} />
+            </ViewInput>
+            <ViewInput>
+                <Input
+                    placeholder="Senha"
+                    onChangeText={data => setPassword(data)}
+                />
+            </ViewInput>
+            <Button onPress={() => handleSignUpPress()}>
+                <TextButton>CADASTRAR</TextButton>
+            </Button>
+        </ScreenCenter>
+    );
 }
