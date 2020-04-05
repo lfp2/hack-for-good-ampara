@@ -2,7 +2,7 @@ import HealthProfessional from '../models/HealthProfessionals';
 import { Op } from 'sequelize';
 
 class HealthProfessionalController {
-  async store(req, res) {
+  async store(req, res, next) {
     const healthExists = await HealthProfessional.findOne({
       where: {
         [Op.or]: [

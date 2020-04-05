@@ -2,7 +2,7 @@ import Volunteer from '../models/Volunteers';
 import { Op } from 'sequelize';
 
 class VolunteerController {
-  async store(req, res) {
+  async store(req, res, next) {
     const volunteerExists = await Volunteer.findOne({
       where: {
         [Op.or]: [
