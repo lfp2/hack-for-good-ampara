@@ -32,7 +32,7 @@ class VolunteerController {
       }
     );
 
-    return res.status(201).json({ id, name, email });
+    return next();
   }
 }
 

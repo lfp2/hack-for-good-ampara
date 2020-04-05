@@ -23,16 +23,14 @@ class HealthProfessionalController {
       }
     }
 
-    const { id, name, email } = await HealthProfessional.create(req.body).catch(
-      error => {
-        return res.status(500).json({
-          message: 'Erro! Entre em contato conosco',
-          error: error,
-        });
-      }
-    );
+    await HealthProfessional.create(req.body).catch(error => {
+      return res.status(500).json({
+        message: 'Erro! Entre em contato conosco',
+        error: error,
+      });
+    });
 
-    return res.status(201).json({ id, name, email });
+    return next();
   }
 }
 
