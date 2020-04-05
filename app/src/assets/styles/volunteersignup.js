@@ -17,3 +17,23 @@ export const CircleIcon = styled.Image`
     padding: 5px;
     resize-mode: contain;
 `;
+
+export const ViewInput = styled.View`
+  border-bottom-color: #8c8c8c;
+  border-bottom-width: 1px;
+  margin-bottom: 5px;
+`;
+
+export const Input = styled.TextInput`
+  padding-left: 5px;
+  height: 40px;
+  border-bottom-color: #000;
+  margin: 0;
+`;
+
+export const HeaderInput = styled.TextInput`
+  padding-left: 5px;
+  height: 20px;
+  border-bottom-color: #000;
+  margin: 0;
+`;
