@@ -18,7 +18,14 @@ import Service from '../models/Services';
 
 class ServiceController {
   async store(req, res) {
-    const { date, health_professional_email } = req.body;
+    const {
+      appt_time,
+      appt_date,
+      appt_phone_number,
+    } = req.body.Memory.twilio.collected_data.schedule_appt.answers;
+
+    const date = appt_date.answer + 'T' + appt_time.answer;
+    const health_professional_email = appt_phone_number.answer;
 
     const parsedDay = parseISO(date);
     const time = format(addHours(parsedDay, 3), 'H:mm');
@@ -99,7 +106,11 @@ class ServiceController {
     });
 
     return res.status(201).json({
-      valid: true,
+      actions: [
+        {
+          redirect: 'task://complete_booking',
+        },
+      ],
     });
   }
 }
