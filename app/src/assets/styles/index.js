@@ -28,6 +28,7 @@ export const Button = styled.TouchableOpacity`
   height: 40px;
   padding: 12px;
   border-radius: 10px;
+  justifyContent: center;
 `;
 
 export const PrimaryButton = styled(Button)`

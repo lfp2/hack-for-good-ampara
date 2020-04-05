@@ -18,7 +18,15 @@ import {
     SubtitleText
 } from '../assets/styles/welcome';
 
+import { useNavigation } from '@react-navigation/native';
+
 export default function WelcomeScreen() {
+    const navigation = useNavigation();
+
+    function navigateToVolunteerSignUp() {
+        navigation.navigate('VolunteerSignUp');
+    }
+
     return (
         <ScreenCenter>
             <TextView>
@@ -28,7 +36,7 @@ export default function WelcomeScreen() {
             <VoluntarioImage source={require('../assets/images/voluntario.png')} />
             <ButtonsView>
                 <ButtonView>
-                    <PrimaryButton>
+                    <PrimaryButton onPress={() => navigateToVolunteerSignUp()}>
                         <PrimaryTextButton>QUERO SER VOLUNTÁRIO</PrimaryTextButton>
                     </PrimaryButton>
                 </ButtonView>
