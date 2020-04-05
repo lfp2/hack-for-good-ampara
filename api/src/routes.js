@@ -13,22 +13,30 @@ import HealthProfessionalServiceController from './app/controller/HealthProfessi
 
 const routes = new Router();
 
-// cria voluntário
 routes.post('/volunteer', VolunteerController.store);
 
-// login voluntário
 routes.post('/auth/volunteer', VolunteerSessionController.store);
 
-routes.get('/service/volunteer/:volunteer_id', Auth.volunteer, VolunteerServiceController.index);
+routes.get(
+  '/service/volunteer/:volunteer_id',
+  Auth.volunteer,
+  VolunteerServiceController.index
+);
 
 routes.post('/auth/health', HealthProfessionalSessionController.store);
 
 routes.post('/health_professional', HealthProfessionalController.store);
 
-routes.get('/service/health/:health_professional_id', Auth.healthProfessional, HealthProfessionalServiceController.index);
+routes.get(
+  '/service/health/:health_professional_id',
+  Auth.healthProfessional,
+  HealthProfessionalServiceController.index
+);
 
 routes.post('/avaliable/:volunteer_id', AvaliableTimesController.store);
 
 routes.post('/service', ServiceController.store);
+
+routes.delete('/service/:service_id', ServiceController.delete);
 
 export default routes;

@@ -94,7 +94,7 @@ class ServiceController {
 
     Mail.sendMail({
       to: [volunteer[aleatorio].email, health_professional_email],
-      subject: 'Ampara - Agendamento as ',
+      subject: 'Ampara - Nova consulta agendada',
       template: 'created',
       context: {
         email_health: health_professional_email,
@@ -112,6 +112,64 @@ class ServiceController {
         },
       ],
     });
+  }
+
+  async delete(req, res) {
+    const { service_id } = req.params;
+
+    const service = await Service.findByPk(service_id, {
+      attributes: ['date', 'status'],
+      include: [
+        {
+          association: 'volunteer',
+          attributes: ['id', 'name', 'email'],
+        },
+        {
+          association: 'health_professionals',
+          attributes: ['id', 'name', 'email'],
+        },
+      ],
+    });
+
+    if (service === null) {
+      return res.status(400).json({ error: 'Consulta não cadastrada!' });
+    }
+
+    if (service.status === 'canceled') {
+      return res.status(400).json({ error: 'Consulta já cancelada!' });
+    }
+
+    const canceledService = await Service.update(
+      {
+        status: 'canceled',
+      },
+      {
+        where: {
+          id: service_id,
+        },
+      }
+    );
+
+    if (canceledService === false) {
+      return res
+        .status(500)
+        .json({ error: 'Não foi possivel cancelar a sua consulta!' });
+    }
+
+    Mail.sendMail({
+      to: [service.volunteer.email, service.health_professionals.email],
+      subject: 'Ampara - Nova consulta cancelada',
+      template: 'canceled',
+      context: {
+        date: format(service.date, "dd 'de' MMMM', às' H:mm'h'", {
+          locale: pt,
+        }),
+      },
+    });
+
+    return res
+      .status(200)
+      .json({ message: 'A consulta foi cancelada com sucesso!' });
   }
 }
 

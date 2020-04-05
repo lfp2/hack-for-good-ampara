@@ -25,6 +25,10 @@ module.exports = {
         onDelete: 'SET NULL',
         allowNull: false,
       },
+      status: {
+        type: Sequelize.ENUM('scheduled', 'canceled'),
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

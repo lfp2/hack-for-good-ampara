@@ -7,6 +7,10 @@ class Services extends Model {
         date: Sequelize.DATE,
         volunteer_id: Sequelize.INTEGER,
         health_professional_id: Sequelize.INTEGER,
+        status: {
+          type: Sequelize.ENUM('scheduled', 'canceled'),
+          defaultValue: 'scheduled',
+        },
       },
       {
         sequelize,
