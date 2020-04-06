@@ -27,7 +27,8 @@
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",
     "styled-components": "^5.0.1",
-    "twilio": "^3.42.0"
+    "twilio": "^3.42.0",
+    "yup": "^0.28.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
