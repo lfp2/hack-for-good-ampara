@@ -1,17 +1,21 @@
 import styled from 'styled-components/native';
 
-import {TextCenter} from './index';
+import { TextCenter } from './index';
 
 export const ContainerForm = styled.View`
   width: 80%;
+  flex: 2;
   background: #fff;
   padding: 18px;
   border-radius: 8px;
 `;
 
-export const Logo = styled(TextCenter)`
-  font-size: 20px;
-  margin-bottom: 24px;
+export const Logo = styled.Image`
+    width: 160px;
+    height: 60px;
+    resize-mode: contain;
+    flex: 2;
+    justifyContent: center;
 `;
 
 export const ViewInputs = styled.View`

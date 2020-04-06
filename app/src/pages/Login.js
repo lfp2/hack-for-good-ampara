@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {View, TouchableOpacity} from 'react-native';
-import {ScreenCenter, TextCenter} from '../assets/styles';
+import React, { useState, useEffect } from 'react';
+import { View, TouchableOpacity } from 'react-native';
+import { ScreenCenter, TextCenter } from '../assets/styles';
 import {
   ContainerForm,
   Button,
@@ -12,24 +12,19 @@ import {
   Logo,
 } from '../assets/styles/login';
 
-import {useNavigation} from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function Login(email, password) {}
-
-  function navigateToSignIn() {
-    navigation.navigate('SignIn');
-  }
+  function Login(email, password) { }
 
   return (
     <ScreenCenter>
+      <Logo source={require('../assets/images/Ampara-Simbolo.png')} />
       <ContainerForm>
-        <Logo>Hugs...</Logo>
         <View>
           <ViewInputs>
             <Input placeholder="Email" onChangeText={data => setEmail(data)} />
@@ -43,9 +38,6 @@ export default function Login() {
           <SubPagesLogin>
             <TouchableOpacity>
               <SubPagesText>Esqueceu a senha?</SubPagesText>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigateToSignIn()}>
-              <SubPagesText>Cadastre-se</SubPagesText>
             </TouchableOpacity>
           </SubPagesLogin>
           <Button onPress={() => Login(email, password)}>

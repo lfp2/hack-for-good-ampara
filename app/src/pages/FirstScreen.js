@@ -23,6 +23,10 @@ export default function FirstScreen() {
         navigation.navigate('Welcome');
     }
 
+    function navigateToLogin() {
+        navigation.navigate('Login');
+    }
+
     return (
         <ScreenCenter>
             <BackgroundImage source={require('../assets/images/background.png')} />
@@ -34,7 +38,7 @@ export default function FirstScreen() {
                     </PrimaryButton>
                 </ButtonView>
                 <ButtonView>
-                    <Button>
+                    <Button onPress={() => navigateToLogin()} >
                         <TextButton>LOGIN</TextButton>
                     </Button>
                 </ButtonView>

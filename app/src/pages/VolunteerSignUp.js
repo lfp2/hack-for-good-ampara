@@ -57,7 +57,7 @@ export default function VolunteerSignUpScreen() {
 
             await AsyncStorage.setItem('@AmparaApp:volunteer_token', response.data.token);
 
-            navigation.navigate('SignIn');
+            navigation.navigate('Login');
         } catch (error) {
             console.log(error.response)
             console.log(error);
