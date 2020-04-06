@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-
-import {
-    ScreenCenter,
-    Button,
-    TextButton,
-} from '../../assets/styles';
+import React, {useState} from 'react';
+import {Text} from 'react-native';
+import * as Yup from 'yup';
+import {ScreenCenter, Button, TextButton} from '../../assets/styles';
 
 import {
     CircleButton,
@@ -27,41 +24,77 @@ import {
 import api from '../../services/api';
 
 import AsyncStorage from '@react-native-community/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function SignUpScreen() {
     const navigation = useNavigation();
     const [isEnabled, setIsEnabled] = useState(true);
+    const [error, setError] = useState(null);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [bio, setBio] = useState('');
     const [city, setCity] = useState('');
     const [uf, setUf] = useState('');
-    const [profissao, setProfissao] = useState('');
     const [number_registry, setNumberRegistry] = useState('');
     const [phone, setPhone] = useState('');
 
+    const yupValidation = Yup.object().shape({
+        name: Yup.string().required('Nome é um campo obrigatório'),
+        bio: Yup.string().required('Biografia é um campo obrigatório'),
+        number_registry: Yup.string().required(
+            'Número de registro é um campo obrigatório',
+        ),
+        email: Yup.string().email().required('Email é um campo obrigatório'),
+        password: Yup.string().required('Senha é um campo obrigatório').min(6),
+        city: Yup.string().required('Cidade é um campo obrigatório'),
+        uf: Yup.string().required('UF é um campo obrigatório'),
+        phone: Yup.string().required('Telefone é um campo obrigatório'),
+    });
+
     async function handleSignUpPress() {
-        try {
-            const response = await api.post('/volunteer', {
-                "name": name,
-                "bio": bio,
-                "number_registry": number_registry,
-                "email": email,
-                "password": password,
-                "city": city,
-                "uf": uf,
-                "phone": phone,
+        const objectForm = {
+            password,
+            email,
+            phone,
+            number_registry,
+            uf,
+            city,
+            bio,
+            name,
+        };
+        console.log(objectForm);
+
+        await yupValidation
+            .validate(objectForm)
+            .then(async (res) => {
+                await api
+                    .post('/volunteer', {
+                        name,
+                        bio,
+                        number_registry,
+                        email,
+                        password,
+                        city,
+                        uf,
+                        phone,
+                    })
+                    .then(async (res) => {
+                        await AsyncStorage.setItem(
+                            '@AmparaApp:volunteer_token',
+                            res.data.token,
+                        );
+
+                        navigation.navigate('VolunteerHome');
+                    })
+                    .catch((err) => {
+                        console.log(err.response);
+                        console.log(err);
+                    });
+            })
+            .catch((err) => {
+                setError(err.message);
             });
-
-            await AsyncStorage.setItem('@AmparaApp:volunteer_token', response.data.token);
-
-            navigation.navigate('Login');
-        } catch (error) {
-            console.log(error.response)
-            console.log(error);
-        }
     }
 
     return (
@@ -70,61 +103,100 @@ export default function SignUpScreen() {
             <HeaderView>
                 <CameraView>
                     <CircleButton>
-                        <CircleIcon source={require('../../assets/icons/camera.png')} />
+                        <CircleIcon
+                            source={require('../../assets/icons/camera.png')}
+                        />
                     </CircleButton>
                     <CircleButtonText>foto de perfil</CircleButtonText>
                 </CameraView>
                 <HeaderTextView>
                     <TextInputView>
-                        <TextInputIcons source={require('../../assets/icons/ionic-ios-person.png')} />
+                        <TextInputIcons
+                            source={require('../../assets/icons/ionic-ios-person.png')}
+                        />
                         <ViewInput>
-                            <HeaderInput placeholder="Nome" onChangeText={data => setName(data)} />
+                            <HeaderInput
+                                placeholder="Nome"
+                                onChangeText={(data) => setName(data)}
+                            />
                         </ViewInput>
                     </TextInputView>
                     <TextInputView>
-                        <TextInputIcons source={require('../../assets/icons/ionic-ios-paper.png')} />
+                        <TextInputIcons
+                            source={require('../../assets/icons/ionic-ios-paper.png')}
+                        />
                         <ViewInput>
-                            <HeaderInput placeholder="Biografia" onChangeText={data => setBio(data)} />
+                            <HeaderInput
+                                placeholder="Biografia"
+                                onChangeText={(data) => setBio(data)}
+                            />
                         </ViewInput>
                     </TextInputView>
                 </HeaderTextView>
             </HeaderView>
             <TextInputView>
-                <TextInputIcons source={require('../../assets/icons/material-location-city.png')} />
+                <TextInputIcons
+                    source={require('../../assets/icons/material-location-city.png')}
+                />
                 <ViewInput>
-                    <Input placeholder="Cidade" onChangeText={data => setCity(data)} />
+                    <Input
+                        placeholder="Cidade"
+                        onChangeText={(data) => setCity(data)}
+                    />
                 </ViewInput>
             </TextInputView>
             <TextInputView>
-                <TextInputIcons source={require('../../assets/icons/map-city-hall.png')} />
+                <TextInputIcons
+                    source={require('../../assets/icons/map-city-hall.png')}
+                />
                 <ViewInput>
-                    <Input placeholder="UF" onChangeText={data => setUf(data)} />
+                    <Input
+                        placeholder="UF"
+                        onChangeText={(data) => setUf(data)}
+                    />
                 </ViewInput>
             </TextInputView>
             <TextInputView>
-                <TextInputIcons source={require('../../assets/icons/map-doctor.png')} />
+                <TextInputIcons
+                    source={require('../../assets/icons/map-doctor.png')}
+                />
                 <ViewInput>
-                    <Input placeholder="Número de registro profissional" onChangeText={data => setNumberRegistry(data)} />
+                    <Input
+                        placeholder="Número de registro profissional"
+                        onChangeText={(data) => setNumberRegistry(data)}
+                    />
                 </ViewInput>
             </TextInputView>
             <TextInputView>
-                <TextInputIcons source={require('../../assets/icons/awesome-phone-alt.png')} />
+                <TextInputIcons
+                    source={require('../../assets/icons/awesome-phone-alt.png')}
+                />
                 <ViewInput>
-                    <Input placeholder="Telefone" onChangeText={data => setPhone(data)} />
+                    <Input
+                        placeholder="Telefone"
+                        onChangeText={(data) => setPhone(data)}
+                    />
                 </ViewInput>
             </TextInputView>
             <TextInputView>
-                <TextInputIcons source={require('../../assets/icons/material-email.png')} />
+                <TextInputIcons
+                    source={require('../../assets/icons/material-email.png')}
+                />
                 <ViewInput>
-                    <Input placeholder="Email" onChangeText={data => setEmail(data)} />
+                    <Input
+                        placeholder="Email"
+                        onChangeText={(data) => setEmail(data)}
+                    />
                 </ViewInput>
             </TextInputView>
             <TextInputView>
-                <TextInputIcons source={require('../../assets/icons/awesome-key.png')} />
+                <TextInputIcons
+                    source={require('../../assets/icons/awesome-key.png')}
+                />
                 <ViewInput>
                     <Input
                         placeholder="Senha"
-                        onChangeText={data => setPassword(data)}
+                        onChangeText={(data) => setPassword(data)}
                         secureTextEntry={true}
                         autoCorrect={false}
                     />
@@ -132,11 +204,16 @@ export default function SignUpScreen() {
             </TextInputView>
             <SwitchView>
                 <TextInputView>
-                    <SwitchNotification onValueChange={() => setIsEnabled(previousState => !previousState)}
-                        value={isEnabled} />
+                    <SwitchNotification
+                        onValueChange={() =>
+                            setIsEnabled((previousState) => !previousState)
+                        }
+                        value={isEnabled}
+                    />
                     <SwitchText>quero receber notificações</SwitchText>
                 </TextInputView>
             </SwitchView>
+            {!!error && <Text>{error}</Text>}
             <Button onPress={() => handleSignUpPress()}>
                 <TextButton>CADASTRAR</TextButton>
             </Button>
