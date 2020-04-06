@@ -21,9 +21,11 @@
     "react": "16.11.0",
     "react-native": "0.62.0",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-gifted-chat": "^0.13.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.4.0",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "twilio": "^3.42.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
