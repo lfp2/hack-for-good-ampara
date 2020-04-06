@@ -47,12 +47,17 @@ export default function Login() {
       <Logo source={require('../assets/images/Ampara-Simbolo.png')} />
       <ContainerForm>
         <ViewInputs>
-          <Input placeholder="Email" onChangeText={data => setEmail(data)} />
+          <Input placeholder="Email"
+            onChangeText={data => setEmail(data)}
+            autoCorrect={false}
+          />
         </ViewInputs>
         <ViewInputs>
           <Input
             placeholder="Senha"
             onChangeText={data => setPassword(data)}
+            secureTextEntry={true}
+            autoCorrect={false}
           />
         </ViewInputs>
         <SubPagesLogin>

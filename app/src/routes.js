@@ -6,8 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FirstScreen from './pages/FirstScreen';
 import LoginScreen from './pages/Login';
 import WelcomeScreen from './pages/Welcome';
-import VolunteerSignUpScreen from './pages/VolunteerSignUp';
-import VolunteerHomeScreen from './pages/VolunteerHomePage';
+import VolunteerSignUpScreen from './pages/volunteer/SignUp';
+import VolunteerHomePageScreen from './pages/volunteer/HomePage';
 
 
 const Tab = createBottomTabNavigator();
@@ -17,7 +17,7 @@ function VolunteerHomeTabs() {
   return (
     <Tab.Navigator
       screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="Perfil" component={VolunteerHomeScreen} />
+      <Tab.Screen name="Perfil" component={VolunteerHomePageScreen} />
     </Tab.Navigator>
   );
 }
