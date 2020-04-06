@@ -54,5 +54,4 @@ export const SubtitleText = styled.Text`
     textAlign: center;
     fontSize: 16px;
     color: #000000;
-    
 `;
