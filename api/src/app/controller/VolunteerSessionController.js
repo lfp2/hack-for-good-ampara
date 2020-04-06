@@ -8,7 +8,10 @@ class VolunteerSessionController {
   async store(req, res) {
     const { email, password } = req.body;
 
-    const volunteer = await Volunteer.findOne({ where: { email } });
+    const volunteer = await Volunteer.findOne({
+      where: { email },
+      attributes: ['id', 'name', 'bio', 'number_registry', 'password_hash'],
+    });
 
     if (!volunteer) {
       return res.status(401).json({ error: 'Email não cadastrado' });
@@ -18,10 +21,10 @@ class VolunteerSessionController {
       return res.status(401).json({ error: 'Senha inválida' });
     }
 
-    const { id, name } = volunteer;
+    const { id, name, bio, number_registry } = volunteer;
 
     return res.json({
-      volunteer: { id, name, email },
+      volunteer: { id, name, email, bio, number_registry },
       token: jwt.sign({ id, is: 'volunteer' }, authConfig.secret),
     });
   }

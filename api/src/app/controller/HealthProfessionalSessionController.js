@@ -10,6 +10,7 @@ class HealthProfessionalController {
 
     const health_professional = await HealthProfessional.findOne({
       where: { email },
+      attributes: ['id', 'name', 'bio', 'number_registry', 'password_hash'],
     });
 
     if (!health_professional) {
@@ -23,7 +24,7 @@ class HealthProfessionalController {
     const { id, name } = health_professional;
 
     return res.json({
-      health_professional: { id, name, email },
+      health_professional: { id, name, email, bio, number_registry },
       token: jwt.sign({ id, is: 'health_professional' }, authConfig.secret),
     });
   }
