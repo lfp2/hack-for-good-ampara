@@ -31,7 +31,8 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function SignUpScreen() {
     const navigation = useNavigation();
-    const [isEnabled, setIsEnabled] = useState(true);
+    const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
+    const [isAnonymousEnabled, setIsAnonymousEnabled] = useState(false);
     const [error, setError] = useState(null);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -72,7 +73,7 @@ export default function SignUpScreen() {
             .validate(objectForm)
             .then(async (res) => {
                 await api
-                    .post('/volunteer', {
+                    .post('/health_professional', {
                         name,
                         bio,
                         number_registry,
@@ -84,7 +85,7 @@ export default function SignUpScreen() {
                     })
                     .then(async (res) => {
                         await AsyncStorage.setItem(
-                            '@AmparaApp:volunteer',
+                            '@AmparaApp:health',
                             JSON.stringify(response.data),
                         );
 
@@ -102,7 +103,7 @@ export default function SignUpScreen() {
 
     return (
         <ScreenCenter>
-            <TextTitle>Voluntário</TextTitle>
+            <TextTitle>Perfil</TextTitle>
             <HeaderView>
                 <CameraView>
                     <CircleButton>
@@ -211,11 +212,22 @@ export default function SignUpScreen() {
                 <TextInputView>
                     <SwitchNotification
                         onValueChange={() =>
-                            setIsEnabled((previousState) => !previousState)
+                            setIsNotificationEnabled((previousState) => !previousState)
                         }
-                        value={isEnabled}
+                        value={isNotificationEnabled}
                     />
                     <SwitchText>quero receber notificações</SwitchText>
+                </TextInputView>
+            </SwitchView>
+            <SwitchView>
+                <TextInputView>
+                    <SwitchNotification
+                        onValueChange={() =>
+                            setIsAnonymousEnabled((previousState) => !previousState)
+                        }
+                        value={isAnonymousEnabled}
+                    />
+                    <SwitchText>perfil anônimo</SwitchText>
                 </TextInputView>
             </SwitchView>
             {!!error && <Text>{error}</Text>}

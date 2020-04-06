@@ -32,7 +32,23 @@ export default function Login() {
           "password": password,
         });
 
-        await AsyncStorage.setItem('@AmparaApp:volunteer_token', response.data.token);
+        await AsyncStorage.setItem('@AmparaApp:volunteer', JSON.stringify(response.data));
+
+        navigation.navigate('VolunteerHome');
+      } catch (error) {
+        console.log(error.response)
+        console.log(error);
+      }
+    }
+
+    if (userType == "health") {
+      try {
+        const response = await api.post('/auth/health', {
+          "email": email,
+          "password": password,
+        });
+
+        await AsyncStorage.setItem('@AmparaApp:health', JSON.stringify(response.data));
 
         navigation.navigate('VolunteerHome');
       } catch (error) {

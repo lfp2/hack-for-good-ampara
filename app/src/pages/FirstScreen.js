@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
     ScreenCenter,
@@ -15,9 +15,25 @@ import {
 } from '../assets/styles/firstscreen';
 
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 export default function FirstScreen() {
     const navigation = useNavigation();
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const volunteer_value = await AsyncStorage.getItem('@AmparaApp:volunteer');
+                const health_value = await AsyncStorage.getItem('@AmparaApp:health');
+                console.log(volunteer_value);
+                if (volunteer_value != null) navigation.navigate('VolunteerHome');
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    });
 
     function navigateToWelcome() {
         navigation.navigate('Welcome');

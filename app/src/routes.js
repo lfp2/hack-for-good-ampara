@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import HealthSignUpScreen from './pages/health_professional/SignUp';
 import FirstScreen from './pages/FirstScreen';
 import LoginScreen from './pages/Login';
 import WelcomeScreen from './pages/Welcome';
@@ -33,6 +34,7 @@ export default function Routes() {
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="VolunteerSignUp" component={VolunteerSignUpScreen} />
         <Stack.Screen name="VolunteerHome" component={VolunteerHomeTabs} />
+        <Stack.Screen name="HealthSignUp" component={HealthSignUpScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

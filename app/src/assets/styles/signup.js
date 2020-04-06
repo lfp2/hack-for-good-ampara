@@ -94,4 +94,23 @@ export const TextInputView = styled.View`
 
 export const TextTitle = styled.Text`
   font-size: 24px;
+  font-family: Suprema-Black;
+  padding:24px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  background: #79e7e1;
+  width: 180px;
+  height: 40px;
+  padding: 24px;
+  margin: 12px;
+  border-radius: 24px;
+  justifyContent: center;
+`;
+
+export const TextButton = styled.Text`
+    color: #ffffff;
+    font-size: 15px;
+    font-family: Suprema-Regular;
+    text-align: center;
 `;

@@ -27,6 +27,10 @@ export default function WelcomeScreen() {
         navigation.navigate('VolunteerSignUp');
     }
 
+    function navigateToHealthSignUp() {
+        navigation.navigate('HealthSignUp');
+    }
+
     return (
         <ScreenCenter>
             <TextView>
@@ -41,7 +45,7 @@ export default function WelcomeScreen() {
                     </PrimaryButton>
                 </ButtonView>
                 <ButtonView>
-                    <BoxShadowButton>
+                    <BoxShadowButton onPress={() => navigateToHealthSignUp()} >
                         <TextButton>AGENDAR CONSULTA</TextButton>
                     </BoxShadowButton>
                 </ButtonView>

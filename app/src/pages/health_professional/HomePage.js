@@ -29,7 +29,7 @@ export default function HomePageScreen() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const value = await AsyncStorage.getItem('@AmparaApp:volunteer');
+                const value = await AsyncStorage.getItem('@AmparaApp:health');
                 console.log(value);
                 const item = JSON.parse(value);
                 console.log(item.volunteer.number_registry);
