@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Picker } from 'react-native';
 import { ScreenCenter, TextCenter } from '../assets/styles';
 import {
   ContainerForm,
@@ -10,40 +10,67 @@ import {
   Input,
   ViewInputs,
   Logo,
+  StyledPicker,
 } from '../assets/styles/login';
 
+import api from '../services/api';
+
+import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState("perfil");
 
-  function Login(email, password) { }
+  async function handleLoginPress() {
+    if (userType == "volunteer") {
+      try {
+        const response = await api.post('/auth/volunteer', {
+          "email": email,
+          "password": password,
+        });
+
+        await AsyncStorage.setItem('@AmparaApp:volunteer_token', response.data.token);
+
+        navigation.navigate('VolunteerHome');
+      } catch (error) {
+        console.log(error.response)
+        console.log(error);
+      }
+    }
+  }
 
   return (
     <ScreenCenter>
       <Logo source={require('../assets/images/Ampara-Simbolo.png')} />
       <ContainerForm>
-        <View>
-          <ViewInputs>
-            <Input placeholder="Email" onChangeText={data => setEmail(data)} />
-          </ViewInputs>
-          <ViewInputs>
-            <Input
-              placeholder="Senha"
-              onChangeText={data => setPassword(data)}
-            />
-          </ViewInputs>
-          <SubPagesLogin>
-            <TouchableOpacity>
-              <SubPagesText>Esqueceu a senha?</SubPagesText>
-            </TouchableOpacity>
-          </SubPagesLogin>
-          <Button onPress={() => Login(email, password)}>
-            <TextButton>ENTRAR</TextButton>
-          </Button>
-        </View>
+        <ViewInputs>
+          <Input placeholder="Email" onChangeText={data => setEmail(data)} />
+        </ViewInputs>
+        <ViewInputs>
+          <Input
+            placeholder="Senha"
+            onChangeText={data => setPassword(data)}
+          />
+        </ViewInputs>
+        <SubPagesLogin>
+          <TouchableOpacity>
+            <SubPagesText>Esqueceu a senha?</SubPagesText>
+          </TouchableOpacity>
+        </SubPagesLogin>
+        <StyledPicker
+          selectedValue={userType}
+          onValueChange={(itemValue, itemIndex) => setUserType(itemValue)}
+        >
+          <Picker.Item label="Escolha seu perfil" value="escolha seu perfil" />
+          <Picker.Item label="Voluntário" value="volunteer" />
+          <Picker.Item label="Paciente" value="health" />
+        </StyledPicker>
+        <Button onPress={() => handleLoginPress()}>
+          <TextButton>ENTRAR</TextButton>
+        </Button>
       </ContainerForm>
     </ScreenCenter>
   );
