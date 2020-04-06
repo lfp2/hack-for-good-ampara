@@ -1,4 +1,6 @@
-# ampara
+<p align="center">
+  <img align="center" width="250" src="assets/Ampara-Logo.png">
+</p>
 
 Solução focada no público dos profissionais da saúde que estão trabalhando para conter o COVID19 e que conta com a ajuda de profissionais que possam dar apoio psicológico à eles.
 
