@@ -1,17 +1,22 @@
 import styled from 'styled-components/native';
 
-import {TextCenter} from './index';
+import { TextCenter } from './index';
+import { Picker } from 'react-native';
 
 export const ContainerForm = styled.View`
   width: 80%;
+  flex: 2;
   background: #fff;
   padding: 18px;
   border-radius: 8px;
 `;
 
-export const Logo = styled(TextCenter)`
-  font-size: 20px;
-  margin-bottom: 24px;
+export const Logo = styled.Image`
+    width: 160px;
+    height: 60px;
+    resize-mode: contain;
+    flex: 2;
+    justifyContent: center;
 `;
 
 export const ViewInputs = styled.View`
@@ -21,8 +26,9 @@ export const ViewInputs = styled.View`
 `;
 
 export const Input = styled.TextInput`
-  padding-left: 5px;
+ padding-left: 5px;
   height: 40px;
+  width: 80%;
   border-bottom-color: #000;
   margin: 0;
 `;
@@ -48,4 +54,13 @@ export const SubPagesLogin = styled.View`
 export const SubPagesText = styled.Text`
   font-size: 10px;
   font-weight: 400;
+`;
+
+export const StyledPicker = styled(Picker)`
+  margin: 10px;
+`;
+
+export const TextMenu = styled(TextCenter)`
+  color: #76b1e6;
+  font-size: 24px;
 `;

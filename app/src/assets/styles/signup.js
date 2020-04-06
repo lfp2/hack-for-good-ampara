@@ -1,7 +1,5 @@
 import styled from 'styled-components/native';
 
-import { Button } from './index';
-
 export const CircleButton = styled.TouchableOpacity`
     height: 100px;
     width: 100px;
