@@ -89,7 +89,7 @@ export default function SignUpScreen() {
                             JSON.stringify(response.data),
                         );
 
-                        navigation.navigate('VolunteerHome');
+                        navigation.navigate('HealthHome');
                     })
                     .catch((err) => {
                         console.log(err.response);

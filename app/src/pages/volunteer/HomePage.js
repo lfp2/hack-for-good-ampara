@@ -73,6 +73,7 @@ export default function HomePageScreen() {
                 </MenuRow>
                 <MenuRow>
                     <MenuButton>
+                        <MenuIcon source={require('../../assets/icons/message.png')} />
                         <MenuText>Mensagens</MenuText>
                     </MenuButton>
                     <MenuButton>

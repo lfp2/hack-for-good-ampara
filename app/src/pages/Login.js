@@ -50,7 +50,7 @@ export default function Login() {
 
         await AsyncStorage.setItem('@AmparaApp:health', JSON.stringify(response.data));
 
-        navigation.navigate('VolunteerHome');
+        navigation.navigate('HealthHome');
       } catch (error) {
         console.log(error.response)
         console.log(error);
