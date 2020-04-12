@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export const MenuButton = styled.TouchableOpacity`
     height: 100px;
@@ -27,12 +28,13 @@ export const RectangleBackground = styled.View`
     border-bottom-right-radius: 20px;
 `
 
-export const MenuIcon = styled.Image`
-    height: 40px;
-    width: 40px;
-    padding: 5px;
-    resize-mode: contain;
-    align-self: center;
+export const MenuIcon = styled(Icon)`
+    color: #79e7e1;
+    font-size: 30px;
+`;
+
+export const MenuIconView = styled.View`
+    align-items: center;
 `;
 
 export const MenuText = styled.Text`

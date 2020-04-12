@@ -15,16 +15,20 @@ import {
     HeaderPictureTextView,
     SecondaryText,
     TextTitle,
+    MenuIconView
 } from '../../assets/styles/homepage';
 
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { Linking } from 'react-native';
 
 export default function HomePageScreen() {
     const navigation = useNavigation();
     const [name, setName] = useState(null);
     const [bio, setBio] = useState(null);
     const [number_registry, setNumberRegistry] = useState('');
+    const text = "join oxygen-heavy";
+    const phone = "+1 415 523 8886";
 
     useEffect(() => {
         async function fetchData() {
@@ -43,7 +47,9 @@ export default function HomePageScreen() {
         fetchData();
     });
 
-
+    function handleAgendaPress() {
+        Linking.openURL(`whatsapp://send?text=${text}&phone${phone}`);
+    }
 
     return (
         <ScreenCenter>
@@ -62,22 +68,25 @@ export default function HomePageScreen() {
             </HeaderView>
             <MenuView>
                 <MenuRow>
-                    <MenuButton>
-                        <MenuIcon source={require('../../assets/icons/awesome-clock.png')} />
-                        <MenuText>Meus Horários</MenuText>
+                    <MenuButton onPress={() => handleAgendaPress()}>
+                        <MenuIconView>
+                            <MenuIcon name="calendar" />
+                        </MenuIconView>
+                        <MenuText>Agendar Consulta</MenuText>
                     </MenuButton>
                     <MenuButton>
                         <MenuIcon source={require('../../assets/icons/awesome-book.png')} />
-                        <MenuText>Consultas Marcadas</MenuText>
+                        <MenuText>Minhas Consultas</MenuText>
                     </MenuButton>
                 </MenuRow>
                 <MenuRow>
                     <MenuButton>
+                        <MenuIcon source={require('../../assets/icons/message.png')} />
                         <MenuText>Mensagens</MenuText>
                     </MenuButton>
                     <MenuButton>
-                        <MenuIcon source={require('../../assets/icons/ionic-ios-heart.png')} />
-                        <MenuText>Avaliações</MenuText>
+                        <MenuIcon source={require('../../assets/icons/hospital.png')} />
+                        <MenuText>Histórico</MenuText>
                     </MenuButton>
                 </MenuRow>
             </MenuView>
