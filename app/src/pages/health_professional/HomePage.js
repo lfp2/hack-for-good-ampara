@@ -15,6 +15,7 @@ import {
     HeaderPictureTextView,
     SecondaryText,
     TextTitle,
+    MenuIconView
 } from '../../assets/styles/homepage';
 
 import { useNavigation } from '@react-navigation/native';
@@ -68,7 +69,9 @@ export default function HomePageScreen() {
             <MenuView>
                 <MenuRow>
                     <MenuButton onPress={() => handleAgendaPress()}>
-                        <MenuIcon source={require('../../assets/icons/awesome-calendar-alt.png')} />
+                        <MenuIconView>
+                            <MenuIcon name="calendar" />
+                        </MenuIconView>
                         <MenuText>Agendar Consulta</MenuText>
                     </MenuButton>
                     <MenuButton>

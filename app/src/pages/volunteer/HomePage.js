@@ -15,6 +15,7 @@ import {
     HeaderPictureTextView,
     SecondaryText,
     TextTitle,
+    MenuIconView
 } from '../../assets/styles/homepage';
 
 import { useNavigation } from '@react-navigation/native';
@@ -63,21 +64,21 @@ export default function HomePageScreen() {
             <MenuView>
                 <MenuRow>
                     <MenuButton>
-                        <MenuIcon source={require('../../assets/icons/awesome-clock.png')} />
+                        <MenuIconView><MenuIcon name="clock" /></MenuIconView>
                         <MenuText>Meus Horários</MenuText>
                     </MenuButton>
                     <MenuButton>
-                        <MenuIcon source={require('../../assets/icons/awesome-book.png')} />
+                        <MenuIconView><MenuIcon name="book" /></MenuIconView>
                         <MenuText>Consultas Marcadas</MenuText>
                     </MenuButton>
                 </MenuRow>
                 <MenuRow>
                     <MenuButton>
-                        <MenuIcon source={require('../../assets/icons/message.png')} />
+                        <MenuIconView><MenuIcon name="message-text" /></MenuIconView>
                         <MenuText>Mensagens</MenuText>
                     </MenuButton>
                     <MenuButton>
-                        <MenuIcon source={require('../../assets/icons/ionic-ios-heart.png')} />
+                        <MenuIconView><MenuIcon name="heart" /></MenuIconView>
                         <MenuText>Avaliações</MenuText>
                     </MenuButton>
                 </MenuRow>
