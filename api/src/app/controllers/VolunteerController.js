@@ -7,7 +7,14 @@ const volunteerRef = firebaseConfig.firestore().collection('volunteers')
 
 class VolunteerController {
   async store (req, res) {
-    const { email, phoneNumber, displayName, bio, documentName, documentNumber } = req.body
+    const {
+      email,
+      phoneNumber,
+      displayName,
+      bio,
+      documentName,
+      documentNumber
+    } = req.body
 
     const verifyEmailExists = await volunteerRef
       .where('email', '==', req.body.email)
@@ -28,30 +35,82 @@ class VolunteerController {
       })
 
     if (!verifyNumberExists.empty) {
-      return res.status(400).json({ error: 'Numero de registro já cadastrado' })
+      return res
+        .status(400)
+        .json({ error: 'Numero de registro já cadastrado' })
     }
 
-    const token = jwt.sign({ hash: crypto.randomBytes(10).toString('hex') }, process.env.SECRET_KEY)
-
-    const password = await bcrypt.hash(
-      req.body.password,
-      8
+    const token = jwt.sign(
+      { hash: crypto.randomBytes(10).toString('hex') },
+      process.env.SECRET_KEY
     )
+
+    const password = await bcrypt.hash(req.body.password, 8)
 
     const docRef = await volunteerRef.doc(token)
 
-    await docRef.set({
-      email,
-      phoneNumber,
+    await docRef
+      .set({
+        email,
+        phoneNumber,
+        displayName,
+        password,
+        bio,
+        documentName,
+        documentNumber
+      })
+      .catch((err) => {
+        return res.status(500).json({ err })
+      })
+
+    return res.json({
+      token,
       displayName,
-      password,
+      phoneNumber,
+      email,
       bio,
       documentName,
       documentNumber
     })
+  }
+
+  async login (req, res) {
+    const verifyEmailExists = await volunteerRef
+      .where('email', '==', req.body.email)
+      .get()
       .catch((err) => {
         return res.status(500).json({ err })
       })
+
+    if (verifyEmailExists.empty) {
+      return res.status(400).json({ error: 'Email ou senha incorreta' })
+    }
+    var token,
+      displayName,
+      phoneNumber,
+      password,
+      email,
+      bio,
+      documentName,
+      documentNumber
+
+    verifyEmailExists.forEach((doc) => {
+      token = doc.id
+      displayName = doc.data().displayName
+      phoneNumber = doc.data().phoneNumber
+      password = doc.data().password
+      email = doc.data().email
+      bio = doc.data().bio
+      documentName = doc.data().documentName
+      documentNumber = doc.data().documentNumber
+    })
+
+    const passwordValidation = await bcrypt.compare(
+      req.body.password,
+      password
+    )
+
+    if (!passwordValidation) { return res.status(400).json({ error: 'Email ou senha incorreta' }) }
 
     return res.json({
       token,
