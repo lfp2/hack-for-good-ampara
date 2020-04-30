@@ -3,6 +3,8 @@ const firebaseConfig = require('../../config/firebase')
 const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
 
+const Mail = require('../../lib/Mail')
+
 const volunteerRef = firebaseConfig.firestore().collection('volunteers')
 
 class VolunteerController {
@@ -45,6 +47,11 @@ class VolunteerController {
       process.env.SECRET_KEY
     )
 
+    const tokenEmailVerify = jwt.sign(
+      { email },
+      process.env.SECRET_KEY
+    )
+
     const password = await bcrypt.hash(req.body.password, 8)
 
     const docRef = await volunteerRef.doc(token)
@@ -57,14 +64,25 @@ class VolunteerController {
         password,
         bio,
         documentName,
-        documentNumber
+        documentNumber,
+        tokenEmailVerify,
+        verified: false
       })
       .catch((err) => {
         return res.status(500).json({ err })
       })
 
+    Mail.sendMail({
+      to: email,
+      subject: 'Ampara - Verifique sua conta',
+      template: 'verified',
+      context: {
+        volunteer_name: displayName,
+        link_verify: `http://localhost:3333/verify/volunteer?email=${email}&token=${tokenEmailVerify}`
+      }
+    })
+
     return res.json({
-      token,
       displayName,
       phoneNumber,
       email,
@@ -85,6 +103,7 @@ class VolunteerController {
     if (verifyEmailExists.empty) {
       return res.status(400).json({ error: 'Email ou senha incorreta' })
     }
+
     var token,
       displayName,
       phoneNumber,
