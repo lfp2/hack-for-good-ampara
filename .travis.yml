@@ -1,0 +1,23 @@
+jobs:
+  include:
+  - language: node_js
+    node_js: node
+    env:
+    - PORT=port 
+    - SECRET_KEY=secret_key 
+    - MAIL_HOST=mail_host 
+    - MAIL_PORT=mail_port 
+    - MAIL_USER=mail_user
+    - MAIL_PASSWORD=mail_password
+    before_install:
+    - cd api
+    - cd src
+    - cd config
+    - openssl aes-256-cbc -K $encrypted_3b9f0b9d36d1_key -iv $encrypted_3b9f0b9d36d1_iv -in secrets.tar.enc -out secrets.tar -d
+    - tar xvf secrets.tar
+    - cd ..
+    - cd ..
+    deploy:
+      provider: gae
+      keyfile: src/config/firebase-deploy.json
+      project: hack-for-good-hug
