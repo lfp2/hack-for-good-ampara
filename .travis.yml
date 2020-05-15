@@ -8,7 +8,17 @@ jobs:
     - MAIL_HOST=mail_host 
     - MAIL_PORT=mail_port 
     - MAIL_USER=mail_user
-    - MAIL_PASSWORD=mail_password
+    - MAIL_PASS=mail_pass
+    - TYPE=type
+    - PRIVATE_KEY_ID=private_key_id
+    - PRIVATE_KEY=private_key
+    - CLIENT_EMAIL=client_email
+    - CLIENT_ID=client_id
+    - AUTH_URI=auth_uri
+    - TOKEN_URI=token_uri
+    - AUTH_PROVIDER_X509_CERT_URL=auth_provider_x509_cert_url
+    - CLIENT_X509_CERT_URL=client_x509_cert_url
+    - PROJECT_ID=project_id
     before_install:
     - cd api
     - cd src
@@ -17,6 +27,8 @@ jobs:
     - tar xvf secrets.tar
     - cd ..
     - cd ..
+    before_script:
+    - node config-compile.js
     deploy:
       provider: gae
       keyfile: src/config/firebase-deploy.json
