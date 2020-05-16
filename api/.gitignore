@@ -3,3 +3,4 @@ node_modules/
 firebase.json
 yarn.lock
 yarn.error
+app.yaml
