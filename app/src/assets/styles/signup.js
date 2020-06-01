@@ -1,20 +1,30 @@
 import styled from 'styled-components/native';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Picker} from '@react-native-community/picker';
 
 export const CircleButton = styled.TouchableOpacity`
-    height: 100px;
-    width: 100px;
-    padding: 5px;
-    border-radius: 200px;
-    background: #779fe0;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  height: 100px;
+  width: 100px;
+  padding: 5px;
+  border-radius: 200px;
+  background: #779fe0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CircleImage = styled.Image`
+  height: 80px;
+  width: 80px;
+  padding: 5px;
+  border-radius: 160px;
 `;
 
 export const CircleButtonText = styled.Text`
-    color: #8c8c8c;
-    font-size: 12px;
-    margin: 2px;
+  color: #8c8c8c;
+  font-size: 12px;
+  margin: 2px;
 `;
 
 export const CameraView = styled.View`
@@ -22,25 +32,27 @@ export const CameraView = styled.View`
 `;
 
 export const CircleIcon = styled.Image`
-    height: 50px;
-    width: 50px;
-    padding: 5px;
-    resize-mode: contain;
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  resize-mode: contain;
 `;
 
 export const ViewInput = styled.View`
   border-bottom-color: #8c8c8c;
   border-bottom-width: 1px;
   margin-bottom: 5px;
+  width: 80%;
 `;
 
 export const Input = styled.TextInput`
   padding-left: 5px;
   height: 40px;
-  width: 280px;
-  border-bottom-color: #000;
-  margin: 0;
-`;
+  width: 80%;
+  border-bottom-color: #8c8c8c;
+  border-bottom-width: 1px;
+  margin-bottom: 10px;
+       `;
 
 export const HeaderInput = styled.TextInput`
   padding-left: 5px;
@@ -74,22 +86,22 @@ export const SwitchText = styled.Text`
 `;
 
 export const SwitchView = styled.View`
-  align-self: flex-start;
-  padding-left: 36px;
-  margin: 5px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 16px;
 `;
 
 export const TextInputIcons = styled.Image`
-    height: 20px;
-    width: 20px;
-    margin: 5px;
-    resize-mode: contain;
+  height: 24px;
+  width: 24px;
+  margin: 10px;
+  resize-mode: contain;
 `;
 
 export const TextInputView = styled.View`
   flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const TextTitle = styled.Text`
@@ -105,12 +117,49 @@ export const Button = styled.TouchableOpacity`
   padding: 24px;
   margin: 12px;
   border-radius: 24px;
-  justifyContent: center;
+  justify-content: center;
 `;
 
 export const TextButton = styled.Text`
-    color: #ffffff;
-    font-size: 15px;
-    font-family: Suprema-Regular;
-    text-align: center;
+  color: #ffffff;
+  font-size: 15px;
+  font-family: Suprema-Regular;
+  text-align: center;
+`;
+
+export const CircleGradientBackground = styled(LinearGradient)`
+  position: absolute;
+  height: 30%;
+  width: 100%;
+  top: 0;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+`;
+
+export const InputIcon = styled(Icon)`
+  color: #76b1e6;
+  font-size: 24px;
+  margin: 10px;
+`;
+
+export const TextError = styled.Text`
+  color: #ff0000;
+  font-size: 10px;
+  font-family: Suprema-Regular;
+  text-align: left;
+  margin: 10px;
+`;
+
+export const StyledScrollView = styled.ScrollView`
+  width: 90%;
+  content-container-style: {
+    justify-content: flex-start;
+    align-items: center;
+  };
+`;
+
+export const StyledPicker = styled(Picker)`
+    padding-left: 5px;
+    height: 40px;
+    width: 80%;
 `;

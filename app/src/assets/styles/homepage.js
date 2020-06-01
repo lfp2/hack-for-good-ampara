@@ -26,7 +26,7 @@ export const RectangleBackground = styled.View`
     top: 0;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-`
+`;
 
 export const MenuIcon = styled(Icon)`
     color: #79e7e1;

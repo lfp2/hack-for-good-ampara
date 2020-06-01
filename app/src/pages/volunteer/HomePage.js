@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ScreenCenter, TextCenter } from '../../assets/styles';
+import React, {useState, useEffect} from 'react';
+import {ScreenCenter} from '../../assets/styles';
 import {
     MenuButton,
     MenuIcon,
@@ -15,10 +15,10 @@ import {
     HeaderPictureTextView,
     SecondaryText,
     TextTitle,
-    MenuIconView
+    MenuIconView,
 } from '../../assets/styles/homepage';
 
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function HomePageScreen() {
@@ -30,7 +30,9 @@ export default function HomePageScreen() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const value = await AsyncStorage.getItem('@AmparaApp:volunteer');
+                const value = await AsyncStorage.getItem(
+                    '@AmparaApp:volunteer',
+                );
                 console.log(value);
                 const item = JSON.parse(value);
                 console.log(item.volunteer.number_registry);
@@ -44,13 +46,13 @@ export default function HomePageScreen() {
         fetchData();
     });
 
-
-
     return (
         <ScreenCenter>
             <RectangleBackground />
             <HeaderView>
-                <Logo source={require('../../assets/images/Ampara-Simbolo-branco.png')} />
+                <Logo
+                    source={require('../../assets/images/Ampara-Simbolo-branco.png')}
+                />
                 <TextTitle>Meu Perfil</TextTitle>
                 <HeaderPictureTextView>
                     <CircleButton></CircleButton>
@@ -63,22 +65,30 @@ export default function HomePageScreen() {
             </HeaderView>
             <MenuView>
                 <MenuRow>
-                    <MenuButton>
-                        <MenuIconView><MenuIcon name="clock" /></MenuIconView>
+                    <MenuButton onPress={() => navigation.navigate('Calendar')}>
+                        <MenuIconView>
+                            <MenuIcon name="clock" />
+                        </MenuIconView>
                         <MenuText>Meus Horários</MenuText>
                     </MenuButton>
                     <MenuButton>
-                        <MenuIconView><MenuIcon name="book" /></MenuIconView>
+                        <MenuIconView>
+                            <MenuIcon name="book" />
+                        </MenuIconView>
                         <MenuText>Consultas Marcadas</MenuText>
                     </MenuButton>
                 </MenuRow>
                 <MenuRow>
                     <MenuButton>
-                        <MenuIconView><MenuIcon name="message-text" /></MenuIconView>
+                        <MenuIconView>
+                            <MenuIcon name="message-text" />
+                        </MenuIconView>
                         <MenuText>Mensagens</MenuText>
                     </MenuButton>
                     <MenuButton>
-                        <MenuIconView><MenuIcon name="heart" /></MenuIconView>
+                        <MenuIconView>
+                            <MenuIcon name="heart" />
+                        </MenuIconView>
                         <MenuText>Avaliações</MenuText>
                     </MenuButton>
                 </MenuRow>

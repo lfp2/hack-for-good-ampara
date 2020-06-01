@@ -4,7 +4,7 @@ import {
     ScreenCenter,
     PrimaryButton,
     PrimaryTextButton,
-    TextButton
+    TextButton,
 } from '../assets/styles';
 
 import {
@@ -15,42 +15,58 @@ import {
     VoluntarioImage,
     TextView,
     TitleText,
-    SubtitleText
+    SubtitleText,
 } from '../assets/styles/welcome';
+import {useStoreActions} from 'easy-peasy';
 
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function WelcomeScreen() {
     const navigation = useNavigation();
+    const updateUserData = useStoreActions((actions) => actions.updateUserData);
 
     function navigateToVolunteerSignUp() {
-        navigation.navigate('VolunteerSignUp');
+        updateUserData({
+            accountType: 'volunteer'
+        });
+        navigation.navigate('SignUpEmail');
     }
 
     function navigateToHealthSignUp() {
-        navigation.navigate('HealthSignUp');
+        updateUserData({
+            accountType: 'volunteer'
+        });
+        navigation.navigate('SignUpProfile');
     }
 
     return (
         <ScreenCenter>
             <TextView>
                 <TitleText>Bem-vindo!</TitleText>
-                <SubtitleText>Escolha a opção que mais se encaixar com você</SubtitleText>
+                <SubtitleText>
+                    Escolha a opção que mais se encaixar com você
+                </SubtitleText>
             </TextView>
-            <VoluntarioImage source={require('../assets/images/voluntario.png')} />
+            <VoluntarioImage
+                source={require('../assets/images/voluntario.png')}
+            />
             <ButtonsView>
                 <ButtonView>
                     <PrimaryButton onPress={() => navigateToVolunteerSignUp()}>
-                        <PrimaryTextButton>QUERO SER VOLUNTÁRIO</PrimaryTextButton>
+                        <PrimaryTextButton>
+                            QUERO SER VOLUNTÁRIO
+                        </PrimaryTextButton>
                     </PrimaryButton>
                 </ButtonView>
                 <ButtonView>
-                    <BoxShadowButton onPress={() => navigateToHealthSignUp()} >
+                    <BoxShadowButton onPress={() => navigateToHealthSignUp()}>
                         <TextButton>AGENDAR CONSULTA</TextButton>
                     </BoxShadowButton>
                 </ButtonView>
             </ButtonsView>
-            <FootnoteImage source={require('../assets/images/footnote_volunteer.png')} />
+            <FootnoteImage
+                source={require('../assets/images/footnote_volunteer.png')}
+            />
         </ScreenCenter>
     );
 }
