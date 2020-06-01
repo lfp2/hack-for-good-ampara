@@ -41,6 +41,7 @@
     "react-native-screens": "^2.7.0",
     "react-native-vector-icons": "^6.6.0",
     "react-redux": "^7.2.0",
+    "react-use": "^15.1.1",
     "styled-components": "^5.0.1",
     "twilio": "^3.42.0",
     "yup": "^0.28.3"

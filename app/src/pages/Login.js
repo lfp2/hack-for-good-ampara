@@ -28,7 +28,7 @@ export default function Login() {
   async function handleLoginPress() {
     if (userType == 'volunteer') {
       try {
-        const response = await api.post('/auth/volunteer', {
+        const response = await api.post('/volunteer/signIn', {
           email: email,
           password: password,
         });
@@ -51,6 +51,7 @@ export default function Login() {
           email: email,
           password: password,
         });
+        console.log(response.data);
 
         await AsyncStorage.setItem(
           '@AmparaApp:health',
@@ -60,7 +61,7 @@ export default function Login() {
         navigation.navigate('HealthHome');
       } catch (error) {
         console.log(error.response);
-        console.log(error);
+        // console.log(error);
       }
     }
   }
