@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { View } from 'react-native';
+import { View, Button as BaseButton } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {
+  TouchableOpacity,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+} from 'react-native-gesture-handler';
+import { Link } from '@react-navigation/native';
 
 export const Container = styled.View`
   height: 100%;
@@ -19,8 +25,7 @@ export const Body = styled.View`
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
 `;
-// src\assets\images\julio.png
-// src\components\VolunteerProfile\styles.js
+
 export const ProfilePic = styled.Image.attrs({
   source: require('../../assets/images/julio.png'),
 })`
@@ -60,10 +65,12 @@ const ButtonText = styled.Text`
 `;
 
 export const Button = styled((props) => (
-  <View {...props}>
-    <ButtonIcon name={props.icon} color="#74E8E2" size={40} />
-    <ButtonText>{props.children}</ButtonText>
-  </View>
+  <TouchableOpacity onPress={props.onPress}>
+    <View {...props}>
+      <ButtonIcon name={props.icon} color="#74E8E2" size={40} />
+      <ButtonText>{props.children}</ButtonText>
+    </View>
+  </TouchableOpacity>
 ))`
   background-color: white;
   padding: 20px 10px;
@@ -72,8 +79,9 @@ export const Button = styled((props) => (
   elevation: 1;
   justify-content: center;
   align-items: center;
-  width: 40%;
+  width: 150px;
   margin: 10px;
+  flex-direction: column;
 `;
 
 export const Logo = styled.Image.attrs({
