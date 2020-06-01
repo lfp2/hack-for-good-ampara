@@ -3,8 +3,11 @@ const { Router } = require('express')
 const HealthProfessionalController = require("./app/controllers/HealthProfessionalController");
 const VolunteerController = require('./app/controllers/VolunteerController')
 const VolunteerVerifyController = require('./app/controllers/VolunteerVerifyController')
+const AgendaController = require('./app/controllers/AgendaController')
 
 const routes = new Router()
+
+routes.post('/agenda/availableDoctors', AgendaController.availableDoctors)
 
 routes.post('/volunteer', VolunteerController.store)
 
