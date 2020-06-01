@@ -10,6 +10,8 @@ routes.post('/volunteer', VolunteerController.store)
 
 routes.post('/volunteer/signIn', VolunteerController.login)
 
+routes.post("/volunteer/availableHours", VolunteerController.availableHours);
+
 routes.post("/healthprofessional", HealthProfessionalController.store);
 
 routes.post("/healthprofessional/signIn", HealthProfessionalController.login)
