@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 import { TextCenter } from './index';
-import { Picker } from 'react-native';
+import {Picker} from '@react-native-community/picker';
 
 export const ContainerForm = styled.View`
   width: 80%;
