@@ -1,49 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { ScreenCenter } from '../../assets/styles';
+import React, { useEffect, useState } from 'react';
+
 import {
-  MenuButton,
-  MenuIcon,
-  MenuText,
-  MenuView,
-  MenuRow,
-  RectangleBackground,
-  Logo,
-  HeaderView,
-  PrimaryText,
-  HeaderTextView,
-  CircleButton,
-  HeaderPictureTextView,
-  SecondaryText,
-  TextTitle,
-  MenuIconView,
+  Container,
+  Body,
+  ProfilePic,
+  Name,
+  Role,
+  Buttons,
+  Button,
+  LogoBranca,
+  Title,
+  MenuBtn,
+  SwitchText,
+  SwitchContainer,
 } from '../../assets/styles/homepage';
-
-import { useNavigation } from '@react-navigation/native';
+import { SwitchNotification } from '../../assets/styles/signup';
+import useToggle from 'react-use/lib/useToggle';
+import { useNavigation, Link } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
-import VolunteerProfile from '../../components/VolunteerProfile';
 
-export default function HomePageScreen() {
+const VolunteerProfile = () => {
   const navigation = useNavigation();
-  const [name, setName] = useState(null);
-  const [bio, setBio] = useState(null);
+  const [name, setName] = useState('');
   const [number_registry, setNumberRegistry] = useState('');
 
   useEffect(() => {
     async function fetchData() {
       try {
         const value = await AsyncStorage.getItem('@AmparaApp:volunteer');
-        console.log(value);
-        const item = JSON.parse(value);
-        console.log(item.volunteer.number_registry);
-        setName(item.volunteer.name);
-        setBio(item.volunteer.bio);
-        setNumberRegistry(item.volunteer.number_registry);
+        const { displayName, documentNumber } = JSON.parse(value);
+        setName(displayName);
+        setNumberRegistry(documentNumber);
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
   });
+  const [notification, toggleNotification] = useToggle(true);
+  const handleNavigate = (to) => {
+    navigation.navigate(to);
+  };
+  return (
+    <Container>
+      <MenuBtn />
+      <LogoBranca />
+      <Title>Meu Perfil</Title>
+      <Body>
+        <ProfilePic />
+        <Name>{name}</Name>
+        <Role>Psicólogo</Role>
+        <Role>CRP {number_registry}</Role>
+        <Buttons>
+          <Button onPress={() => handleNavigate('Calendar')} icon="clock">
+            Meus horários
+          </Button>
+          <Button onPress={() => handleNavigate('Appointment')} icon="book">
+            Consultas
+          </Button>
+        </Buttons>
+        <SwitchContainer>
+          <SwitchText>Plantão</SwitchText>
+          <SwitchNotification
+            onValueChange={() => toggleNotification()}
+            value={notification}
+          />
+        </SwitchContainer>
+      </Body>
+    </Container>
+  );
+};
 
-  return <VolunteerProfile />;
-}
+export default VolunteerProfile;

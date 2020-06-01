@@ -5,6 +5,7 @@ import AppointmentCard, {
   AppointmentCards,
 } from '../../../components/AppointmentCard';
 import { FlatList } from 'react-native-gesture-handler';
+import Modal, { ModalButton } from '../../../components/Modal';
 
 const AppointmentScreen = () => {
   return (
@@ -17,6 +18,12 @@ const AppointmentScreen = () => {
           renderItem={() => <AppointmentCard />}
         />
       </AppointmentCards>
+      <Modal
+        icon={require('../../../assets/images/deal.png')}
+        title="A consulta foi finalizada!"
+        desc="Verifique o e-mail cadastrado para mais detalhes da consulta.">
+        <ModalButton>OK</ModalButton>
+      </Modal>
     </Container>
   );
 };
