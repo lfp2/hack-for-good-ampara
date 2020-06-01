@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Picker} from '@react-native-community/picker';
+import { Picker } from '@react-native-community/picker';
 
 export const CircleButton = styled.TouchableOpacity`
   height: 100px;
@@ -52,7 +52,7 @@ export const Input = styled.TextInput`
   border-bottom-color: #8c8c8c;
   border-bottom-width: 1px;
   margin-bottom: 10px;
-       `;
+`;
 
 export const HeaderInput = styled.TextInput`
   padding-left: 5px;
@@ -107,7 +107,7 @@ export const TextInputView = styled.View`
 export const TextTitle = styled.Text`
   font-size: 24px;
   font-family: Suprema-Black;
-  padding:24px;
+  padding: 24px;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -155,11 +155,11 @@ export const StyledScrollView = styled.ScrollView`
   content-container-style: {
     justify-content: flex-start;
     align-items: center;
-  };
+  }
 `;
 
 export const StyledPicker = styled(Picker)`
-    padding-left: 5px;
-    height: 40px;
-    width: 80%;
+  padding-left: 5px;
+  height: 40px;
+  width: 80%;
 `;

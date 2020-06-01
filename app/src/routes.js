@@ -11,6 +11,7 @@ import SignUpEmailScreen from './pages/SignUpEmail';
 import CalendarScreen from './pages/volunteer/Calendar';
 import VolunteerHomePageScreen from './pages/volunteer/HomePage';
 import HealthHomePageScreen from './pages/health_professional/HomePage';
+import AppointmentScreen from './pages/volunteer/Appointment';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -53,6 +54,8 @@ export default function Routes() {
         <Stack.Screen name="SignUpProfile" component={SignUpProfileScreen} />
         <Stack.Screen name="VolunteerHome" component={VolunteerHomeTabs} />
         <Stack.Screen name="HealthHome" component={HealthHomeTabs} />
+        <Stack.Screen name="Calendar" component={CalendarScreen} />
+        <Stack.Screen name="Appointment" component={AppointmentScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

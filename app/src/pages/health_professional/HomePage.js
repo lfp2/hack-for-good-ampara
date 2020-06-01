@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  ScreenCenter,
-  // TextCenter
-} from '../../assets/styles';
+import { ScreenCenter, TextCenter } from '../../assets/styles';
 import {
   MenuButton,
   MenuIcon,
@@ -21,12 +18,12 @@ import {
   MenuIconView,
 } from '../../assets/styles/homepage';
 
-// import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Linking } from 'react-native';
 
 export default function HomePageScreen() {
-  //   const navigation = useNavigation();
+  const navigation = useNavigation();
   const [name, setName] = useState(null);
   const [bio, setBio] = useState(null);
   const [number_registry, setNumberRegistry] = useState('');

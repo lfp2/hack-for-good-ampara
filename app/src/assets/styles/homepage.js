@@ -19,79 +19,79 @@ export const MenuButton = styled.TouchableOpacity`
 `;
 
 export const RectangleBackground = styled.View`
-    position: absolute;
-    height: 60%;
-    width: 100%;
-    background: #76b1e6;
-    top: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+  position: absolute;
+  height: 60%;
+  width: 100%;
+  background: #76b1e6;
+  top: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 `;
 
 export const MenuIcon = styled(Icon)`
-    color: #79e7e1;
-    font-size: 30px;
+  color: #79e7e1;
+  font-size: 30px;
 `;
 
 export const MenuIconView = styled.View`
-    align-items: center;
+  align-items: center;
 `;
 
 export const MenuText = styled.Text`
-    color: #000000;
-    font-size: 12px;
-    margin: 2px;
-    text-align: center;
-    font-family: Suprema-Bold;
+  color: #000000;
+  font-size: 12px;
+  margin: 2px;
+  text-align: center;
+  font-family: Suprema-Bold;
 `;
 
 export const MenuRow = styled.View`
-    justify-content: space-around;
-    flex-direction: row; 
-    margin: 10px;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 10px;
 `;
 
 export const MenuView = styled.View`
-    margin: 24px;
-    width: 80%;
+  margin: 24px;
+  width: 80%;
 `;
 
 export const Logo = styled.Image`
-    height: 50px;
-    margin: 10px;
-    resize-mode: contain;
+  height: 50px;
+  margin: 10px;
+  resize-mode: contain;
 `;
 
 export const HeaderView = styled.View`
-    margin: 24px;
-    flex: 2;
-    flex-direction: column;
-    justify-content: space-between;
-    align-content: center;
-`
+  margin: 24px;
+  flex: 2;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+`;
 
 export const CircleButton = styled.TouchableOpacity`
-    height: 100px;
-    width: 100px;
-    padding: 5px;
-    border-radius: 200px;
-    background: #79e7e1;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  height: 100px;
+  width: 100px;
+  padding: 5px;
+  border-radius: 200px;
+  background: #79e7e1;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const PrimaryText = styled.Text`
-    color: #fff;
-    font-size: 24px;
-    text-align: left;
-    font-family: Suprema-SemiBold;
+  color: #fff;
+  font-size: 24px;
+  text-align: left;
+  font-family: Suprema-SemiBold;
 `;
 export const SecondaryText = styled.Text`
-    color: #fff;
-    font-size: 16px;
-    text-align: left;
-    font-family: Suprema-Light;
+  color: #fff;
+  font-size: 16px;
+  text-align: left;
+  font-family: Suprema-Light;
 `;
 
 export const HeaderTextView = styled.View`
@@ -108,6 +108,6 @@ export const HeaderPictureTextView = styled.View`
 export const TextTitle = styled.Text`
   font-family: Suprema-Bold;
   color: #fff;
-      font-size: 24px;
-      text-align: center;
+  font-size: 24px;
+  text-align: center;
 `;
