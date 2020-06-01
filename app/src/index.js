@@ -6,8 +6,8 @@ import store from './config/store';
 
 export default function App() {
   return (
-      <StoreProvider store={store}>
-          <Routes />
-      </StoreProvider>
+    <StoreProvider store={store}>
+      <Routes />
+    </StoreProvider>
   );
 }
