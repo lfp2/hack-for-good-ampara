@@ -8,7 +8,6 @@ export default function Header({ title }) {
     <Container>
       <IconWrapper
         onPress={() => {
-          console.log('alo');
           navigation.goBack();
         }}>
         <BackIcon />

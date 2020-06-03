@@ -32,7 +32,7 @@ const VolunteerProfile = () => {
         setName(displayName);
         setNumberRegistry(documentNumber);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
     fetchData();

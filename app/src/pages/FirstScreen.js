@@ -27,12 +27,11 @@ export default function FirstScreen() {
           '@AmparaApp:volunteer',
         );
         const health_value = await AsyncStorage.getItem('@AmparaApp:health');
-        console.log(volunteer_value);
         if (volunteer_value != null) {
           navigation.navigate('VolunteerHome');
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
     fetchData();

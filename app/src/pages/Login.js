@@ -40,8 +40,8 @@ export default function Login() {
 
         navigation.navigate('VolunteerHome');
       } catch (error) {
-        console.log(error.response);
-        console.log(error);
+        console.error(error.response);
+        console.error(error);
       }
     }
 
@@ -51,7 +51,6 @@ export default function Login() {
           email: email,
           password: password,
         });
-        console.log(response.data);
 
         await AsyncStorage.setItem(
           '@AmparaApp:health',
@@ -60,8 +59,7 @@ export default function Login() {
 
         navigation.navigate('HealthHome');
       } catch (error) {
-        console.log(error.response);
-        // console.log(error);
+        console.error(error.response);
       }
     }
   }
