@@ -9,6 +9,8 @@ const routes = new Router()
 
 routes.post('/agenda/availableDoctors', AgendaController.availableDoctors)
 
+routes.post('/agenda/appointmentDoctor', AgendaController.appointmentDoctor)
+
 routes.post('/volunteer', VolunteerController.store)
 
 routes.post('/volunteer/signIn', VolunteerController.login)
