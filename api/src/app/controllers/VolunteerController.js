@@ -150,6 +150,8 @@ class VolunteerController {
         documentName,
         documentNumber,
         timestamp,
+        phone, 
+        email
       } = req.body;
 
       let batch = db.batch();
@@ -164,6 +166,8 @@ class VolunteerController {
         bio,
         documentName,
         documentNumber,
+        phone,
+        email
       });
 
       let volunteerAgendaRef = volunteerRef
@@ -182,6 +186,8 @@ class VolunteerController {
           bio,
           documentName,
           documentNumber,
+          phone,
+          email
         });
     } catch (err) {
       console.log(err);
