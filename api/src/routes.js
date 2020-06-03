@@ -9,6 +9,8 @@ const routes = new Router()
 
 routes.post('/agenda/availableDoctors', AgendaController.availableDoctors)
 
+routes.post('/agenda/cancelAppointmentDoctor', AgendaController.cancelAppointmentDoctor);
+
 routes.post('/agenda/appointmentDoctor', AgendaController.appointmentDoctor)
 
 routes.post('/volunteer', VolunteerController.store)
