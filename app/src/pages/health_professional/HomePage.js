@@ -34,14 +34,12 @@ export default function HomePageScreen() {
     async function fetchData() {
       try {
         const value = await AsyncStorage.getItem('@AmparaApp:health');
-        console.log(value);
         const item = JSON.parse(value);
-        console.log(item.volunteer.number_registry);
         setName(item.volunteer.name);
         setBio(item.volunteer.bio);
         setNumberRegistry(item.volunteer.number_registry);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
     fetchData();

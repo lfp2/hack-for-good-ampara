@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -16,7 +16,7 @@ export const Container = styled.View`
   elevation: 2;
   justify-content: center;
   align-items: center;
-  margin: 10px auto;
+  margin: 10px 20px;
   border-radius: 20px;
 `;
 
@@ -94,17 +94,21 @@ const SecondaryButtonText = styled.Text`
   color: #74b0e8;
 `;
 
+const btnstyles = css`
+  padding: 15px 20px;
+  border-radius: 50px;
+  margin: 10px 0;
+  box-shadow: 0px 5px 10px #00000029;
+  elevation: 1;
+`;
+
 export const Button = styled((props) => (
   <TouchableOpacity {...props}>
     <ButtonText>{props.children}</ButtonText>
   </TouchableOpacity>
 ))`
   background-color: #74b0e8;
-  padding: 15px 15px;
-  border-radius: 26px;
-  margin: 10px;
-  box-shadow: 0px 5px 10px #00000029;
-  elevation: 1;
+  ${btnstyles}
 `;
 export const SecondaryButton = styled((props) => (
   <TouchableOpacity {...props}>
@@ -112,12 +116,11 @@ export const SecondaryButton = styled((props) => (
   </TouchableOpacity>
 ))`
   background-color: white;
-  padding: 15px 10px;
-  border-radius: 26px;
-  margin: 10px;
-  box-shadow: 0px 5px 10px #00000029;
-  elevation: 1;
+  ${btnstyles}
 `;
 export const Column = styled.View`
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 `;

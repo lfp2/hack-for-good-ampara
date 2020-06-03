@@ -121,18 +121,20 @@ import {
 } from 'react-native-gesture-handler';
 import { Link } from '@react-navigation/native';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   height: 100%;
   flex: 1;
   background: #74b0e8;
 `;
 
 export const Body = styled.View`
-  margin-top: auto;
-  height: 60%;
+  /* margin-top: auto; */
+  margin-top: 80px;
+  /* height: 60%; */
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  flex: 1;
   background: white;
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;

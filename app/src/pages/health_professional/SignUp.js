@@ -67,7 +67,6 @@ export default function SignUpScreen() {
       bio,
       name,
     };
-    console.log(objectForm);
 
     await yupValidation
       .validate(objectForm)
@@ -92,8 +91,8 @@ export default function SignUpScreen() {
             navigation.navigate('HealthHome');
           })
           .catch((err) => {
-            console.log(err.response);
-            console.log(err);
+            console.error(err.response);
+            console.error(err);
           });
       })
       .catch((err) => {

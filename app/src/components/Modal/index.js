@@ -1,9 +1,12 @@
 import React from 'react';
 import { Overlay, Container, Icon, Title, Desc } from './styles';
-export { ModalButton } from './styles';
-const Modal = ({ icon, title, desc, children }) => {
+export { ModalBigButton, ModalButtons, ModalSmallButton } from './styles';
+const Modal = ({ icon, title, desc, children, isOn }) => {
+  if (isOn === false) {
+    return null;
+  }
   return (
-    <Overlay>
+    <Overlay isOn={isOn}>
       <Container>
         <Icon source={icon} />
         <Title>{title}</Title>

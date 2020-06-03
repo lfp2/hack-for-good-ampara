@@ -40,7 +40,7 @@ export default function SignUpProfileScreen() {
   function pickImage() {
     ImagePicker.showImagePicker((response) => {
       if (response.didCancel) {
-        console.log('You cancelled image picker 😟');
+        ('You cancelled image picker 😟');
       } else if (response.error) {
         alert('And error occured: ', response.error);
       } else {
