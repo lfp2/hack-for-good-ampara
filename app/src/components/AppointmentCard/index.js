@@ -15,7 +15,7 @@ import {
 } from './styles';
 export { AppointmentCards } from './styles';
 
-const AppointmentCard = () => {
+const AppointmentCard = ({ acceptAction }) => {
   return (
     <Container>
       <Row>
@@ -33,11 +33,18 @@ const AppointmentCard = () => {
             <DateRow time="Dia:">05/05/2020</DateRow>
             <DateRow time="Hora:">12:00</DateRow>
           </DateSection>
-          <SecondaryButton>Finalizar consulta</SecondaryButton>
         </Column>
         <Column>
-          <Button>Aceitar Consulta</Button>
+          <Button
+            onPress={() => {
+              if (acceptAction) {
+                acceptAction();
+              }
+            }}>
+            Aceitar Consulta
+          </Button>
           <SecondaryButton>Cancelar consulta</SecondaryButton>
+          <SecondaryButton>Finalizar consulta</SecondaryButton>
         </Column>
       </Row>
     </Container>

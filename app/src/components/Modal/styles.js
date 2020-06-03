@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -13,6 +13,12 @@ export const Overlay = styled.View`
   position: absolute;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  ${(p) =>
+    p.isOn &&
+    css`
+      opacity: 1;
+    `}
 `;
 
 export const Container = styled.View`
