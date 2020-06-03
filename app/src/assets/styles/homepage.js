@@ -121,7 +121,7 @@ import {
 } from 'react-native-gesture-handler';
 import { Link } from '@react-navigation/native';
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   height: 100%;
   flex: 1;
   background: #74b0e8;
@@ -130,7 +130,7 @@ export const Container = styled.ScrollView`
 export const Body = styled.View`
   /* margin-top: auto; */
   margin-top: 80px;
-  /* height: 60%; */
+  height: 60%;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -215,12 +215,15 @@ export const Title = styled.Text`
   margin: 0px auto;
 `;
 
-export const MenuBtn = styled.Image.attrs({
-  source: require('../../assets/icons/menu-btn.png'),
-})`
+export const MenuBtnWrapper = styled.TouchableOpacity`
   position: absolute;
   top: 25px;
   left: 25px;
+`;
+
+export const MenuBtn = styled.Image.attrs({
+  source: require('../../assets/icons/menu-btn.png'),
+})`
   width: 40px;
   resize-mode: contain;
 `;

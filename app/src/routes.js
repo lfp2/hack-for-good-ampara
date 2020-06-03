@@ -12,23 +12,30 @@ import CalendarScreen from './pages/volunteer/Calendar';
 import VolunteerHomePageScreen from './pages/volunteer/HomePage';
 import HealthHomePageScreen from './pages/health_professional/HomePage';
 import AppointmentScreen from './pages/volunteer/Appointment';
+import Nav from './components/Nav';
+import useOrientation from './util/useOrientation';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-function VolunteerHomePage() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Perfil" component={VolunteerHomePageScreen} />
-      <Stack.Screen name="Calendar" component={CalendarScreen} />
-    </Stack.Navigator>
-  );
-}
+// function VolunteerHomePage() {
+//   return (
+//     <Drawer.Navigator screenOptions={{ headerShown: false }}>
+//       <Drawer.Screen name="Perfil" component={VolunteerHomePageScreen} />
+//       <Drawer.Screen name="Calendar" component={CalendarScreen} />
+//     </Drawer.Navigator>
+//   );
+// }
 
 function VolunteerHomeTabs() {
+  const orientation = useOrientation();
   return (
-    <Drawer.Navigator initialRouteName="Perfil">
-      <Drawer.Screen name="Perfil" component={VolunteerHomePage} />
+    <Drawer.Navigator
+      initialRouteName="Perfil"
+      screenOptions={{ headerShown: false }}
+      drawerContent={(props) => <Nav {...props} orientation={orientation} />}>
+      <Drawer.Screen name="Perfil" component={VolunteerHomePageScreen} />
+      <Drawer.Screen name="Calendar" component={CalendarScreen} />
     </Drawer.Navigator>
   );
 }
