@@ -122,6 +122,5 @@ export const Column = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: yellow; */
   flex: 1;
 `;

@@ -5,10 +5,23 @@ import AppointmentCard, {
   AppointmentCards,
 } from '../../../components/AppointmentCard';
 import { FlatList } from 'react-native-gesture-handler';
-import Modal, { ModalButton } from '../../../components/Modal';
+import Modal, {
+  ModalBigButton,
+  ModalButtons,
+  ModalSmallButton,
+} from '../../../components/Modal';
 import useToggle from 'react-use/lib/useToggle';
 const AppointmentScreen = () => {
-  const [isOn, toggle] = useToggle(true);
+  const [isConfirmedModalVisible, toggleConfirmedModalVisibility] = useToggle(
+    false,
+  );
+  const [isFinishedModalVisible, toggleFinishedModalVisibility] = useToggle(
+    false,
+  );
+  const [
+    isCancelationModalVisible,
+    toggleCancelationModalVisibility,
+  ] = useToggle(false);
   return (
     <Container>
       <Header title="Consultas" />
@@ -19,23 +32,61 @@ const AppointmentScreen = () => {
           renderItem={() => (
             <AppointmentCard
               acceptAction={() => {
-                toggle(true);
+                toggleConfirmedModalVisibility(true);
+              }}
+              finishAction={() => {
+                toggleFinishedModalVisibility(true);
+              }}
+              cancelAction={() => {
+                toggleCancelationModalVisibility(true);
               }}
             />
           )}
         />
       </AppointmentCards>
       <Modal
-        isOn={isOn}
+        isOn={isConfirmedModalVisible}
         icon={require('../../../assets/images/appointment_confirmation.png')}
-        title="A consulta foi finalizada!"
+        title="Sua consulta foi agendada!"
         desc="Verifique o e-mail cadastrado para mais detalhes da consulta.">
-        <ModalButton
+        <ModalBigButton
           onPress={() => {
-            toggle(false);
+            toggleConfirmedModalVisibility(false);
           }}>
           OK
-        </ModalButton>
+        </ModalBigButton>
+      </Modal>
+      <Modal
+        isOn={isFinishedModalVisible}
+        icon={require('../../../assets/images/appointment_finished.png')}
+        title="Sua consulta foi finalizada!"
+        desc="Verifique o e-mail cadastrado para mais detalhes da sua consulta.">
+        <ModalBigButton
+          onPress={() => {
+            toggleFinishedModalVisibility(false);
+          }}>
+          OK
+        </ModalBigButton>
+      </Modal>
+      <Modal
+        isOn={isCancelationModalVisible}
+        icon={require('../../../assets/images/appointment_cancelation.png')}
+        title="Deseja cancelar sua consulta?">
+        <ModalButtons>
+          <ModalSmallButton
+            type="secondary"
+            onPress={() => {
+              toggleCancelationModalVisibility(false);
+            }}>
+            NÃO
+          </ModalSmallButton>
+          <ModalSmallButton
+            onPress={() => {
+              toggleCancelationModalVisibility(false);
+            }}>
+            SIM
+          </ModalSmallButton>
+        </ModalButtons>
       </Modal>
     </Container>
   );

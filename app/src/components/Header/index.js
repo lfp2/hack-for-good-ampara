@@ -8,7 +8,8 @@ export default function Header({ title }) {
     <Container>
       <IconWrapper
         onPress={() => {
-          navigation.navigate('VolunteerHome');
+          console.log('alo');
+          navigation.goBack();
         }}>
         <BackIcon />
       </IconWrapper>

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import styled, { css } from 'styled-components/native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -57,22 +58,40 @@ export const Desc = styled.Text`
 const ButtonText = styled.Text`
   font-size: 16px;
   text-transform: uppercase;
-  color: white;
+  color: ${(p) => (p.type === 'primary' ? 'white' : '#333333')};
   font-weight: bold;
   text-align: center;
 `;
 
-export const ModalButton = styled((props) => (
+export const ModalBigButton = styled(({ type, ...props }) => (
   <TouchableOpacity {...props}>
-    <ButtonText>{props.children}</ButtonText>
+    <ButtonText type={type}>{props.children}</ButtonText>
   </TouchableOpacity>
 ))`
-  background-color: #74b0e8;
-  padding: 15px 15px;
+  background-color: ${(p) => (p.type === 'primary' ? '#74b0e8' : 'white')};
+  padding: 10px 15px;
   border-radius: 26px;
   margin: 10px auto;
-
-  width: 40%;
+  width: 80%;
   box-shadow: 0px 5px 10px #00000029;
   elevation: 1;
+`;
+
+ModalBigButton.defaultProps = {
+  type: 'primary',
+};
+
+export const ModalSmallButton = styled(ModalBigButton)`
+  padding: 10px 35px;
+  border-radius: 26px;
+  margin: 30px 20px;
+  /* width: 100px; */
+`;
+
+export const ModalButtons = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
