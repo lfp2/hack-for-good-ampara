@@ -12,6 +12,8 @@ import CalendarScreen from './pages/volunteer/Calendar';
 import VolunteerHomePageScreen from './pages/volunteer/HomePage';
 import HealthHomePageScreen from './pages/health_professional/HomePage';
 import AppointmentScreen from './pages/volunteer/Appointment';
+import Nav from './components/Nav';
+import useOrientation from './util/useOrientation';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -26,11 +28,12 @@ const Stack = createStackNavigator();
 // }
 
 function VolunteerHomeTabs() {
-  console.log('ola');
+  const orientation = useOrientation();
   return (
     <Drawer.Navigator
       initialRouteName="Perfil"
-      screenOptions={{ headerShown: false }}>
+      screenOptions={{ headerShown: false }}
+      drawerContent={(props) => <Nav {...props} orientation={orientation} />}>
       <Drawer.Screen name="Perfil" component={VolunteerHomePageScreen} />
       <Drawer.Screen name="Calendar" component={CalendarScreen} />
     </Drawer.Navigator>
