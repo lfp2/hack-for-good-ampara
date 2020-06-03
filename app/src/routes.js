@@ -9,6 +9,7 @@ import WelcomeScreen from './pages/Welcome';
 import VolunteerSignUpScreen from './pages/volunteer/SignUp';
 import VolunteerHomePageScreen from './pages/volunteer/HomePage';
 import HealthHomePageScreen from './pages/health_professional/HomePage';
+import CalendarScreen from './pages/volunteer/Calendar';
 
 
 const Tab = createBottomTabNavigator();
@@ -43,6 +44,7 @@ export default function Routes() {
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="VolunteerSignUp" component={VolunteerSignUpScreen} />
         <Stack.Screen name="VolunteerHome" component={VolunteerHomeTabs} />
+        <Stack.Screen name="VolunteerCalendar" component={CalendarScreen} />
         <Stack.Screen name="HealthHome" component={HealthHomeTabs} />
       </Stack.Navigator>
     </NavigationContainer>

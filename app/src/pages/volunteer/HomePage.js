@@ -22,10 +22,16 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function HomePageScreen() {
+
     const navigation = useNavigation();
     const [name, setName] = useState(null);
     const [bio, setBio] = useState(null);
     const [number_registry, setNumberRegistry] = useState('');
+
+
+    function navigateToCalendar() {
+        navigation.navigate('VolunteerCalendar');
+    }
 
     useEffect(() => {
         async function fetchData() {
@@ -65,7 +71,7 @@ export default function HomePageScreen() {
                 <MenuRow>
                     <MenuButton>
                         <MenuIconView><MenuIcon name="clock" /></MenuIconView>
-                        <MenuText>Meus Horários</MenuText>
+                        <MenuText onPress={() => navigateToCalendar()}>Meus Horários</MenuText>
                     </MenuButton>
                     <MenuButton>
                         <MenuIconView><MenuIcon name="book" /></MenuIconView>
