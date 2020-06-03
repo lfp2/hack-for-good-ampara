@@ -16,19 +16,23 @@ import AppointmentScreen from './pages/volunteer/Appointment';
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-function VolunteerHomePage() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Perfil" component={VolunteerHomePageScreen} />
-      <Stack.Screen name="Calendar" component={CalendarScreen} />
-    </Stack.Navigator>
-  );
-}
+// function VolunteerHomePage() {
+//   return (
+//     <Drawer.Navigator screenOptions={{ headerShown: false }}>
+//       <Drawer.Screen name="Perfil" component={VolunteerHomePageScreen} />
+//       <Drawer.Screen name="Calendar" component={CalendarScreen} />
+//     </Drawer.Navigator>
+//   );
+// }
 
 function VolunteerHomeTabs() {
+  console.log('ola');
   return (
-    <Drawer.Navigator initialRouteName="Perfil">
-      <Drawer.Screen name="Perfil" component={VolunteerHomePage} />
+    <Drawer.Navigator
+      initialRouteName="Perfil"
+      screenOptions={{ headerShown: false }}>
+      <Drawer.Screen name="Perfil" component={VolunteerHomePageScreen} />
+      <Drawer.Screen name="Calendar" component={CalendarScreen} />
     </Drawer.Navigator>
   );
 }

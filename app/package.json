@@ -17,7 +17,7 @@
     "@react-native-community/picker": "^1.5.1",
     "@react-native-firebase/app": "^6.4.0",
     "@react-navigation/bottom-tabs": "^5.2.5",
-    "@react-navigation/drawer": "^5.5.1",
+    "@react-navigation/drawer": "^5.8.1",
     "@react-navigation/native": "^5.1.4",
     "@react-navigation/stack": "^5.2.9",
     "axios": "^0.19.2",

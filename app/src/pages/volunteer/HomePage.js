@@ -13,17 +13,20 @@ import {
   MenuBtn,
   SwitchText,
   SwitchContainer,
+  MenuBtnWrapper,
 } from '../../assets/styles/homepage';
 import { SwitchNotification } from '../../assets/styles/signup';
 import useToggle from 'react-use/lib/useToggle';
-import { useNavigation, Link } from '@react-navigation/native';
+import { useNavigation, Link, DrawerActions } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
+import useOrientation from '../../util/useOrientation';
+import { ScrollView, View } from 'react-native';
 
 const VolunteerProfile = () => {
   const navigation = useNavigation();
   const [name, setName] = useState('');
   const [number_registry, setNumberRegistry] = useState('');
-
+  const orientation = useOrientation();
   useEffect(() => {
     async function fetchData() {
       try {
@@ -42,8 +45,13 @@ const VolunteerProfile = () => {
     navigation.navigate(to);
   };
   return (
-    <Container>
-      <MenuBtn />
+    <Container as={orientation === 'portrait' ? View : ScrollView}>
+      <MenuBtnWrapper
+        onPress={() => {
+          navigation.openDrawer();
+        }}>
+        <MenuBtn />
+      </MenuBtnWrapper>
       <LogoBranca />
       <Title>Meu Perfil</Title>
       <Body>
