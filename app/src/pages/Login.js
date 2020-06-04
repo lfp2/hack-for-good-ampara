@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Picker } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-community/picker';
 import { ScreenCenter, TextCenter } from '../assets/styles';
 import {
   ContainerForm,
@@ -22,38 +23,43 @@ export default function Login() {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState("perfil");
+  const [userType, setUserType] = useState('perfil');
 
   async function handleLoginPress() {
-    if (userType == "volunteer") {
+    if (userType == 'volunteer') {
       try {
-        const response = await api.post('/auth/volunteer', {
-          "email": email,
-          "password": password,
+        const response = await api.post('/volunteer/signIn', {
+          email: email,
+          password: password,
         });
 
-        await AsyncStorage.setItem('@AmparaApp:volunteer', JSON.stringify(response.data));
+        await AsyncStorage.setItem(
+          '@AmparaApp:volunteer',
+          JSON.stringify(response.data),
+        );
 
         navigation.navigate('VolunteerHome');
       } catch (error) {
-        console.log(error.response)
-        console.log(error);
+        console.error(error.response);
+        console.error(error);
       }
     }
 
-    if (userType == "health") {
+    if (userType == 'health') {
       try {
         const response = await api.post('/auth/health', {
-          "email": email,
-          "password": password,
+          email: email,
+          password: password,
         });
 
-        await AsyncStorage.setItem('@AmparaApp:health', JSON.stringify(response.data));
+        await AsyncStorage.setItem(
+          '@AmparaApp:health',
+          JSON.stringify(response.data),
+        );
 
         navigation.navigate('HealthHome');
       } catch (error) {
-        console.log(error.response)
-        console.log(error);
+        console.error(error.response);
       }
     }
   }
@@ -63,15 +69,16 @@ export default function Login() {
       <Logo source={require('../assets/images/Ampara-Simbolo.png')} />
       <ContainerForm>
         <ViewInputs>
-          <Input placeholder="Email"
-            onChangeText={data => setEmail(data)}
+          <Input
+            placeholder="Email"
+            onChangeText={(data) => setEmail(data)}
             autoCorrect={false}
           />
         </ViewInputs>
         <ViewInputs>
           <Input
             placeholder="Senha"
-            onChangeText={data => setPassword(data)}
+            onChangeText={(data) => setPassword(data)}
             secureTextEntry={true}
             autoCorrect={false}
           />
@@ -83,8 +90,7 @@ export default function Login() {
         </SubPagesLogin>
         <StyledPicker
           selectedValue={userType}
-          onValueChange={(itemValue, itemIndex) => setUserType(itemValue)}
-        >
+          onValueChange={(itemValue, itemIndex) => setUserType(itemValue)}>
           <Picker.Item label="Escolha seu perfil" value="escolha seu perfil" />
           <Picker.Item label="Voluntário" value="volunteer" />
           <Picker.Item label="Paciente" value="health" />

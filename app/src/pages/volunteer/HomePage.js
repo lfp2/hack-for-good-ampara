@@ -1,94 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import { ScreenCenter, TextCenter } from '../../assets/styles';
+import React, { useEffect, useState } from 'react';
+
 import {
-    MenuButton,
-    MenuIcon,
-    MenuText,
-    MenuView,
-    MenuRow,
-    RectangleBackground,
-    Logo,
-    HeaderView,
-    PrimaryText,
-    HeaderTextView,
-    CircleButton,
-    HeaderPictureTextView,
-    SecondaryText,
-    TextTitle,
-    MenuIconView
+  Container,
+  Body,
+  ProfilePic,
+  Name,
+  Role,
+  Buttons,
+  Button,
+  LogoBranca,
+  Title,
+  MenuBtn,
+  SwitchText,
+  SwitchContainer,
+  MenuBtnWrapper,
 } from '../../assets/styles/homepage';
-
-import { useNavigation } from '@react-navigation/native';
+import { SwitchNotification } from '../../assets/styles/signup';
+import useToggle from 'react-use/lib/useToggle';
+import { useNavigation, Link, DrawerActions } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
+import useOrientation from '../../util/useOrientation';
+import { ScrollView, View } from 'react-native';
 
-export default function HomePageScreen() {
-
-    const navigation = useNavigation();
-    const [name, setName] = useState(null);
-    const [bio, setBio] = useState(null);
-    const [number_registry, setNumberRegistry] = useState('');
-
-
-    function navigateToCalendar() {
-        navigation.navigate('VolunteerCalendar');
+const VolunteerProfile = () => {
+  const navigation = useNavigation();
+  const [name, setName] = useState('');
+  const [number_registry, setNumberRegistry] = useState('');
+  const orientation = useOrientation();
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const value = await AsyncStorage.getItem('@AmparaApp:volunteer');
+        const { displayName, documentNumber } = JSON.parse(value);
+        setName(displayName);
+        setNumberRegistry(documentNumber);
+      } catch (error) {
+        console.error(error);
+      }
     }
+    fetchData();
+  });
+  const [notification, toggleNotification] = useToggle(true);
+  const handleNavigate = (to) => {
+    navigation.navigate(to);
+  };
+  return (
+    <Container as={orientation === 'portrait' ? View : ScrollView}>
+      <MenuBtnWrapper
+        onPress={() => {
+          navigation.openDrawer();
+        }}>
+        <MenuBtn />
+      </MenuBtnWrapper>
+      <LogoBranca />
+      <Title>Meu Perfil</Title>
+      <Body>
+        <ProfilePic />
+        <Name>{name}</Name>
+        <Role>Psicólogo</Role>
+        <Role>CRP {number_registry}</Role>
+        <Buttons>
+          <Button onPress={() => handleNavigate('Calendar')} icon="clock">
+            Meus horários
+          </Button>
+          <Button onPress={() => handleNavigate('Appointment')} icon="book">
+            Consultas
+          </Button>
+        </Buttons>
+        <SwitchContainer>
+          <SwitchText>Plantão</SwitchText>
+          <SwitchNotification
+            onValueChange={() => toggleNotification()}
+            value={notification}
+          />
+        </SwitchContainer>
+      </Body>
+    </Container>
+  );
+};
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const value = await AsyncStorage.getItem('@AmparaApp:volunteer');
-                console.log(value);
-                const item = JSON.parse(value);
-                console.log(item.volunteer.number_registry);
-                setName(item.volunteer.name);
-                setBio(item.volunteer.bio);
-                setNumberRegistry(item.volunteer.number_registry);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchData();
-    });
-
-
-
-    return (
-        <ScreenCenter>
-            <RectangleBackground />
-            <HeaderView>
-                <Logo source={require('../../assets/images/Ampara-Simbolo-branco.png')} />
-                <TextTitle>Meu Perfil</TextTitle>
-                <HeaderPictureTextView>
-                    <CircleButton></CircleButton>
-                    <HeaderTextView>
-                        <PrimaryText>{name}</PrimaryText>
-                        <SecondaryText>{bio}</SecondaryText>
-                        <SecondaryText>{number_registry}</SecondaryText>
-                    </HeaderTextView>
-                </HeaderPictureTextView>
-            </HeaderView>
-            <MenuView>
-                <MenuRow>
-                    <MenuButton>
-                        <MenuIconView><MenuIcon name="clock" /></MenuIconView>
-                        <MenuText onPress={() => navigateToCalendar()}>Meus Horários</MenuText>
-                    </MenuButton>
-                    <MenuButton>
-                        <MenuIconView><MenuIcon name="book" /></MenuIconView>
-                        <MenuText>Consultas Marcadas</MenuText>
-                    </MenuButton>
-                </MenuRow>
-                <MenuRow>
-                    <MenuButton>
-                        <MenuIconView><MenuIcon name="message-text" /></MenuIconView>
-                        <MenuText>Mensagens</MenuText>
-                    </MenuButton>
-                    <MenuButton>
-                        <MenuIconView><MenuIcon name="heart" /></MenuIconView>
-                        <MenuText>Avaliações</MenuText>
-                    </MenuButton>
-                </MenuRow>
-            </MenuView>
-        </ScreenCenter>
-    );
-}
+export default VolunteerProfile;

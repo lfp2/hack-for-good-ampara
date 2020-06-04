@@ -1,4 +1,3 @@
-
 import styled from 'styled-components/native';
 
 import { TextCenter } from './index';
@@ -14,9 +13,9 @@ export const ButtonView = styled.View`
 `;
 
 export const LogoImage = styled.Image`
-    width: 250px;
-    height: 40px;
-    resize-mode: contain;
-    flex: 4;
-    justifyContent: center;
+  width: 250px;
+  height: 40px;
+  resize-mode: contain;
+  flex: 4;
+  justify-content: center;
 `;
