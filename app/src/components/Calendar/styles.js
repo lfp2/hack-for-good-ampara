@@ -1,0 +1,31 @@
+import React from 'react';
+import { View } from 'react-native';
+import styled from 'styled-components/native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+export const Container = styled.ScrollView`
+  flex: 1;
+`;
+
+const TimeText = styled.Text`
+  font-size: 14px;
+  font-weight: 700;
+  color: ${(p) => (p.selected ? '#74B0E8' : '#333333')};
+`;
+
+export const Times = styled.View`
+  width: 90%;
+  margin: 10px auto;
+  border-radius: 15px;
+  border: 3px #dbd9d9;
+  padding: 0 10px;
+`;
+
+export const Time = styled(({ time, selected, onSelect, ...props }) => (
+  <TouchableOpacity {...props} onPress={onSelect}>
+    <TimeText selected={selected}>{time}:00</TimeText>
+  </TouchableOpacity>
+))`
+  margin: 10px auto;
+  padding: 20px 10px;
+`;
