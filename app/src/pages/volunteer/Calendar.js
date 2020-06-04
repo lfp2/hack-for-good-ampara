@@ -35,7 +35,7 @@ export default function CalendarScreen() {
   return (
     <MyScreen>
       <RectangleBackground />
-      <Header title="Agende sua consulta" />
+      <Header title="Meus horários" />
       <CalendarView>
         <CalendarStrip
           scrollable={true}
