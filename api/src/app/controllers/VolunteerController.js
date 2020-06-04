@@ -227,7 +227,7 @@ class VolunteerController {
 
       const getAppointmentsSnapshot = await appointmentRef
         .where("volunteerToken", "==", token)
-        .orderBy("timestamp")
+        .orderBy("timestamp", 'desc')
         .get();
 
       var appointments = [];
