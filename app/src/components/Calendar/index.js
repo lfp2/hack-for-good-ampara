@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Time, Times } from './styles';
-import Header from '../Header';
 import { FlatList } from 'react-native';
 const times = [...Array(25)].map((e, index) =>
-  index < 10 ? `0${index}` : index,
+  index < 10 ? `0${index}:00` : `${index}:00`,
 );
 
 const extractKey = (_, index) => index;
 
-const Calendar = () => {
+const Calendar = ({ onChange }) => {
   const [selected, setSelected] = useState(-1);
+  useEffect(() => {
+    if (onChange && selected !== -1) {
+      onChange(times[selected]);
+    }
+  }, [selected, onChange]);
   return (
     <Container>
-      <Header title="Agende sua consulta" />
       <Times>
         <FlatList
           horizontal
