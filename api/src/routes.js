@@ -17,7 +17,17 @@ routes.post('/volunteer', VolunteerController.store)
 
 routes.post('/volunteer/signIn', VolunteerController.login)
 
-routes.post("/volunteer/availableHours", VolunteerController.availableHours);
+routes.post("/volunteer/makeAvailableHours", VolunteerController.makeAvailableHours);
+
+routes.post(
+  "/volunteer/retrieveAvailableHours",
+  VolunteerController.retrieveAvailableHours
+);
+
+routes.post(
+  "/volunteer/listAppointments",
+  VolunteerController.listAppointments
+);
 
 routes.post("/healthprofessional", HealthProfessionalController.store);
 

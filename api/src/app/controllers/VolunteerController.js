@@ -141,8 +141,32 @@ class VolunteerController {
     }
   }
 
-  async availableHours(req, res) {
+  async retrieveAvailableHours(req, res) {
     try{
+      const {
+        token
+      } = req.body;
+
+      let volunteerAgenda = await volunteerRef
+        .doc(token)
+        .collection("availableAgenda")
+        .get();
+
+      var timestamps = []
+
+      volunteerAgenda.forEach((doc) => {
+        timestamps.push(doc.data())
+      })
+
+      return res.json(timestamps);
+      
+    } catch (err) {
+      return res.status(500).json({ err });
+    }
+  }
+
+  async makeAvailableHours(req, res) {
+    try {
       const {
         token,
         displayName,
@@ -150,8 +174,8 @@ class VolunteerController {
         documentName,
         documentNumber,
         timestamp,
-        phone, 
-        email
+        phone,
+        email,
       } = req.body;
 
       let batch = db.batch();
@@ -167,7 +191,7 @@ class VolunteerController {
         documentName,
         documentNumber,
         phone,
-        email
+        email,
       });
 
       let volunteerAgendaRef = volunteerRef
@@ -178,17 +202,41 @@ class VolunteerController {
         timestamp,
       });
 
-      await batch.commit()
+      await batch.commit();
 
       return res.json({
-          token,
-          displayName,
-          bio,
-          documentName,
-          documentNumber,
-          phone,
-          email
-        });
+        token,
+        displayName,
+        bio,
+        documentName,
+        documentNumber,
+        phone,
+        email,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ err });
+    }
+  }
+
+  async listAppointments(req, res) {
+    try {
+      const { token } = req.body;
+
+      const appointmentRef = db.collection("appointmentAgenda");
+
+      const getAppointmentsSnapshot = await appointmentRef
+        .where("volunteerToken", "==", token)
+        .orderBy("timestamp")
+        .get();
+
+      var appointments = [];
+
+      getAppointmentsSnapshot.forEach((doc) => {
+        appointments.push(doc.data());
+      });
+
+      return res.json(appointments);
     } catch (err) {
       console.log(err);
       return res.status(500).json({ err });
