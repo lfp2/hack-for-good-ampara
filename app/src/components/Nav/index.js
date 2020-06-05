@@ -15,10 +15,15 @@ import fontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import entypoIcon from 'react-native-vector-icons/Entypo';
 import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { interpolate } from 'react-native-reanimated';
+import AsyncStorage from '@react-native-community/async-storage';
 const Nav = ({ orientation, navigation, progress, ...props }) => {
   const goTo = (to) => {
     navigation.navigate(to);
     navigation.closeDrawer();
+  };
+  const exit = async () => {
+    await AsyncStorage.removeItem('@AmparaApp:volunteer');
+    navigation.navigate('Login');
   };
   return (
     <Container orientation={orientation}>
@@ -28,8 +33,8 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
         }}>
         <ProfilePicture />
         <Info>
-          <Name>Juilio Figueiredo</Name>
-          <Role>Técnica em Enfermagem</Role>
+          <Name>Julio Figueiredo</Name>
+          <Role>Psicologo</Role>
         </Info>
       </Header>
       <Separator />
@@ -60,6 +65,7 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
       </Anchor>
       <Separator />
       <BottomAnchor
+        onPress={exit}
         orientation={orientation}
         icon="power-off"
         iconPack={fontAwesomeIcon}>

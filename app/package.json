@@ -20,11 +20,13 @@
     "@react-navigation/drawer": "^5.8.1",
     "@react-navigation/native": "^5.1.4",
     "@react-navigation/stack": "^5.2.9",
+    "@unform/core": "^2.1.0",
+    "@unform/mobile": "^2.1.0",
     "axios": "^0.19.2",
-    "moment": "^2.26.0",
     "easy-peasy": "^3.3.0",
     "formik": "^2.1.4",
     "little-state-machine": "^3.0.1",
+    "moment": "^2.26.0",
     "react": "16.11.0",
     "react-hook-form": "^5.6.1",
     "react-native": "0.62.0",
@@ -46,7 +48,7 @@
     "react-use": "^15.1.1",
     "styled-components": "^5.0.1",
     "twilio": "^3.42.0",
-    "yup": "^0.28.3"
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
 import { TextCenter } from './index';
-import {Picker} from '@react-native-community/picker';
+import { Picker } from '@react-native-community/picker';
 
 export const ContainerForm = styled.View`
   width: 80%;
@@ -12,11 +12,11 @@ export const ContainerForm = styled.View`
 `;
 
 export const Logo = styled.Image`
-    width: 160px;
-    height: 60px;
-    resize-mode: contain;
-    flex: 2;
-    justifyContent: center;
+  width: 160px;
+  height: 60px;
+  resize-mode: contain;
+  flex: 2;
+  justifycontent: center;
 `;
 
 export const ViewInputs = styled.View`
@@ -26,7 +26,7 @@ export const ViewInputs = styled.View`
 `;
 
 export const Input = styled.TextInput`
- padding-left: 5px;
+  padding-left: 5px;
   height: 40px;
   width: 80%;
   border-bottom-color: #000;

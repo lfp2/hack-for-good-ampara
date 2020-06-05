@@ -8,9 +8,9 @@ const times = [...Array(25)].map((e, index) =>
 const extractKey = (_, index) => index;
 
 const Calendar = ({ onChange }) => {
-  const [selected, setSelected] = useState(-1);
+  const [selected, setSelected] = useState(0);
   useEffect(() => {
-    if (onChange && selected !== -1) {
+    if (onChange) {
       onChange(times[selected]);
     }
   }, [selected, onChange]);

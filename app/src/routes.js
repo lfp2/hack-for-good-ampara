@@ -62,7 +62,6 @@ export default function Routes() {
         <Stack.Screen name="VolunteerHome" component={VolunteerHomeTabs} />
         <Stack.Screen name="VolunteerCalendar" component={CalendarScreen} />
         <Stack.Screen name="HealthHome" component={HealthHomeTabs} />
-        <Stack.Screen name="Calendar" component={CalendarScreen} />
         <Stack.Screen name="Appointment" component={AppointmentScreen} />
       </Stack.Navigator>
     </NavigationContainer>
