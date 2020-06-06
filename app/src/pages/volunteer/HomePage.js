@@ -14,6 +14,8 @@ import {
   SwitchText,
   SwitchContainer,
   MenuBtnWrapper,
+  TopSection,
+  Border,
 } from '../../assets/styles/homepage';
 import { SwitchNotification } from '../../assets/styles/signup';
 import useToggle from 'react-use/lib/useToggle';
@@ -45,16 +47,19 @@ const VolunteerProfile = () => {
     navigation.navigate(to);
   };
   return (
-    <Container as={orientation === 'portrait' ? View : ScrollView}>
+    <Container>
       <MenuBtnWrapper
         onPress={() => {
           navigation.openDrawer();
         }}>
         <MenuBtn />
       </MenuBtnWrapper>
-      <LogoBranca />
-      <Title>Meu Perfil</Title>
+      <TopSection>
+        <LogoBranca />
+        <Title>Meu Perfil</Title>
+      </TopSection>
       <Body>
+        <Border />
         <ProfilePic />
         <Name>{name}</Name>
         <Role>Psicólogo</Role>

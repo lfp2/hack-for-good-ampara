@@ -1,3 +1,6 @@
+import React from 'react';
+import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -112,32 +115,55 @@ export const TextTitle = styled.Text`
   text-align: center;
 `;
 
-import React from 'react';
-import { View, Button as BaseButton } from 'react-native';
-import {
-  TouchableOpacity,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-} from 'react-native-gesture-handler';
-import { Link } from '@react-navigation/native';
-
-export const Container = styled.View`
+export const Container = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    // flex: 1,
+    // marginBottom: 20,
+  },
+})`
   height: 100%;
   flex: 1;
-  background: #74b0e8;
+  background: white;
 `;
 
 export const Body = styled.View`
-  /* margin-top: auto; */
-  margin-top: 80px;
-  height: 60%;
+  /* margin-top: 80px; */
+  /* height: 60%; */
+  flex: 1;
+  /* margin-bottom: 20px; */
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  flex: 1;
-  background: white;
+  /* background: white; */
+  margin-top: 90px;
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
+  position: relative;
+`;
+
+const InnerBorder = styled.View`
+  position: absolute;
+  bottom: -10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 30px;
+  background-color: white;
+`;
+export const Border = styled((props) => (
+  <View {...props}>
+    <InnerBorder />
+  </View>
+))`
+  position: absolute;
+  top: -90px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 90px;
+  background-color: #74b0e8;
 `;
 
 export const ProfilePic = styled.Image.attrs({
@@ -146,7 +172,7 @@ export const ProfilePic = styled.Image.attrs({
   width: 150px;
   height: 150px;
   border-radius: 75px;
-  margin-top: -75px;
+  margin-top: -90px;
   margin-bottom: 15px;
   border: 8px #74e8e2;
 `;
@@ -239,4 +265,9 @@ export const SwitchContainer = styled.View`
   justify-content: space-between;
   padding-left: 16px;
   margin: 20px auto;
+`;
+
+export const TopSection = styled.View`
+  background-color: #74b0e8;
+  flex-direction: column;
 `;

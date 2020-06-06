@@ -10,7 +10,7 @@ export const AppointmentCards = styled.View`
 `;
 
 export const Container = styled.View`
-  padding: 5px;
+  padding: 5px 10px;
   background: #ffffff;
   box-shadow: 0px 3px 6px #00000029;
   elevation: 2;
@@ -31,15 +31,16 @@ export const Row = styled.View`
 export const ProfilePic = styled.Image.attrs({
   source: require('../../assets/images/emanuelly.png'),
 })`
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
+  border-radius: 500px;
+  flex: 1;
   margin: 0 10px;
-  border: 7px #74e8e2;
+  aspect-ratio: 1;
+  border: 1px #74e8e2;
 `;
 
 export const Info = styled.View`
   margin: 0 10px;
+  flex: 3;
 `;
 
 export const T = styled.Text`
@@ -95,11 +96,12 @@ const SecondaryButtonText = styled.Text`
 `;
 
 const btnstyles = css`
-  padding: 15px 20px;
+  padding: 10px 20px;
   border-radius: 50px;
   margin: 10px 0;
   box-shadow: 0px 5px 10px #00000029;
   elevation: 1;
+  width: 100%;
 `;
 
 export const Button = styled((props) => (
@@ -123,4 +125,5 @@ export const Column = styled.View`
   align-items: center;
   justify-content: center;
   flex: 1;
+  width: 100%;
 `;
