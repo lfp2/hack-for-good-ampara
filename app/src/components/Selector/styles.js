@@ -21,4 +21,5 @@ export const Picker = styled((props) => (
 
 export const Error = styled.Text`
   color: #ff0000;
+  margin: 5px 0;
 `;

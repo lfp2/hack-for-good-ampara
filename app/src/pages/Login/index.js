@@ -1,10 +1,13 @@
-import React, { useRef } from 'react';
-import { Container, Logo, Forgot, Button } from './styles';
+import React, { useRef, useState } from 'react';
+import { Container, Logo, Forgot, Button, Error, InfoRow } from './styles';
 import { Form } from '@unform/mobile';
 import Input from '../../components/Input';
 import Selector from '../../components/Selector';
 import validate from '../../util/validate';
 import { schema } from './validation';
+import { AsyncStorage } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import api from '../../services/api';
 
 const rolesOptions = [
   { value: 'none', label: 'Escolha seu perfil' },
@@ -12,12 +15,64 @@ const rolesOptions = [
   { value: 'health', label: 'Paciente' },
 ];
 
+const showError = (error, path, action) => {
+  const isFormated = path;
+  if (isFormated) {
+    const formattedError = path;
+    action(formattedError);
+  }
+};
+
 const LoginScreen = () => {
   const formRef = useRef(null);
+  const navigation = useNavigation();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (data) => {
     const isValid = await validate(schema, data, formRef);
-    console.log(isValid, data);
+    if (!isValid) {
+      return;
+    }
+    const { role, email, password } = data;
+    if (role === 'volunteer') {
+      try {
+        const response = await api.post('/volunteer/signIn', {
+          email: email,
+          password: password,
+        });
+
+        await AsyncStorage.setItem(
+          '@AmparaApp:volunteer',
+          JSON.stringify(response.data),
+        );
+
+        navigation.navigate('VolunteerHome');
+      } catch (error) {
+        showError(error, error?.response?.data?.error, (newErrorMessage) =>
+          setErrorMessage(newErrorMessage),
+        );
+      }
+    }
+
+    if (role === 'health') {
+      try {
+        const response = await api.post('/healthprofessional/signIn', {
+          email: email,
+          password: password,
+        });
+
+        await AsyncStorage.setItem(
+          '@AmparaApp:health',
+          JSON.stringify(response.data),
+        );
+
+        navigation.navigate('HealthHome');
+      } catch (error) {
+        showError(error, error?.response?.data?.error, (newErrorMessage) =>
+          setErrorMessage(newErrorMessage),
+        );
+      }
+    }
   };
 
   return (
@@ -37,7 +92,11 @@ const LoginScreen = () => {
           type="password"
           secureTextEntry={true}
         />
-        <Forgot>Esqueceu a senha?</Forgot>
+        <InfoRow>
+          {errorMessage !== '' && <Error>{errorMessage}</Error>}
+          <Forgot>Esqueceu a senha?</Forgot>
+        </InfoRow>
+
         <Selector name="role" options={rolesOptions} />
         <Button onPress={() => formRef.current.submitForm()}>Login</Button>
       </Form>

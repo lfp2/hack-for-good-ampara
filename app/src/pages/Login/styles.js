@@ -21,15 +21,20 @@ const ForgotText = styled.Text`
   margin-left: auto;
 `;
 
+export const InfoRow = styled.View`
+  width: 90%;
+  max-width: 350px;
+  margin: 0 auto;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+`;
+
 export const Forgot = styled(({ children, ...props }) => (
   <TouchableOpacity {...props}>
     <ForgotText>{children}</ForgotText>
   </TouchableOpacity>
-))`
-  width: 90%;
-  max-width: 350px;
-  margin: 0 auto;
-`;
+))``;
 
 const ButtonText = styled.Text`
   color: white;
@@ -52,4 +57,12 @@ export const Button = styled(({ children, ...props }) => (
   background-color: #74b0e8;
   padding: 15px 0;
   border-radius: 500px;
+`;
+
+export const Error = styled.Text`
+  color: #ff0000;
+  /* margin-right: auto; */
+  /* margin: 5px auto; */
+  /* width: 90%; */
+  /* max-width: 350px; */
 `;
