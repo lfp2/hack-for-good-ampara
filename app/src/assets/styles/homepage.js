@@ -122,6 +122,7 @@ export const Container = styled.ScrollView.attrs({
   },
 })`
   height: 100%;
+  position: relative;
   flex: 1;
   background: white;
 `;
