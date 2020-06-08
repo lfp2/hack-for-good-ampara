@@ -228,9 +228,10 @@ export const Button = styled((props) => (
 export const LogoBranca = styled.Image.attrs({
   source: require('../../assets/images/Ampara-Simbolo-branco.png'),
 })`
-  width: 150px;
+  /* width: 150px; */
+  height: 50px;
   resize-mode: contain;
-  margin: 5px auto;
+  margin: 10px auto;
 `;
 
 export const Title = styled.Text`
