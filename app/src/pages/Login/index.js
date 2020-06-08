@@ -1,5 +1,16 @@
 import React, { useRef, useState } from 'react';
-import { Container, Logo, Forgot, Button, Error, InfoRow } from './styles';
+import {
+  Container,
+  Logo,
+  Forgot,
+  Button,
+  Error,
+  InfoRow,
+  Separator,
+  Link,
+  ClickableRow,
+  Text,
+} from './styles';
 import { Form } from '@unform/mobile';
 import Input from '../../components/Input';
 import Selector from '../../components/Selector';
@@ -100,6 +111,14 @@ const LoginScreen = () => {
         <Selector name="role" options={rolesOptions} />
         <Button onPress={() => formRef.current.submitForm()}>Login</Button>
       </Form>
+      <Separator />
+      <ClickableRow
+        onPress={() => {
+          navigation.navigate('Welcome');
+        }}>
+        <Text>Não tem uma conta?</Text>
+        <Link>Cadastrar-se</Link>
+      </ClickableRow>
     </Container>
   );
 };

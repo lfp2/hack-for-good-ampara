@@ -1,9 +1,15 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import styled, { css } from 'styled-components/native';
+import { TouchableOpacity } from 'react-native';
 
 export const Container = styled.ScrollView`
   background-color: white;
+`;
+
+const centerize = css`
+  width: 90%;
+  max-width: 350px;
+  margin: 0 auto;
 `;
 
 export const Logo = styled.Image.attrs({
@@ -22,9 +28,7 @@ const ForgotText = styled.Text`
 `;
 
 export const InfoRow = styled.View`
-  width: 90%;
-  max-width: 350px;
-  margin: 0 auto;
+  ${centerize}
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
@@ -49,8 +53,7 @@ export const Button = styled(({ children, ...props }) => (
     <ButtonText>{children}</ButtonText>
   </TouchableOpacity>
 ))`
-  width: 90%;
-  max-width: 350px;
+  ${centerize}
   margin: 10px auto;
   justify-content: center;
   align-items: center;
@@ -61,8 +64,28 @@ export const Button = styled(({ children, ...props }) => (
 
 export const Error = styled.Text`
   color: #ff0000;
-  /* margin-right: auto; */
-  /* margin: 5px auto; */
-  /* width: 90%; */
-  /* max-width: 350px; */
+`;
+
+export const Separator = styled.View`
+  ${centerize}
+  height: 1px;
+  margin: 10px auto;
+  background-color: #7777774d;
+`;
+
+export const ClickableRow = styled.TouchableOpacity`
+  ${centerize};
+  flex-direction: row;
+  margin: 10px auto;
+  justify-content: center;
+`;
+
+export const Text = styled.Text`
+  color: #adadad;
+  font-size: 14px;
+`;
+
+export const Link = styled.Text`
+  color: #74b0e8;
+  margin: 0 10px;
 `;
