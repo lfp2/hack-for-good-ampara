@@ -7,23 +7,25 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: #74b0e8;
+  background-color: ${(props) =>
+    props.type === 'primary' ? '#74B0E8' : 'white'};
 `;
 export const IconWrapper = styled.TouchableOpacity`
   align-items: center;
   position: absolute;
   left: 15px;
 `;
-export const BackIcon = styled(Icon).attrs({
+export const BackIcon = styled(Icon).attrs((props) => ({
   name: 'arrow-left',
-  color: 'white',
+  color: props.type === 'primary' ? 'white' : '#74B0E8',
   size: 30,
-})``;
+}))``;
 
 export const Title = styled.Text`
-  font-size: 20px;
-  color: #ffffff;
-  font-weight: bold;
+  font-size: 24px;
+  font-family: Suprema-Black;
+  letter-spacing: 1px;
+  color: ${(props) => (props.type === 'primary' ? 'white' : '#333333')};
   line-height: 35px;
   text-align: center;
   margin: 10px auto;
