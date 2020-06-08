@@ -52,7 +52,7 @@ export default function Routes() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="SignUpProfile"
+        initialRouteName="FirstScreen"
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name="FirstScreen" component={FirstScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
