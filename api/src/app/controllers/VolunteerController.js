@@ -174,7 +174,7 @@ class VolunteerController {
         documentName,
         documentNumber,
         timestamp,
-        phone,
+        phoneNumber,
         email,
       } = req.body;
 
@@ -190,7 +190,7 @@ class VolunteerController {
         bio,
         documentName,
         documentNumber,
-        phone,
+        phoneNumber,
         email,
       });
 
@@ -210,7 +210,7 @@ class VolunteerController {
         bio,
         documentName,
         documentNumber,
-        phone,
+        phoneNumber,
         email,
       });
     } catch (err) {
