@@ -2,10 +2,8 @@ import React, { useEffect, useRef } from 'react';
 
 import { useField } from '@unform/core';
 import {
-  Container,
-  TextInput,
+  IconedContainer,
   Label,
-  Error,
   Line,
   InputIcon,
   Row,
@@ -13,6 +11,27 @@ import {
   HintedError,
 } from './styles';
 import BaseInput from './base';
+import MaskedBaseInput from './masked';
+
+export const IconedInputTemplate = ({
+  label,
+  icon,
+  reverseIcon,
+  children,
+  footer,
+}) => {
+  return (
+    <IconedContainer>
+      {label && <Label>{label}</Label>}
+      <Row>
+        <InputIcon reverse={reverseIcon} name={icon} />
+        {children}
+      </Row>
+      <Line />
+      {footer}
+    </IconedContainer>
+  );
+};
 
 function IconedInput({
   name,
@@ -26,16 +45,38 @@ function IconedInput({
   const props = useField(name);
   const { error } = props;
   return (
-    <Container>
-      {label && <Label>{label}</Label>}
-      <Row>
-        <InputIcon reverse={reverseIcon} name={icon} />
-        <BaseInput {...props} {...rest} />
-        {children}
-      </Row>
-      <Line />
-      {error ? <HintedError>{error}</HintedError> : <Hint>{hint}</Hint>}
-    </Container>
+    <IconedInputTemplate
+      label={label}
+      reverseIcon={reverseIcon}
+      icon={icon}
+      footer={error ? <HintedError>{error}</HintedError> : <Hint>{hint}</Hint>}>
+      <BaseInput {...props} {...rest} />
+    </IconedInputTemplate>
+  );
+}
+
+export function MaskedIconedInput({
+  name,
+  label,
+  icon,
+  hint,
+  reverseIcon,
+  children,
+  mask,
+  options,
+  ...rest
+}) {
+  const props = useField(name);
+  const { error } = props;
+  return (
+    <IconedInputTemplate
+      label={label}
+      hint={hint}
+      reverseIcon={reverseIcon}
+      icon={icon}
+      footer={error ? <HintedError>{error}</HintedError> : <Hint>{hint}</Hint>}>
+      <MaskedBaseInput {...props} mask={mask} options={options} {...rest} />
+    </IconedInputTemplate>
   );
 }
 export default IconedInput;

@@ -1,7 +1,14 @@
+/* eslint-disable no-const-assign */
 import React, { useEffect, useRef } from 'react';
 import { TextInput } from './styles';
 
-function BaseInput({ fieldName, registerField, defaultValue = '', ...rest }) {
+function BaseInput({
+  fieldName,
+  registerField,
+  defaultValue = '',
+  innerRef,
+  ...rest
+}) {
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -27,7 +34,12 @@ function BaseInput({ fieldName, registerField, defaultValue = '', ...rest }) {
   }, [fieldName, registerField]);
   return (
     <TextInput
-      ref={inputRef}
+      ref={(ref) => {
+        inputRef.current = ref;
+        if (innerRef) {
+          innerRef.current = ref;
+        }
+      }}
       keyboardAppearance="dark"
       defaultValue={defaultValue}
       placeholderTextColor="#7777774D"

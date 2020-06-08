@@ -17,7 +17,9 @@ export const PickerWrapper = styled.View`
 
 export const Picker = styled((props) => (
   <BasePicker {...props} mode="dropdown" />
-))``;
+))`
+  flex: 1;
+`;
 
 export const Error = styled.Text`
   color: #ff0000;

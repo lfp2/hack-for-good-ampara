@@ -8,7 +8,7 @@ export const Container = styled.View`
   justify-content: space-around;
   align-items: center;
   background-color: ${(props) =>
-    props.type === 'primary' ? '#74B0E8' : 'white'};
+    props.type === 'primary' ? '#74B0E8' : 'transparent'};
 `;
 export const IconWrapper = styled.TouchableOpacity`
   align-items: center;

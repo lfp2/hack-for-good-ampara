@@ -16,14 +16,15 @@ export default function SignUpEmailScreen() {
   const formRef = useRef();
   const handleSubmit = async (data) => {
     const isValid = await validate(schema, data, formRef);
+    console.log(isValid, data);
     if (!isValid) {
       return;
     }
-    updateUserData({
-      email: data.email,
-      password: data.password,
-    });
-    navigation.navigate('SignUpProfile');
+    // updateUserData({
+    //   email: data.email,
+    //   password: data.password,
+    // });
+    // navigation.navigate('SignUpProfile');
   };
   return (
     <Container>

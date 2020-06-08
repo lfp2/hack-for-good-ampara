@@ -3,41 +3,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Picker } from '@react-native-community/picker';
 
-export const CircleButton = styled.TouchableOpacity`
-  height: 100px;
-  width: 100px;
-  padding: 5px;
-  border-radius: 200px;
-  background: #779fe0;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const CircleImage = styled.Image`
-  height: 80px;
-  width: 80px;
-  padding: 5px;
-  border-radius: 160px;
-`;
-
-export const CircleButtonText = styled.Text`
-  color: #8c8c8c;
-  font-size: 12px;
-  margin: 2px;
-`;
-
-export const CameraView = styled.View`
-  align-items: center;
-`;
-
-export const CircleIcon = styled.Image`
-  height: 50px;
-  width: 50px;
-  padding: 5px;
-  resize-mode: contain;
-`;
-
 export const ViewInput = styled.View`
   border-bottom-color: #8c8c8c;
   border-bottom-width: 1px;
@@ -73,12 +38,12 @@ export const HeaderView = styled.View`
   padding: 5px;
 `;
 
-export const SwitchNotification = styled.Switch`
- track-color: { 
-   false: "#767577", 
-   true: "#81b0ff" 
-  };
-`;
+export const SwitchNotification = styled.Switch.attrs({
+  trackColor: {
+    false: '#767577',
+    true: '#81b0ff',
+  },
+})``;
 
 export const SwitchText = styled.Text`
   padding-left: 5px;
@@ -152,10 +117,6 @@ export const TextError = styled.Text`
 
 export const StyledScrollView = styled.ScrollView`
   width: 90%;
-  content-container-style: {
-    justify-content: flex-start;
-    align-items: center;
-  }
 `;
 
 export const StyledPicker = styled(Picker)`
