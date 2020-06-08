@@ -2,9 +2,11 @@ import React from 'react';
 import styled, { css } from 'styled-components/native';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 export const AppointmentCards = styled.View`
   width: 100%;
+  max-width: 350px;
   margin: 10px auto;
   flex: 1;
 `;
@@ -17,7 +19,7 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
   margin: 10px 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 `;
 
 export const Row = styled.View`
@@ -33,9 +35,9 @@ export const ProfilePic = styled.Image.attrs({
 })`
   border-radius: 500px;
   flex: 1;
-  margin: 0 10px;
+  margin: 10px;
   aspect-ratio: 1;
-  border: 1px #74e8e2;
+  border: 6px #74e8e2;
 `;
 
 export const Info = styled.View`
@@ -51,7 +53,7 @@ export const T = styled.Text`
 export const Name = styled.Text`
   color: #333333;
   font-family: 'Poppins';
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
 `;
 
@@ -78,52 +80,64 @@ export const DateRow = styled((props) => (
   </View>
 ))`
   flex-direction: row;
+  margin: 0 10px;
 `;
 
 export const DateSection = styled.View`
   margin: 16px 10px;
+  flex-direction: row;
 `;
 
 const ButtonText = styled.Text`
   font-size: 12px;
   text-transform: uppercase;
-  color: white;
-`;
-const SecondaryButtonText = styled.Text`
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #74b0e8;
+  color: ${(p) => (p.type === 'primary' ? 'white' : '#74b0e8')};
 `;
 
-const btnstyles = css`
+export const Button = styled(({ type, ...props }) => (
+  <TouchableOpacity {...props}>
+    <ButtonText type={type}>{props.children}</ButtonText>
+  </TouchableOpacity>
+))`
   padding: 10px 20px;
   border-radius: 50px;
   margin: 10px 0;
+  flex: 1;
   box-shadow: 0px 5px 10px #00000029;
   elevation: 1;
   width: 100%;
+  background-color: ${(p) => (p.type === 'primary' ? '#74b0e8' : 'white')};
 `;
 
-export const Button = styled((props) => (
+Button.defaultProps = {
+  type: 'primary',
+};
+
+const CircleIcon = styled(FontAwesomeIcon)`
+  color: ${(p) => (p.type === 'primary' ? 'white' : '#ADADAD')};
+  font-size: 16px;
+`;
+
+export const CircleButton = styled(({ type, iconPack, icon, ...props }) => (
   <TouchableOpacity {...props}>
-    <ButtonText>{props.children}</ButtonText>
+    <CircleIcon
+      type={type}
+      {...(iconPack ? { as: iconPack } : {})}
+      name={icon}
+    />
   </TouchableOpacity>
 ))`
-  background-color: #74b0e8;
-  ${btnstyles}
-`;
-export const SecondaryButton = styled((props) => (
-  <TouchableOpacity {...props}>
-    <SecondaryButtonText>{props.children}</SecondaryButtonText>
-  </TouchableOpacity>
-))`
-  background-color: white;
-  ${btnstyles}
-`;
-export const Column = styled.View`
-  flex-direction: column;
-  align-items: center;
+  border-radius: 50px;
+  box-shadow: 0px 5px 10px #00000029;
+  elevation: 1;
+  height: 32px;
+  margin: 0 10px;
   justify-content: center;
-  flex: 1;
-  width: 100%;
+  align-items: center;
+  aspect-ratio: 1;
+  background-color: ${(p) => (p.type === 'primary' ? '#74E8E2' : 'white')};
 `;
+
+CircleButton.defaultProps = {
+  type: 'primary',
+};

@@ -10,8 +10,8 @@ import {
   DateSection,
   DateRow,
   Button,
-  SecondaryButton,
   Column,
+  CircleButton,
 } from './styles';
 export { AppointmentCards } from './styles';
 
@@ -26,38 +26,39 @@ const AppointmentCard = ({ acceptAction, finishAction, cancelAction }) => {
           <Desc>COREN 58963</Desc>
         </Info>
       </Row>
+      <DateSection>
+        <DateRow time="Dia:">05/05/2020</DateRow>
+        <DateRow time="Hora:">12:00</DateRow>
+      </DateSection>
       <Row>
-        <DateSection>
-          <DateRow time="Dia:">05/05/2020</DateRow>
-          <DateRow time="Hora:">12:00</DateRow>
-        </DateSection>
-      </Row>
-      <Column>
-        <Button
-          onPress={() => {
-            if (acceptAction) {
-              acceptAction();
-            }
-          }}>
-          Aceitar Consulta
-        </Button>
-        <SecondaryButton
+        <CircleButton
+          icon="close"
+          type="secondary"
           onPress={() => {
             if (cancelAction) {
               cancelAction();
             }
-          }}>
-          Cancelar consulta
-        </SecondaryButton>
-        <SecondaryButton
+          }}
+        />
+        <Button
+          type="primary"
           onPress={() => {
             if (finishAction) {
               finishAction();
             }
           }}>
           Finalizar consulta
-        </SecondaryButton>
-      </Column>
+        </Button>
+        <CircleButton
+          icon="check"
+          type="primary"
+          onPress={() => {
+            if (acceptAction) {
+              acceptAction();
+            }
+          }}
+        />
+      </Row>
     </Container>
   );
 };

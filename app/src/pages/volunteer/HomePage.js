@@ -28,7 +28,7 @@ const VolunteerProfile = () => {
   const navigation = useNavigation();
   const [name, setName] = useState('');
   const [number_registry, setNumberRegistry] = useState('');
-  const orientation = useOrientation();
+  // const orientation = useOrientation();
   useEffect(() => {
     async function fetchData() {
       try {
@@ -48,13 +48,13 @@ const VolunteerProfile = () => {
   };
   return (
     <Container>
-      <MenuBtnWrapper
-        onPress={() => {
-          navigation.openDrawer();
-        }}>
-        <MenuBtn />
-      </MenuBtnWrapper>
       <TopSection>
+        <MenuBtnWrapper
+          onPress={() => {
+            navigation.openDrawer();
+          }}>
+          <MenuBtn />
+        </MenuBtnWrapper>
         <LogoBranca />
         <Title>Meu Perfil</Title>
       </TopSection>
