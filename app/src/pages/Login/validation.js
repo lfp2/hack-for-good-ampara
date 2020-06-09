@@ -17,5 +17,7 @@ export const schema = Yup.object().shape({
     .matches(/\d/, 'A Senha deve conter um numero')
     .matches(/[a-z]/i, 'A Senha deve conter uma letra')
     .required(),
-  role: Yup.string().notOneOf(['none'], 'Selecione um perfil'),
+  role: Yup.string()
+    .notOneOf(['none'], 'Selecione um perfil')
+    .required('Selecione um perfil'),
 });

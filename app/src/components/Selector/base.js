@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { Picker } from './styles';
+import React, { useEffect, useState, useRef } from 'react';
 import { Picker as P } from '@react-native-community/picker';
 
 const BasePicker = ({
@@ -9,6 +8,7 @@ const BasePicker = ({
   fieldName,
   ...props
 }) => {
+  const inputRef = useRef();
   const [value, setValue] = useState();
   useEffect(() => {
     setValue(defaultValue);
@@ -34,11 +34,15 @@ const BasePicker = ({
     });
   }, [fieldName, registerField, value]);
   return (
-    <Picker selectedValue={value} onValueChange={handleChange} {...props}>
+    <P
+      ref={inputRef}
+      selectedValue={value}
+      onValueChange={handleChange}
+      {...props}>
       {options.map(({ label, value }, index) => (
         <P.Item label={label} color="#333333" value={value} key={index} />
       ))}
-    </Picker>
+    </P>
   );
 };
 

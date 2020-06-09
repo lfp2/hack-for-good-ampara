@@ -10,7 +10,6 @@ function BaseInput({
   ...rest
 }) {
   const inputRef = useRef(null);
-
   useEffect(() => {
     inputRef.current.value = defaultValue;
   }, [defaultValue]);

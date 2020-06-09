@@ -20,11 +20,11 @@ export default function SignUpEmailScreen() {
     if (!isValid) {
       return;
     }
+    navigation.navigate('SignUpProfile');
     // updateUserData({
     //   email: data.email,
     //   password: data.password,
     // });
-    // navigation.navigate('SignUpProfile');
   };
   return (
     <Container>

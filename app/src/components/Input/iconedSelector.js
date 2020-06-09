@@ -23,7 +23,7 @@ const IconedSelector = ({
       icon={icon}
       footer={error ? <HintedError>{error}</HintedError> : <Hint>{hint}</Hint>}>
       <BaseSelector
-        style={{ height: '100%' }}
+        style={{ flex: 1, height: '100%' }}
         {...rest}
         {...props}
         options={options}
