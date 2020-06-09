@@ -37,6 +37,11 @@ export default function SignUpProfileScreen() {
     console.log(isValid, data);
   };
   const scrollRef = useRef();
+  const bioRef = useRef();
+  const professionRef = formRef.current?.getFieldRef('profession');
+  const numberRegistryRef = formRef.current?.getFieldRef('numberRegistry');
+  const phoneRef = useRef();
+  const cepRef = useRef();
   return (
     <Container ref={scrollRef}>
       <CircleGradientBackground colors={['#79e7e1', '#FFFFFF']} />
@@ -47,26 +52,50 @@ export default function SignUpProfileScreen() {
       <Camera onPress={() => pickImage()} source={avatarSource} />
 
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <IconedInput name="name" placeholder="Nome Completo*" icon="account" />
+        <IconedInput
+          name="name"
+          placeholder="Nome Completo*"
+          icon="account"
+          blurOnSubmit={false}
+          returnKeyType="next"
+          onSubmitEditing={() => {
+            bioRef?.current.focus();
+          }}
+        />
         <ModalInput
+          ref={bioRef}
           name="bio"
           label="Bio"
           placeholder="Biografia"
           icon="file-document-box-multiple"
           scrollViewRef={scrollRef}
+          afterFinishing={() => {
+            professionRef?.focus();
+          }}
         />
         <IconedInput
           name="profession"
           placeholder="Profissão*"
           icon="clipboard-plus"
+          blurOnSubmit={false}
+          returnKeyType="next"
+          onSubmitEditing={() => {
+            numberRegistryRef?.focus();
+          }}
         />
         <IconedInput
           name="numberRegistry"
           placeholder="Número de registro profissional*"
           icon="account-card-details"
+          blurOnSubmit={false}
+          returnKeyType="next"
+          onSubmitEditing={() => {
+            phoneRef.current?.getElement().focus();
+          }}
         />
 
         <MaskedIconedInput
+          ref={phoneRef}
           type={'cel-phone'}
           options={{
             maskType: 'BRL',
@@ -76,6 +105,11 @@ export default function SignUpProfileScreen() {
           name="phone"
           placeholder="Telefone*"
           icon="phone"
+          blurOnSubmit={false}
+          returnKeyType="next"
+          onSubmitEditing={() => {
+            phoneRef.current?.getElement().focus();
+          }}
         />
 
         <IconedSelector
@@ -86,12 +120,22 @@ export default function SignUpProfileScreen() {
             value: index === 0 ? 'none' : item,
           }))}
         />
-        <IconedInput name="city" placeholder="Cidade de atuação*" icon="city" />
+        <IconedInput
+          name="city"
+          placeholder="Cidade de atuação*"
+          icon="city"
+          blurOnSubmit={false}
+          returnKeyType="next"
+          onSubmitEditing={() => {
+            cepRef.current?.getElement().focus();
+          }}
+        />
         <MaskedIconedInput
           type={'custom'}
           options={{
             mask: '99999-999',
           }}
+          ref={cepRef}
           name="cep"
           placeholder="CEP*"
           icon="city"

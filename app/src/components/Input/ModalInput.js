@@ -69,108 +69,118 @@ function Input({
   );
 }
 
-function ModalInput({
-  name,
-  label,
-  icon,
-  hint,
-  reverseIcon,
-  children,
-  placeholder,
-  scrollViewRef,
-  ...rest
-}) {
-  const props = useField(name);
-  const { error } = props;
-  const [value, setValue] = useState('');
-  const [isModalOpened, setIsModalOpen] = useState(false);
-  const [counter, setCounter] = useState(150);
+const ModalInput = React.forwardRef(
+  (
+    {
+      name,
+      label,
+      icon,
+      hint,
+      reverseIcon,
+      children,
+      placeholder,
+      scrollViewRef,
+      afterFinishing,
+      ...rest
+    },
+    ref,
+  ) => {
+    const props = useField(name);
+    const { error } = props;
+    const [value, setValue] = useState('');
+    const [isModalOpened, setIsModalOpen] = useState(false);
+    const [counter, setCounter] = useState(150);
 
-  useEffect(() => {
-    setCounter(150 - value.length);
-  }, [value]);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  useEffect(() => {
-    if (isModalOpened === true) {
-      scrollViewRef.current.scrollTo({ y: 0 });
-    }
-  }, [isModalOpened, scrollViewRef]);
-  const finish = () => {
-    setIsModalOpen(false);
-  };
-  useFocusEffect(
-    React.useCallback(() => {
-      const onBackPress = () => {
-        if (isModalOpened) {
-          setIsModalOpen(false);
-          return true;
-        } else {
-          return false;
-        }
-      };
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
-      return () =>
-        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    }, [setIsModalOpen, isModalOpened]),
-  );
-  const inputRef = useRef();
-  const handleSubmit = () => {
-    finish();
-  };
-  useEffect(() => {
-    if (inputRef.current && isModalOpened) {
-      inputRef.current.focus();
-    }
-  }, [inputRef, isModalOpened]);
-  return (
-    <>
-      <IconedInputTemplate
-        reverseIcon={reverseIcon}
-        icon={icon}
-        footer={
-          error ? <HintedError>{error}</HintedError> : <Hint>{hint}</Hint>
-        }>
-        <TextInput
-          value={value}
-          disabled
-          onFocus={openModal}
-          placeholder={placeholder}
-        />
-      </IconedInputTemplate>
-      {isModalOpened && (
-        <ModalOverlay>
-          <Header
-            type="secondary"
-            goBackAction={() => {
-              setIsModalOpen(false);
-            }}
-            title={label}>
-            <ButtonWrapper onPress={finish}>
-              <FinishText>Concluir</FinishText>
-            </ButtonWrapper>
-          </Header>
-          <InnerModal>
-            <InputWrapper>
-              <Input
-                placeholder={placeholder}
-                value={value}
-                onChange={setValue}
-                innerRef={inputRef}
-                multiline
-                {...rest}
-                {...props}
-                blurOnSubmit
-                onSubmitEditing={handleSubmit}
-              />
-            </InputWrapper>
-            <Counter isRed={counter <= 0}>{counter}</Counter>
-          </InnerModal>
-        </ModalOverlay>
-      )}
-    </>
-  );
-}
+    useEffect(() => {
+      setCounter(150 - value.length);
+    }, [value]);
+    const openModal = () => {
+      setIsModalOpen(true);
+    };
+    useEffect(() => {
+      if (isModalOpened === true) {
+        scrollViewRef.current.scrollTo({ y: 0 });
+      }
+    }, [isModalOpened, scrollViewRef]);
+    const finish = () => {
+      setIsModalOpen(false);
+      if (afterFinishing) {
+        afterFinishing();
+      }
+    };
+    useFocusEffect(
+      React.useCallback(() => {
+        const onBackPress = () => {
+          if (isModalOpened) {
+            setIsModalOpen(false);
+            return true;
+          } else {
+            return false;
+          }
+        };
+        BackHandler.addEventListener('hardwareBackPress', onBackPress);
+        return () =>
+          BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+      }, [setIsModalOpen, isModalOpened]),
+    );
+    const inputRef = useRef();
+    const handleSubmit = () => {
+      finish();
+    };
+    useEffect(() => {
+      if (inputRef.current && isModalOpened) {
+        inputRef.current.focus();
+      }
+    }, [inputRef, isModalOpened]);
+    return (
+      <>
+        <IconedInputTemplate
+          reverseIcon={reverseIcon}
+          icon={icon}
+          footer={
+            error ? <HintedError>{error}</HintedError> : <Hint>{hint}</Hint>
+          }>
+          <TextInput
+            ref={ref}
+            value={value}
+            disabled
+            onFocus={openModal}
+            placeholder={placeholder}
+          />
+        </IconedInputTemplate>
+        {isModalOpened && (
+          <ModalOverlay>
+            <Header
+              type="secondary"
+              goBackAction={() => {
+                setIsModalOpen(false);
+              }}
+              title={label}>
+              <ButtonWrapper onPress={finish}>
+                <FinishText>Concluir</FinishText>
+              </ButtonWrapper>
+            </Header>
+            <InnerModal>
+              <InputWrapper>
+                <Input
+                  placeholder={placeholder}
+                  value={value}
+                  onChange={setValue}
+                  innerRef={inputRef}
+                  multiline
+                  {...rest}
+                  {...props}
+                  blurOnSubmit
+                  onSubmitEditing={handleSubmit}
+                />
+              </InputWrapper>
+              <Counter isRed={counter <= 0}>{counter}</Counter>
+            </InnerModal>
+          </ModalOverlay>
+        )}
+      </>
+    );
+  },
+);
 
 export default ModalInput;

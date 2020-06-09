@@ -55,28 +55,31 @@ function IconedInput({
   );
 }
 
-export function MaskedIconedInput({
-  name,
-  label,
-  icon,
-  hint,
-  reverseIcon,
-  children,
-  mask,
-  options,
-  ...rest
-}) {
-  const props = useField(name);
-  const { error } = props;
-  return (
-    <IconedInputTemplate
-      label={label}
-      hint={hint}
-      reverseIcon={reverseIcon}
-      icon={icon}
-      footer={error ? <HintedError>{error}</HintedError> : <Hint>{hint}</Hint>}>
-      <MaskedBaseInput {...props} mask={mask} options={options} {...rest} />
-    </IconedInputTemplate>
-  );
-}
+export const MaskedIconedInput = React.forwardRef(
+  (
+    { name, label, icon, hint, reverseIcon, children, mask, options, ...rest },
+    ref,
+  ) => {
+    const props = useField(name);
+    const { error } = props;
+    return (
+      <IconedInputTemplate
+        label={label}
+        hint={hint}
+        reverseIcon={reverseIcon}
+        icon={icon}
+        footer={
+          error ? <HintedError>{error}</HintedError> : <Hint>{hint}</Hint>
+        }>
+        <MaskedBaseInput
+          ref={ref}
+          {...props}
+          mask={mask}
+          options={options}
+          {...rest}
+        />
+      </IconedInputTemplate>
+    );
+  },
+);
 export default IconedInput;
