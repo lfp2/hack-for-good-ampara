@@ -25,10 +25,6 @@ export default function SignUpEmailScreen() {
       password: data.password,
     });
   };
-  const passwordRef = formRef.current?.getFieldRef('password');
-  const passwordConfirmationRef = formRef.current?.getFieldRef(
-    'passwordConfirmation',
-  );
   return (
     <Container>
       <Header type="secondary" title="Cadastro" />
@@ -43,7 +39,7 @@ export default function SignUpEmailScreen() {
             blurOnSubmit={false}
             returnKeyType="next"
             onSubmitEditing={() => {
-              passwordRef?.focus();
+              formRef.current?.getFieldRef('password').focus();
             }}
           />
           <SecretIconedInput
@@ -55,7 +51,7 @@ export default function SignUpEmailScreen() {
             blurOnSubmit={false}
             returnKeyType="next"
             onSubmitEditing={() => {
-              passwordConfirmationRef?.focus();
+              formRef.current?.getFieldRef('passwordConfirmation').focus();
             }}
           />
           <SecretIconedInput
@@ -64,6 +60,9 @@ export default function SignUpEmailScreen() {
             name="passwordConfirmation"
             placeholder="Confirmar Senha*"
             hint="Defina uma senha com o minimo de 8 caracteres"
+            onSubmitEditing={() => {
+              formRef.current.submitForm();
+            }}
           />
         </Form>
       </Spacer>
