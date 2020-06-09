@@ -12,11 +12,11 @@ import {
   Text,
 } from './styles';
 import { Form } from '@unform/mobile';
-import Input from '../../components/Input';
+import Input, { SecretInput } from '../../components/Input';
 import Selector from '../../components/Selector';
 import validate from '../../util/validate';
 import { schema } from './validation';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
 
@@ -96,12 +96,11 @@ const LoginScreen = () => {
           placeholder="email@gmail.com"
           type="email"
         />
-        <Input
+        <SecretInput
           name="password"
           label="SENHA"
           placeholder="digite sua senha"
           type="password"
-          secureTextEntry={true}
         />
         <InfoRow>
           {errorMessage !== '' && <Error>{errorMessage}</Error>}
