@@ -16,16 +16,19 @@ export default function SignUpEmailScreen() {
   const formRef = useRef();
   const handleSubmit = async (data) => {
     const isValid = await validate(schema, data, formRef);
-    console.log(isValid, data);
     if (!isValid) {
       return;
     }
     navigation.navigate('SignUpProfile');
-    // updateUserData({
-    //   email: data.email,
-    //   password: data.password,
-    // });
+    updateUserData({
+      email: data.email,
+      password: data.password,
+    });
   };
+  const passwordRef = formRef.current?.getFieldRef('password');
+  const passwordConfirmationRef = formRef.current?.getFieldRef(
+    'passwordConfirmation',
+  );
   return (
     <Container>
       <Header type="secondary" title="Cadastro" />
@@ -37,6 +40,11 @@ export default function SignUpEmailScreen() {
             name="email"
             hint="* Obrigatorio"
             placeholder="E-mail*"
+            blurOnSubmit={false}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              passwordRef?.focus();
+            }}
           />
           <SecretIconedInput
             icon="key-variant"
@@ -44,6 +52,11 @@ export default function SignUpEmailScreen() {
             name="password"
             placeholder="Senha*"
             hint="Defina uma senha com o minimo de 8 caracteres"
+            blurOnSubmit={false}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              passwordConfirmationRef?.focus();
+            }}
           />
           <SecretIconedInput
             icon="key-variant"
