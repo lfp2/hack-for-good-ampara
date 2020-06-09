@@ -8,7 +8,9 @@ Yup.setLocale({
 
 export const schema = Yup.object().shape({
   name: Yup.string().required(),
-  bio: Yup.string().required(),
+  bio: Yup.string()
+    .max(150, 'Defina uma biografia com o maximo de ${max} caracteres')
+    .required(),
   profession: Yup.string().required(),
   numberRegistry: Yup.string().required(),
   phone: Yup.string().required(),
