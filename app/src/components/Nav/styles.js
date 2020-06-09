@@ -30,7 +30,8 @@ export const ProfilePicture = styled.Image.attrs({
 })`
   width: 70px;
   height: 70px;
-  border: 6px #8ce6ffcc;
+  border-width: 6px;
+  border-color: #8ce6ffcc;
   border-radius: 500px;
   margin: 0 10px;
 `;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Picker } from './styles';
+import { Picker as P } from '@react-native-community/picker';
 
 const BasePicker = ({
   options,
@@ -35,7 +36,7 @@ const BasePicker = ({
   return (
     <Picker selectedValue={value} onValueChange={handleChange} {...props}>
       {options.map(({ label, value }, index) => (
-        <Picker.Item label={label} color="#333333" value={value} key={index} />
+        <P.Item label={label} color="#333333" value={value} key={index} />
       ))}
     </Picker>
   );

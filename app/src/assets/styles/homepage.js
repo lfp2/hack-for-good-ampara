@@ -175,7 +175,8 @@ export const ProfilePic = styled.Image.attrs({
   border-radius: 75px;
   margin-top: -90px;
   margin-bottom: 15px;
-  border: 8px #74e8e2;
+  border-width: 8px;
+  border-color: #74e8e2;
 `;
 
 export const Name = styled.Text`

@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from '../../../components/Calendar';
 
-import {
-  MyScreen,
-  RectangleBackground,
-  CalendarView,
-} from './styles';
+import { MyScreen, RectangleBackground, CalendarView } from './styles';
 
-import {View, Text, FlatList, ScrollView} from "react-native";
+import { View, Text, FlatList, ScrollView } from 'react-native';
 
 import moment from 'moment';
 import 'moment-timezone';
@@ -62,9 +58,9 @@ export default function CalendarScreen() {
       const timestamp = moment.tz(
         dateSelected + ' ' + timeSelected,
         'MM/DD/YYYY hh:mm',
-        deviceTimezone
+        deviceTimezone,
       );
-      console.log(timestamp)
+      console.log(timestamp);
       const value = await AsyncStorage.getItem('@AmparaApp:volunteer');
       const {
         displayName,
@@ -98,9 +94,7 @@ export default function CalendarScreen() {
 
   const renderItem = ({ item }) => (
     <View>
-      <Text>
-        {moment(item.timestamp).tz(deviceTimezone).format('LLL')}
-      </Text>
+      <Text>{moment(item.timestamp).tz(deviceTimezone).format('LLL')}</Text>
     </View>
   );
 
@@ -124,9 +118,9 @@ export default function CalendarScreen() {
           <PrimaryTextButton>DISPONIBILIZAR HORÁRIO</PrimaryTextButton>
         </PrimaryButton>
       </CalendarView>
-        <ScrollView>
-          <FlatList data={data} renderItem={renderItem} />
-        </ScrollView>
+      <ScrollView>
+        <FlatList data={data} renderItem={renderItem} />
+      </ScrollView>
     </MyScreen>
   );
 }
