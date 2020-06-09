@@ -142,24 +142,21 @@ class VolunteerController {
   }
 
   async retrieveAvailableHours(req, res) {
-    try{
-      const {
-        token
-      } = req.body;
+    try {
+      const { token } = req.body;
 
       let volunteerAgenda = await volunteerRef
         .doc(token)
         .collection("availableAgenda")
         .get();
 
-      var timestamps = []
+      var timestamps = [];
 
       volunteerAgenda.forEach((doc) => {
-        timestamps.push(doc.data())
-      })
+        timestamps.push(doc.data());
+      });
 
       return res.json(timestamps);
-      
     } catch (err) {
       return res.status(500).json({ err });
     }
@@ -177,6 +174,26 @@ class VolunteerController {
         phoneNumber,
         email,
       } = req.body;
+
+      const appointmentRef = db.collection("appointmentAgenda");
+
+      const verifyHealthAppointmentSnapshot = await appointmentRef
+        .where("timestamp", "==", timestamp)
+        .get();
+
+      let findAnotherAppointment = false;
+
+      verifyHealthAppointmentSnapshot.forEach((doc) => {
+        if (doc.data().status != "Consulta cancelada") {
+          findAnotherAppointment = true;
+        }
+      });
+
+      if(findAnotherAppointment) {
+        return res.status(400).json({
+          error: "Já existe uma consulta marcada para este horário",
+        });
+      }
 
       let batch = db.batch();
 
@@ -205,13 +222,7 @@ class VolunteerController {
       await batch.commit();
 
       return res.json({
-        token,
-        displayName,
-        bio,
-        documentName,
-        documentNumber,
-        phoneNumber,
-        email,
+        timestamp,
       });
     } catch (err) {
       console.log(err);
@@ -227,7 +238,7 @@ class VolunteerController {
 
       const getAppointmentsSnapshot = await appointmentRef
         .where("volunteerToken", "==", token)
-        .orderBy("timestamp", 'desc')
+        .orderBy("timestamp", "desc")
         .get();
 
       var appointments = [];
