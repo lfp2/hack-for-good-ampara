@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
@@ -63,7 +63,7 @@ export const AnchorText = styled.Text`
   font-size: 16px;
 `;
 
-export const Icon = styled(FontAwesomeIcon).attrs({
+export const Icon = styled(Ionicons).attrs({
   color: '#74B0E8',
   size: 30,
 })`
