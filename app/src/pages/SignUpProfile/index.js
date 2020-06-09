@@ -13,12 +13,13 @@ import { Container, Description, SeeTerms } from './styles';
 import Header from '../../components/Header';
 import Camera from '../../components/Camera';
 import validate from '../../util/validate';
-import { schema } from './validation';
+import { volunteerSchema, healthSchema } from './validation';
 import ModalInput from '../../components/Input/ModalInput';
+import { useStoreState } from 'easy-peasy';
 
 export default function SignUpProfileScreen() {
   const [avatarSource, setAvatarSource] = useState('');
-
+  const accountType = useStoreState((state) => state.userData.accountType);
   function pickImage() {
     ImagePicker.showImagePicker((response) => {
       if (response.didCancel) {
@@ -33,13 +34,15 @@ export default function SignUpProfileScreen() {
   }
   const formRef = useRef(null);
   const handleSubmit = async (data) => {
-    const isValid = await validate(schema, data, formRef);
+    const isValid = await validate(
+      accountType === 'health' ? healthSchema : volunteerSchema,
+      data,
+      formRef,
+    );
     console.log(isValid, data);
   };
   const scrollRef = useRef();
   const bioRef = useRef();
-  const professionRef = formRef.current?.getFieldRef('profession');
-  const numberRegistryRef = formRef.current?.getFieldRef('numberRegistry');
   const phoneRef = useRef();
   const cepRef = useRef();
   return (
@@ -70,7 +73,7 @@ export default function SignUpProfileScreen() {
           icon="file-document-box-multiple"
           scrollViewRef={scrollRef}
           afterFinishing={() => {
-            professionRef?.focus();
+            formRef.current?.getFieldRef('profession').focus();
           }}
         />
         <IconedInput
@@ -80,12 +83,12 @@ export default function SignUpProfileScreen() {
           blurOnSubmit={false}
           returnKeyType="next"
           onSubmitEditing={() => {
-            numberRegistryRef?.focus();
+            formRef.current?.getFieldRef('numberRegistry').focus();
           }}
         />
         <IconedInput
           name="numberRegistry"
-          placeholder="Número de registro profissional*"
+          placeholder={accountType === 'health' ? 'CRM*' : 'CRP*'}
           icon="account-card-details"
           blurOnSubmit={false}
           returnKeyType="next"
@@ -144,7 +147,7 @@ export default function SignUpProfileScreen() {
         <Switch label="Concordo com os Termos de Uso" name="terms" />
       </Form>
       <Button onPress={() => formRef.current.submitForm()}>CADASTRAR</Button>
-      <SeeTerms to="Terms">
+      <SeeTerms to="/Terms">
         VER TERMOS DE USO E POLÍTICA DE PRIVACIDADE
       </SeeTerms>
     </Container>
