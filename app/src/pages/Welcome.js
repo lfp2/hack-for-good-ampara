@@ -34,9 +34,9 @@ export default function WelcomeScreen() {
 
   function navigateToHealthSignUp() {
     updateUserData({
-      accountType: 'volunteer',
+      accountType: 'health',
     });
-    navigation.navigate('SignUpProfile');
+    navigation.navigate('SignUpEmail');
   }
 
   return (
