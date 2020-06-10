@@ -16,8 +16,7 @@ class HealthProfessionalController {
         phoneNumber,
         displayName,
         bio,
-        documentName,
-        documentNumber,
+        profession,
         uf,
         city
       } = req.body
@@ -62,8 +61,7 @@ class HealthProfessionalController {
           displayName,
           password,
           bio,
-          documentName,
-          documentNumber,
+          profession,
           tokenEmailVerify,
           uf,
           city,
@@ -105,8 +103,9 @@ class HealthProfessionalController {
         password,
         email,
         bio,
-        documentName,
-        documentNumber
+        profession,
+        uf,
+        city
 
       verifyEmailExists.forEach((doc) => {
         token = doc.id
@@ -115,8 +114,9 @@ class HealthProfessionalController {
         password = doc.data().password
         email = doc.data().email
         bio = doc.data().bio
-        documentName = doc.data().documentName
-        documentNumber = doc.data().documentNumber
+        profession = doc.data().profession
+        uf = doc.data().uf
+        city = doc.data().city
       })
 
       const passwordValidation = await bcrypt.compare(
@@ -132,8 +132,9 @@ class HealthProfessionalController {
         phoneNumber,
         email,
         bio,
-        documentName,
-        documentNumber
+        profession,
+        uf,
+        city
       })
     } catch (err) {
       return res.status(500).json({ err })

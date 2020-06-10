@@ -17,7 +17,6 @@ class VolunteerController {
         phoneNumber,
         displayName,
         bio,
-        documentName,
         documentNumber,
         uf,
         city,
@@ -61,7 +60,6 @@ class VolunteerController {
         displayName,
         password,
         bio,
-        documentName,
         documentNumber,
         tokenEmailVerify,
         uf,
@@ -104,8 +102,9 @@ class VolunteerController {
         password,
         email,
         bio,
-        documentName,
-        documentNumber;
+        documentNumber,
+        uf,
+        city
 
       verifyEmailExists.forEach((doc) => {
         token = doc.id;
@@ -114,8 +113,9 @@ class VolunteerController {
         password = doc.data().password;
         email = doc.data().email;
         bio = doc.data().bio;
-        documentName = doc.data().documentName;
         documentNumber = doc.data().documentNumber;
+        uf = doc.data().uf;
+        city = doc.data().city;
       });
 
       const passwordValidation = await bcrypt.compare(
@@ -133,8 +133,9 @@ class VolunteerController {
         phoneNumber,
         email,
         bio,
-        documentName,
         documentNumber,
+        uf,
+        city
       });
     } catch (err) {
       return res.status(500).json({ err });
@@ -168,11 +169,12 @@ class VolunteerController {
         token,
         displayName,
         bio,
-        documentName,
         documentNumber,
         timestamp,
         phoneNumber,
         email,
+        uf,
+        city
       } = req.body;
 
       const appointmentRef = db.collection("appointmentAgenda");
@@ -205,10 +207,11 @@ class VolunteerController {
         token,
         displayName,
         bio,
-        documentName,
         documentNumber,
         phoneNumber,
         email,
+        uf,
+        city
       });
 
       let volunteerAgendaRef = volunteerRef
