@@ -143,6 +143,7 @@ const ModalInput = React.forwardRef(
           <TextInput
             ref={ref}
             value={value}
+            placeholderTextColor="#7777774D"
             disabled
             onFocus={openModal}
             placeholder={placeholder}
