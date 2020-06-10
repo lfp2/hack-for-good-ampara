@@ -12,11 +12,14 @@ export const Row = styled.View`
   align-items: center;
 `;
 
-export const StyledSwitch = styled.Switch.attrs({
-  trackColor: {
-    false: '#767577',
-    true: '#81b0ff',
-  },
+export const StyledSwitch = styled.Switch.attrs((props) => {
+  return {
+    trackColor: {
+      false: '#959595',
+      true: '#7AC1CE',
+    },
+    thumbColor: props.value ? '#99EAF9' : '#797979',
+  };
 })``;
 
 export const Text = styled.Text`
