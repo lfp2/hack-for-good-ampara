@@ -16,10 +16,67 @@ import validate from '../../util/validate';
 import { volunteerSchema, healthSchema } from './validation';
 import ModalInput from '../../components/Input/ModalInput';
 import { useStoreState } from 'easy-peasy';
+import useAwait from '../../util/useAwait';
+import api from '../../services/api';
+
+const healthTypes = [
+  { label: 'Tipo de Profissional', value: 'none' },
+  { label: 'Médico(a)', value: 'medic' },
+  { label: 'Enfermeiro(a)', value: 'nurse' },
+  { label: 'Técnico(a) de enfermagem', value: 'practicalNurse' },
+  { label: 'Auxiliar de enfermagem', value: 'nursingAssistant' },
+  { label: 'Outro', value: 'other' },
+];
+
+const createVolunteer = ({
+  name,
+  bio,
+  documentName,
+  documentNumber,
+  email,
+  password,
+  phone,
+  state,
+  city,
+}) =>
+  api.post('/volunteer', {
+    displayName: name,
+    bio,
+    documentName,
+    documentNumber,
+    email,
+    password,
+    phoneNumber: phone,
+    uf: state,
+    city,
+  });
+const createHealthProfessional = ({
+  name,
+  bio,
+  documentName,
+  documentNumber,
+  email,
+  password,
+  phone,
+  state,
+  city,
+}) =>
+  api.post('/healthprofessional', {
+    displayName: name,
+    bio,
+    documentName,
+    documentNumber,
+    email,
+    password,
+    phoneNumber: phone,
+    uf: state,
+    city,
+  });
 
 export default function SignUpProfileScreen() {
   const [avatarSource, setAvatarSource] = useState('');
   const accountType = useStoreState((state) => state.userData.accountType);
+  const { email, password } = useStoreState((state) => state.userData);
   function pickImage() {
     ImagePicker.showImagePicker((response) => {
       if (response.didCancel) {
@@ -33,13 +90,34 @@ export default function SignUpProfileScreen() {
     });
   }
   const formRef = useRef(null);
+  const [
+    isCreatingVolunteer,
+    signUpVolunteer,
+    { toggle: toggleIsCreatingVolunteer },
+  ] = useAwait(createVolunteer);
+  const [
+    isCreatingHealthProfessional,
+    signUpHealthProfessional,
+    { toggle: toggleIsCreatingHealthProfessional },
+  ] = useAwait(createVolunteer);
   const handleSubmit = async (data) => {
     const isValid = await validate(
       accountType === 'health' ? healthSchema : volunteerSchema,
       data,
       formRef,
     );
-    console.log(isValid, data);
+    if (!isValid) {
+      return;
+    }
+    // const {
+    //   name,
+    //   bio,
+    //   documentNumber,
+
+    //   phone,
+    //   state,
+    //   city,
+    // } = data;
   };
   const scrollRef = useRef();
   const bioRef = useRef();
@@ -69,7 +147,7 @@ export default function SignUpProfileScreen() {
           ref={bioRef}
           name="bio"
           label="Bio"
-          placeholder="Biografia"
+          placeholder={accountType === 'health' ? 'Biografia' : 'Biografia*'}
           icon="file-document-box-multiple"
           scrollViewRef={scrollRef}
           afterFinishing={() => {
@@ -86,16 +164,18 @@ export default function SignUpProfileScreen() {
             formRef.current?.getFieldRef('numberRegistry').focus();
           }}
         />
-        <IconedInput
-          name="numberRegistry"
-          placeholder={accountType === 'health' ? 'CRM*' : 'CRP*'}
-          icon="account-card-details"
-          blurOnSubmit={false}
-          returnKeyType="next"
-          onSubmitEditing={() => {
-            phoneRef.current?.getElement().focus();
-          }}
-        />
+        {accountType === 'volunteer' && (
+          <IconedInput
+            name="numberRegistry"
+            placeholder="CRP*"
+            icon="account-card-details"
+            blurOnSubmit={false}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              phoneRef.current?.getElement().focus();
+            }}
+          />
+        )}
 
         <MaskedIconedInput
           ref={phoneRef}
@@ -123,6 +203,14 @@ export default function SignUpProfileScreen() {
             value: index === 0 ? 'none' : item,
           }))}
         />
+        {accountType === 'health' && (
+          <IconedSelector
+            name="healthType"
+            icon="clipboard-plus"
+            options={healthTypes}
+            mode="dropdown"
+          />
+        )}
         <IconedInput
           name="city"
           placeholder="Cidade de atuação*"

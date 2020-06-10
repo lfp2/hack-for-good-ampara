@@ -28,8 +28,8 @@ export const healthSchema = Yup.object().shape({
     .max(150, 'Defina uma biografia com o maximo de ${max} caracteres')
     .notRequired(),
   profession: Yup.string().required(),
-  numberRegistry: Yup.string().required(),
   phone: Yup.string().required(),
+  healthType: Yup.string().notOneOf(['none', ''], 'Selecione um Tipo'),
   state: Yup.string().notOneOf(['none', ''], 'Selecione um Estado'),
   city: Yup.string().required(),
   cep: Yup.string().required(),
