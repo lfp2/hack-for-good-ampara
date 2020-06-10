@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 export const Container = styled.View`
-  height: 64px;
+  height: 80px;
   width: 100%;
   /* flex: 1; */
   flex-direction: row;
@@ -10,11 +11,13 @@ export const Container = styled.View`
   background-color: ${(props) =>
     props.type === 'primary' ? '#74B0E8' : 'transparent'};
 `;
+
 export const IconWrapper = styled.TouchableOpacity`
   align-items: center;
   position: absolute;
   left: 15px;
 `;
+
 export const BackIcon = styled(Icon).attrs((props) => ({
   name: 'arrow-left',
   color: props.type === 'primary' ? 'white' : '#74B0E8',

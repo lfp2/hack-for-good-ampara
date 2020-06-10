@@ -24,6 +24,8 @@ export const StyledSwitch = styled.Switch.attrs((props) => {
 
 export const Text = styled.Text`
   color: #333333;
+  font-family: Poppins-Medium;
+  font-weight: 600;
   font-size: 14px;
 `;
 

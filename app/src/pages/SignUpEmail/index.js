@@ -4,7 +4,7 @@ import IconedInput from '../../components/Input/IconedInput';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import Header from '../../components/Header';
-import Button from '../../components/LoadingButton';
+import Button from '../../components/Button';
 import { Container, Spacer, Description } from './styles';
 import SecretIconedInput from '../../components/Input/SecretIconedInput';
 import { schema } from './validation';

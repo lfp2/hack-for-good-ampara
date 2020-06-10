@@ -106,8 +106,6 @@ const LoginScreen = () => {
       }
     }
   };
-  const passwordRef = formRef.current?.getFieldRef('password');
-  const roleRef = formRef.current?.getFieldRef('role');
   return (
     <Container>
       <Logo />
@@ -120,7 +118,7 @@ const LoginScreen = () => {
           blurOnSubmit={false}
           returnKeyType="next"
           onSubmitEditing={() => {
-            passwordRef?.focus();
+            formRef.current?.getFieldRef('password').focus();
           }}
         />
         <SecretInput

@@ -60,7 +60,12 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
           ],
         }}
       />
-      <Anchor icon="cog" iconPack={entypoIcon}>
+      <Anchor
+        icon="cog"
+        iconPack={entypoIcon}
+        onPress={() => {
+          navigation.navigate('Configuration');
+        }}>
         Configurações
       </Anchor>
       <Separator />

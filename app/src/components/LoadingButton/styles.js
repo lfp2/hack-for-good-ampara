@@ -30,10 +30,11 @@ export const Row = styled.View`
 
 export const ButtonText = styled.Text`
   color: white;
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 14px;
+  font-family: Poppins-Medium;
   text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.5px;
 `;
 
 export const Container = styled.TouchableOpacity`
@@ -42,9 +43,15 @@ export const Container = styled.TouchableOpacity`
   margin: 10px auto;
   justify-content: center;
   align-items: center;
-  background-color: #74b0e8;
-  padding: 10px 0;
   border-radius: 500px;
   position: relative;
   overflow: hidden;
+  padding: 12px 25px;
+  border-radius: 500px;
+  margin: 10px auto;
+  box-shadow: 0px 5px 10px #00000029;
+  elevation: 2;
+  width: ${(props) => props.width || '90%'};
+  max-width: 350px;
+  background-color: #74b0e8;
 `;

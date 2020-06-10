@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useField } from '@unform/core';
-import { Text, Container, Row, Error } from './styles';
+import { Text, Container, Row, Error, StyledSwitch } from './styles';
 import BaseSwitch from './base';
 
 const Switch = ({
@@ -14,7 +14,7 @@ const Switch = ({
   const props = useField(name);
   const { error } = props;
   return (
-    <Container {...props}>
+    <Container>
       <Row>
         <Text>{label}</Text>
         <BaseSwitch {...rest} {...props} />
@@ -23,5 +23,14 @@ const Switch = ({
     </Container>
   );
 };
+
+export const RegularSwitch = ({ label, ...props }) => (
+  <Container>
+    <Row>
+      <Text>{label}</Text>
+      <StyledSwitch {...props} />
+    </Row>
+  </Container>
+);
 
 export default Switch;

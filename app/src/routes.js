@@ -14,6 +14,9 @@ import HealthHomePageScreen from './pages/health_professional/HomePage';
 import AppointmentScreen from './pages/volunteer/Appointment';
 import Nav from './components/Nav';
 import useOrientation from './util/useOrientation';
+import ConfigurationScreen from './pages/ConfigurationScreen';
+import SecurityScreen from './pages/SecurityScreen';
+import NotificationsScreen from './pages/NotificationsScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -36,6 +39,9 @@ function VolunteerHomeTabs() {
       drawerContent={(props) => <Nav {...props} orientation={orientation} />}>
       <Drawer.Screen name="Perfil" component={VolunteerHomePageScreen} />
       <Drawer.Screen name="Calendar" component={CalendarScreen} />
+      <Drawer.Screen name="Configuration" component={ConfigurationScreen} />
+      <Drawer.Screen name="Security" component={SecurityScreen} />
+      <Drawer.Screen name="Notifications" component={NotificationsScreen} />
     </Drawer.Navigator>
   );
 }

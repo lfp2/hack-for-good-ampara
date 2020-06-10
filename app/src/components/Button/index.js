@@ -3,7 +3,8 @@ import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
 const ButtonText = styled.Text`
-  font-size: 18px;
+  font-size: 14px;
+  font-family: Poppins-Medium;
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 0.5px;
@@ -15,7 +16,7 @@ const Button = styled(({ type, ...props }) => (
     <ButtonText type={type}>{props.children}</ButtonText>
   </TouchableOpacity>
 ))`
-  padding: 10px 25px;
+  padding: 12px 25px;
   border-radius: 500px;
   margin: 10px auto;
   box-shadow: 0px 5px 10px #00000029;
