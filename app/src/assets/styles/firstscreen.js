@@ -2,9 +2,10 @@ import styled from 'styled-components/native';
 
 import { TextCenter } from './index';
 
-export const ButtonsView = styled.View`
+export const Buttons = styled.View`
   flex: 2;
   align-items: center;
+  width: 100%;
 `;
 
 export const ButtonView = styled.View`

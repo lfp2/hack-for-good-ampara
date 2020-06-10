@@ -7,6 +7,9 @@ import {
   TextButton,
 } from '../assets/styles';
 
+import Header from '../components/Header';
+import Button from '../components/Button';
+
 import {
   ButtonView,
   ButtonsView,
@@ -41,24 +44,19 @@ export default function WelcomeScreen() {
 
   return (
     <ScreenCenter>
-      <TextView>
-        <TitleText>Bem-vindo!</TitleText>
-        <SubtitleText>
-          Escolha a opção que mais se encaixar com você
-        </SubtitleText>
-      </TextView>
+      <Header type="secondary" title="Bem-vindo!" />
+      <SubtitleText>Escolha a opção que mais se encaixar com você</SubtitleText>
       <VoluntarioImage source={require('../assets/images/voluntario.png')} />
       <ButtonsView>
-        <ButtonView>
-          <PrimaryButton onPress={() => navigateToVolunteerSignUp()}>
-            <PrimaryTextButton>QUERO SER VOLUNTÁRIO</PrimaryTextButton>
-          </PrimaryButton>
-        </ButtonView>
-        <ButtonView>
-          <BoxShadowButton onPress={() => navigateToHealthSignUp()}>
-            <TextButton>AGENDAR CONSULTA</TextButton>
-          </BoxShadowButton>
-        </ButtonView>
+        <Button width="80%" onPress={() => navigateToVolunteerSignUp()}>
+          QUERO SER VOLUNTÁRIO
+        </Button>
+        <Button
+          width="80%"
+          type="secondary"
+          onPress={() => navigateToHealthSignUp()}>
+          AGENDAR CONSULTA
+        </Button>
       </ButtonsView>
       <FootnoteImage
         source={require('../assets/images/footnote_volunteer.png')}

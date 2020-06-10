@@ -23,7 +23,7 @@ export const BackIcon = styled(Icon).attrs((props) => ({
 
 export const Title = styled.Text`
   font-size: 24px;
-  font-family: Suprema-Black;
+  font-family: Poppins-ExtraBold;
   letter-spacing: 1px;
   color: ${(props) => (props.type === 'primary' ? 'white' : '#333333')};
   line-height: 35px;

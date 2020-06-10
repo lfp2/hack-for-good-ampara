@@ -15,11 +15,15 @@ export const TextCenter = styled.Text`
   text-align: center;
 `;
 
-export const BackgroundImage = styled.Image`
-    flex: 1;
-    resizeMode: cover;
-    justifyContent: center;
-    position: absolute;
+export const BackgroundImage = styled.Image.attrs({
+  source: require('../../assets/images/background.png'),
+})`
+  flex: 1;
+  resize-mode: cover;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -28,18 +32,18 @@ export const Button = styled.TouchableOpacity`
   height: 40px;
   padding: 12px;
   border-radius: 10px;
-  justifyContent: center;
+  justify-content: center;
 `;
 
 export const PrimaryButton = styled(Button)`
-    background: #76b1e6; 
+  background: #76b1e6;
 `;
 
 export const TextButton = styled(TextCenter)`
-    color: #000000;
-    font-size: 15px;
+  color: #000000;
+  font-size: 15px;
 `;
 
 export const PrimaryTextButton = styled(TextButton)`
-    color: #ffffff;
+  color: #ffffff;
 `;

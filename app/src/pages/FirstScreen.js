@@ -1,18 +1,14 @@
 import React, { useEffect } from 'react';
+import Button from '../components/Button';
 
 import {
   ScreenCenter,
   BackgroundImage,
-  Button,
   PrimaryButton,
   PrimaryTextButton,
   TextButton,
 } from '../assets/styles';
-import {
-  ButtonsView,
-  LogoImage,
-  ButtonView,
-} from '../assets/styles/firstscreen';
+import { Buttons, LogoImage } from '../assets/styles/firstscreen';
 
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -47,20 +43,21 @@ export default function FirstScreen() {
 
   return (
     <ScreenCenter>
-      <BackgroundImage source={require('../assets/images/background.png')} />
+      <BackgroundImage />
       <LogoImage source={require('../assets/images/Ampara-Logo-branco.png')} />
-      <ButtonsView>
-        <ButtonView>
-          <PrimaryButton onPress={() => navigateToWelcome()}>
-            <PrimaryTextButton>QUERO ME CADASTRAR</PrimaryTextButton>
-          </PrimaryButton>
-        </ButtonView>
-        <ButtonView>
+      <Buttons>
+        <Button width="80%" onPress={() => navigateToWelcome()} type="primary">
+          QUERO ME CADASTRAR
+        </Button>
+        <Button width="80%" onPress={() => navigateToLogin()} type="secondary">
+          Login
+        </Button>
+        {/* <ButtonView>
           <Button onPress={() => navigateToLogin()}>
             <TextButton>LOGIN</TextButton>
           </Button>
-        </ButtonView>
-      </ButtonsView>
+        </ButtonView> */}
+      </Buttons>
     </ScreenCenter>
   );
 }

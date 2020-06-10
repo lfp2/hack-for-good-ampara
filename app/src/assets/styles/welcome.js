@@ -6,6 +6,7 @@ export const VoluntarioImage = styled.Image`
   width: 250px;
   height: 40px;
   resize-mode: contain;
+  margin: 20px auto;
   flex: 3;
   justify-content: center;
 `;
@@ -18,6 +19,7 @@ export const FootnoteImage = styled.Image`
 
 export const ButtonsView = styled.View`
   flex: 2;
+  width: 100%;
   align-items: center;
 `;
 
