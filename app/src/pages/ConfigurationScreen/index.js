@@ -22,7 +22,12 @@ const ConfigurationScreen = ({ navigation }) => {
           }}>
           Notificações
         </Anchor>
-        <Anchor icon="information" iconPack={mdIcons}>
+        <Anchor
+          icon="information"
+          iconPack={mdIcons}
+          onPress={() => {
+            navigation.navigate('About');
+          }}>
           Sobre
         </Anchor>
         <Anchor icon="help-circle" iconPack={mdIcons}>
