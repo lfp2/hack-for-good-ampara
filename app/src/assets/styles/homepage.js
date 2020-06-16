@@ -180,9 +180,10 @@ export const ProfilePic = styled.Image.attrs({
 `;
 
 export const Name = styled.Text`
-  font-family: 'Poppins';
+  font-family: Poppins-Bold;
   font-weight: bold;
-  font-size: 29px;
+  color: #333333;
+  font-size: 24px;
 `;
 
 export const Role = styled.Text`
