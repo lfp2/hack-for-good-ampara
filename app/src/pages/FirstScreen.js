@@ -24,7 +24,10 @@ export default function FirstScreen() {
         );
         const health_value = await AsyncStorage.getItem('@AmparaApp:health');
         if (volunteer_value != null) {
-          navigation.replace('VolunteerHome');
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'VolunteerHome' }],
+          });
         }
       } catch (error) {
         console.error(error);

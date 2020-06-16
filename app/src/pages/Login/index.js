@@ -69,7 +69,6 @@ const LoginScreen = () => {
       return;
     }
     const { role, email, password } = data;
-    console.log(role);
     if (role === 'volunteer') {
       try {
         const response = await signVolunteerIn({ email, password });
@@ -78,7 +77,10 @@ const LoginScreen = () => {
           JSON.stringify(response.data),
         );
 
-        navigation.navigate('VolunteerHome');
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'VolunteerHome' }],
+        });
         toggleVolunteerLoading(false);
       } catch (error) {
         toggleVolunteerLoading(false);
