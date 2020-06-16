@@ -1,14 +1,16 @@
 import React from 'react';
-import { Container, Anchors, Anchor } from './styles';
+import { Container } from './styles';
+import Anchor, { Anchors } from '../../components/Anchor';
 import Header from '../../components/Header';
 import mdIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 const ConfigurationScreen = ({ navigation }) => {
   return (
     <Container>
       <Header title="Configurações" type="secondary" />
       <Anchors>
         <Anchor
-          icon="shield-alt"
+          src={require('../../assets/images/Ampara-Simbolo.png')}
           onPress={() => {
             navigation.navigate('Security');
           }}>

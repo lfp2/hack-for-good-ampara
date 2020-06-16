@@ -5,6 +5,7 @@ import { DrawerContentScrollView } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity, View } from 'react-native';
 import Animated from 'react-native-reanimated';
+import Anchor, { Separator } from '../../components/Anchor';
 
 export const Container = styled(({ orientation, ...props }) =>
   orientation === 'portrait' ? (
@@ -51,19 +52,6 @@ export const Role = styled.Text`
   font-size: 10px;
 `;
 
-export const Separator = styled.View`
-  width: 80%;
-  margin: 0 auto;
-  height: 1px;
-  background-color: #adadad29;
-`;
-
-export const AnchorText = styled.Text`
-  color: #333333;
-  font-weight: bold;
-  font-size: 16px;
-`;
-
 export const Icon = styled(Ionicons).attrs({
   color: '#74B0E8',
   size: 30,
@@ -72,21 +60,10 @@ export const Icon = styled(Ionicons).attrs({
   width: 30px;
 `;
 
-export const Anchor = styled(({ icon, name, children, iconPack, ...props }) => (
-  <TouchableOpacity {...props}>
-    <Icon {...(iconPack ? { as: iconPack } : {})} name={icon} />
-    <AnchorText>{children}</AnchorText>
-  </TouchableOpacity>
-))`
-  flex-direction: row;
-  padding: 20px 25px;
-  align-items: center;
-`;
-
 export const BottomAnchor = styled(({ orientation, ...props }) => (
   <>
     {orientation === 'portrait' && <Separator style={{ marginTop: 'auto' }} />}
-    <Anchor {...props} />
+    <Anchor {...props} noRightArrow />
   </>
 ))``;
 

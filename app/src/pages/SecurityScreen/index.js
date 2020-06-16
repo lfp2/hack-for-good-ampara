@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Anchors, Anchor } from './styles';
+import { Container } from './styles';
+import Anchor, { Anchors } from '../../components/Anchor';
 import Header from '../../components/Header';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 

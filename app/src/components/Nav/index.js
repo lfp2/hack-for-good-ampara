@@ -6,12 +6,13 @@ import {
   Info,
   Name,
   Role,
-  Separator,
-  Anchor,
   BottomAnchor,
   BackFold,
 } from './styles';
+
+import Anchor, { Separator } from '../../components/Anchor';
 import fontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import entypoIcon from 'react-native-vector-icons/Entypo';
 import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { interpolate } from 'react-native-reanimated';
@@ -38,12 +39,12 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
         </Info>
       </Header>
       <Separator />
-      <Anchor icon="ios-person">Meus Dados</Anchor>
-      <Separator />
-      <Anchor icon="check" iconPack={fontAwesomeIcon}>
+      <Anchor icon="ios-person" iconPack={Ionicons} noRightArrow>
+        Meus Dados
+      </Anchor>
+      <Anchor icon="check" iconPack={fontAwesomeIcon} noRightArrow>
         Boas práticas
       </Anchor>
-      <Separator />
       <BackFold
         onPress={() => {
           navigation.closeDrawer();
@@ -65,7 +66,8 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
         iconPack={entypoIcon}
         onPress={() => {
           navigation.navigate('Configuration');
-        }}>
+        }}
+        noRightArrow>
         Configurações
       </Anchor>
       <Separator />
