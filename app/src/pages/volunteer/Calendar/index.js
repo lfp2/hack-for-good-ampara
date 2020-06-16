@@ -12,11 +12,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../../services/api';
 import DataCard from '../../../components/DataCard';
 import useToggle from 'react-use/lib/useToggle';
-import Modal, {
-  ModalButtons,
-  ModalSmallButton,
-  ModalBigButton,
-} from '../../../components/Modal';
+import Modal from '../../../components/Modal';
 
 export default function CalendarScreen() {
   moment.locale('pt-br');
@@ -28,8 +24,6 @@ export default function CalendarScreen() {
   const [timeSelected, setTime] = useState('');
 
   const [dateSelected, setDate] = useState(today);
-
-  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   const [uploadTimestamp, setUploadTimestamp] = useState('');
 
@@ -142,9 +136,7 @@ export default function CalendarScreen() {
         </CalendarView>
 
         <TimeSelector onChange={setTime} />
-        <Button onPress={handleBook} disabled={buttonDisabled}>
-          DISPONIBILIZAR HORÁRIO
-        </Button>
+        <Button onPress={handleBook}>DISPONIBILIZAR HORÁRIO</Button>
 
         <FlatList
           data={data}
@@ -156,12 +148,12 @@ export default function CalendarScreen() {
         isOn={modalVisibility}
         icon={require('../../../assets/images/appointment_cancelation.png')}
         title="Você ja desponibilizou esse horário">
-        <ModalBigButton
+        <Modal.BigButton
           onPress={() => {
             toggleModalVisibility(false);
           }}>
           OK
-        </ModalBigButton>
+        </Modal.BigButton>
       </Modal>
     </>
   );

@@ -5,11 +5,7 @@ import AppointmentCard, {
   AppointmentCards,
 } from '../../../components/AppointmentCard';
 import { FlatList } from 'react-native-gesture-handler';
-import Modal, {
-  ModalBigButton,
-  ModalButtons,
-  ModalSmallButton,
-} from '../../../components/Modal';
+import Modal from '../../../components/Modal';
 import useToggle from 'react-use/lib/useToggle';
 const AppointmentScreen = () => {
   const [isConfirmedModalVisible, toggleConfirmedModalVisibility] = useToggle(
@@ -49,44 +45,44 @@ const AppointmentScreen = () => {
         icon={require('../../../assets/images/appointment_confirmation.png')}
         title="Sua consulta foi agendada!"
         desc="Verifique o e-mail cadastrado para mais detalhes da consulta.">
-        <ModalBigButton
+        <Modal.BigButton
           onPress={() => {
             toggleConfirmedModalVisibility(false);
           }}>
           OK
-        </ModalBigButton>
+        </Modal.BigButton>
       </Modal>
       <Modal
         isOn={isFinishedModalVisible}
         icon={require('../../../assets/images/appointment_finished.png')}
         title="Sua consulta foi finalizada!"
         desc="Verifique o e-mail cadastrado para mais detalhes da sua consulta.">
-        <ModalBigButton
+        <Modal.BigButton
           onPress={() => {
             toggleFinishedModalVisibility(false);
           }}>
           OK
-        </ModalBigButton>
+        </Modal.BigButton>
       </Modal>
       <Modal
         isOn={isCancelationModalVisible}
         icon={require('../../../assets/images/appointment_cancelation.png')}
         title="Deseja cancelar sua consulta?">
-        <ModalButtons>
-          <ModalSmallButton
+        <Modal.Buttons>
+          <Modal.SmallButton
             type="secondary"
             onPress={() => {
               toggleCancelationModalVisibility(false);
             }}>
             NÃO
-          </ModalSmallButton>
-          <ModalSmallButton
+          </Modal.SmallButton>
+          <Modal.SmallButton
             onPress={() => {
               toggleCancelationModalVisibility(false);
             }}>
             SIM
-          </ModalSmallButton>
-        </ModalButtons>
+          </Modal.SmallButton>
+        </Modal.Buttons>
       </Modal>
     </Container>
   );
