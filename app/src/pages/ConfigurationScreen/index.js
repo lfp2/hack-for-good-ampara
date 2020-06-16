@@ -10,7 +10,7 @@ const ConfigurationScreen = ({ navigation }) => {
       <Header title="Configurações" type="secondary" />
       <Anchors>
         <Anchor
-          src={require('../../assets/images/Ampara-Simbolo.png')}
+          icon="shield-alt"
           onPress={() => {
             navigation.navigate('Security');
           }}>
@@ -32,7 +32,10 @@ const ConfigurationScreen = ({ navigation }) => {
           }}>
           Sobre
         </Anchor>
-        <Anchor icon="help-circle" iconPack={mdIcons}>
+        <Anchor
+          icon="help-circle"
+          iconPack={mdIcons}
+          onPress={() => navigation.navigate('Help')}>
           Ajuda
         </Anchor>
       </Anchors>

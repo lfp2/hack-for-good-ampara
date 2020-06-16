@@ -17,6 +17,7 @@ import useOrientation from './util/useOrientation';
 import ConfigurationScreen from './pages/ConfigurationScreen';
 import SecurityScreen from './pages/SecurityScreen';
 import NotificationsScreen from './pages/NotificationsScreen';
+import HelpScreen from './pages/HelpScreen';
 import AboutScreen from './pages/About';
 
 const Drawer = createDrawerNavigator();
@@ -43,6 +44,7 @@ function VolunteerHomeTabs() {
       <Drawer.Screen name="Configuration" component={ConfigurationScreen} />
       <Drawer.Screen name="Security" component={SecurityScreen} />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+      <Drawer.Screen name="Help" component={HelpScreen} />
       <Drawer.Screen name="About" component={AboutScreen} />
     </Drawer.Navigator>
   );
