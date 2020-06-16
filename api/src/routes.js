@@ -19,6 +19,8 @@ routes.post('/volunteer/signIn', VolunteerController.login)
 
 routes.post("/volunteer/makeAvailableHours", VolunteerController.makeAvailableHours);
 
+routes.post("/volunteer/makeUnavailableHours", VolunteerController.makeUnavailableHours);
+
 routes.post(
   "/volunteer/retrieveAvailableHours",
   VolunteerController.retrieveAvailableHours
