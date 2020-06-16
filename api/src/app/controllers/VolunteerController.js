@@ -104,7 +104,7 @@ class VolunteerController {
         bio,
         documentNumber,
         uf,
-        city
+        city;
 
       verifyEmailExists.forEach((doc) => {
         token = doc.id;
@@ -135,7 +135,7 @@ class VolunteerController {
         bio,
         documentNumber,
         uf,
-        city
+        city,
       });
     } catch (err) {
       return res.status(500).json({ err });
@@ -174,7 +174,7 @@ class VolunteerController {
         phoneNumber,
         email,
         uf,
-        city
+        city,
       } = req.body;
 
       const appointmentRef = db.collection("appointmentAgenda");
@@ -191,7 +191,7 @@ class VolunteerController {
         }
       });
 
-      if(findAnotherAppointment) {
+      if (findAnotherAppointment) {
         return res.status(400).json({
           error: "Já existe uma consulta marcada para este horário",
         });
@@ -211,7 +211,7 @@ class VolunteerController {
         phoneNumber,
         email,
         uf,
-        city
+        city,
       });
 
       let volunteerAgendaRef = volunteerRef
@@ -226,6 +226,57 @@ class VolunteerController {
 
       return res.json({
         timestamp,
+      });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ err });
+    }
+  }
+
+  async makeUnavailableHours(req, res) {
+    try {
+      const { token, timestamp } = req.body;
+
+      const appointmentRef = db.collection("appointmentAgenda");
+
+      const verifyHealthAppointmentSnapshot = await appointmentRef
+        .where("timestamp", "==", timestamp)
+        .get();
+
+      let findAnotherAppointment = false;
+
+      verifyHealthAppointmentSnapshot.forEach((doc) => {
+        if (doc.data().status != "Consulta cancelada") {
+          findAnotherAppointment = true;
+        }
+      });
+
+      if (findAnotherAppointment) {
+        return res.status(400).json({
+          error: "Já existe uma consulta marcada para este horário",
+        });
+      }
+
+      let batch = db.batch();
+
+      let volunteerAgendaRef = volunteerRef
+        .doc(token)
+        .collection("availableAgenda")
+        .doc(timestamp);
+
+      batch.delete(volunteerAgendaRef);
+
+      let availableAgendaRef = agendaRef
+        .doc(timestamp)
+        .collection("doctors")
+        .doc(token);
+
+      batch.delete(availableAgendaRef);
+
+      await batch.commit();
+
+      return res.json({
+        token,
       });
     } catch (err) {
       console.log(err);
