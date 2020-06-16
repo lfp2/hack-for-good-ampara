@@ -13,6 +13,7 @@ import {
   ButtonWrapper,
   FinishText,
 } from './styles';
+
 import { BackHandler } from 'react-native';
 import Header from '../Header';
 import { useFocusEffect } from '@react-navigation/native';
