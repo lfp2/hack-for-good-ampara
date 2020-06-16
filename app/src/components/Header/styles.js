@@ -16,6 +16,7 @@ export const IconWrapper = styled.TouchableOpacity`
   align-items: center;
   position: absolute;
   left: 15px;
+  z-index: 100;
 `;
 
 export const BackIcon = styled(Icon).attrs((props) => ({

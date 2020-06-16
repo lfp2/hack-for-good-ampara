@@ -17,6 +17,9 @@ import useOrientation from './util/useOrientation';
 import ConfigurationScreen from './pages/ConfigurationScreen';
 import SecurityScreen from './pages/SecurityScreen';
 import NotificationsScreen from './pages/NotificationsScreen';
+import HelpScreen from './pages/HelpScreen';
+import TroubleshootScreen from './pages/TroubleshootScreen';
+import FaqScreen from './pages/FaqScreen';
 import AboutScreen from './pages/About';
 import MyAppointmentScreen from './pages/health_professional/Appointments';
 import NewPasswordScreen from './pages/NewPasswordScreen';
@@ -42,6 +45,7 @@ function HealthHomeTabs() {
   return (
     <Drawer.Navigator
       initialRouteName="Perfil"
+      screenOptions={{ headerShown: false }}
       drawerContent={(props) => <Nav {...props} orientation={orientation} />}>
       <Drawer.Screen name="Perfil" component={HealthHomePageScreen} />
       <Drawer.Screen name="MyAppointments" component={MyAppointmentScreen} />
@@ -58,6 +62,11 @@ export default function Routes() {
         <Stack.Screen name="FirstScreen" component={FirstScreen} />
         <Stack.Screen name="Configuration" component={ConfigurationScreen} />
         <Stack.Screen name="Security" component={SecurityScreen} />
+        <Stack.Screen name="Notifications" component={NotificationsScreen} />
+        <Stack.Screen name="Help" component={HelpScreen} />
+        <Stack.Screen name="Troubleshoot" component={TroubleshootScreen} />
+        <Stack.Screen name="Faq" component={FaqScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
         <Stack.Screen name="Notifications" component={NotificationsScreen} />
         <Stack.Screen name="About" component={AboutScreen} />

@@ -32,7 +32,10 @@ const ConfigurationScreen = ({ navigation }) => {
           }}>
           Sobre
         </Anchor>
-        <Anchor icon="help-circle" iconPack={mdIcons}>
+        <Anchor
+          icon="help-circle"
+          iconPack={mdIcons}
+          onPress={() => navigation.navigate('Help')}>
           Ajuda
         </Anchor>
       </Anchors>
