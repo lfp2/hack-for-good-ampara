@@ -10,12 +10,11 @@ const HelpScreen = ({ navigation }) => {
       <Header title="Ajuda" type="secondary" />
       <Anchors>
         <Anchor
-        src={require("../../assets/images/Ampara-Simbolo.png")}
-        onPress={() => {
-          navigation.navigate('Troubleshoot');
-        }}
-        >
-            Problemas com o aplicativo
+          src={require('../../assets/images/Ampara-Simbolo.png')}
+          onPress={() => {
+            navigation.navigate('Troubleshoot');
+          }}>
+          Problemas com o aplicativo
         </Anchor>
         <Anchor
           icon="md-help"

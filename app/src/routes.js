@@ -23,6 +23,7 @@ import FaqScreen from './pages/FaqScreen';
 import AboutScreen from './pages/About';
 import MyAppointmentScreen from './pages/health_professional/Appointments';
 import NewPasswordScreen from './pages/NewPasswordScreen';
+import NiceHabitsScreen from './pages/NiceHabits';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -68,8 +69,6 @@ export default function Routes() {
         <Stack.Screen name="Faq" component={FaqScreen} />
         <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
-        <Stack.Screen name="Notifications" component={NotificationsScreen} />
-        <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="SignUpEmail" component={SignUpEmailScreen} />
@@ -78,6 +77,7 @@ export default function Routes() {
         <Stack.Screen name="VolunteerCalendar" component={CalendarScreen} />
         <Stack.Screen name="HealthHome" component={HealthHomeTabs} />
         <Stack.Screen name="Appointment" component={AppointmentScreen} />
+        <Stack.Screen name="NiceHabits" component={NiceHabitsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

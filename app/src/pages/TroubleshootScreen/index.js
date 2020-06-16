@@ -1,12 +1,19 @@
 import React from 'react';
-import { Container, Description, Section, Title, Button, ButtonContainer } from './styles';
+import {
+  Container,
+  Description,
+  Section,
+  Title,
+  Button,
+  ButtonContainer,
+} from './styles';
 import Header from '../../components/Header';
 
 const TroubleshootScreen = () => (
   <Container>
     <Header type="secondary" title="Problemas com o Aplicativo" />
     <Section>
-        <Title>Problemas de conexão.</Title>
+      <Title>Problemas de conexão.</Title>
       <Description>
         1. Verifique se seu celular está com acesso à internet; {'\n'}
         2. Reinicie seu celular; {'\n'}
@@ -15,7 +22,7 @@ const TroubleshootScreen = () => (
       </Description>
     </Section>
     <Section>
-        <Title>Problema com o recebimento das notificações.</Title>
+      <Title>Problema com o recebimento das notificações.</Title>
       <Description>
         Verifique se está habilitada a opção de recebimento de notificações no
         seu perfil. Caso esteja já habilitado e, ainda assim, não receber as
@@ -24,7 +31,9 @@ const TroubleshootScreen = () => (
       </Description>
     </Section>
     <Section>
-        <Title>Não recebi o e-mail de confirmação ou cancelamento das consultas.</Title>
+      <Title>
+        Não recebi o e-mail de confirmação ou cancelamento das consultas.
+      </Title>
       <Description>
         Verifique se consegue visualizar a consulta agendada em "Consultas" na
         página inicial. Se não houver nenhum registro, será necessário efetuar o
@@ -34,7 +43,7 @@ const TroubleshootScreen = () => (
       </Description>
     </Section>
     <Section>
-        <Title>Não há profissionais disponíveis na minha região.</Title>
+      <Title>Não há profissionais disponíveis na minha região.</Title>
       <Description>
         A primeira tentativa de agendamento será feita através da
         geolocalização, ou seja, o aplicativo encontrará os profissionais mais
@@ -43,11 +52,11 @@ const TroubleshootScreen = () => (
       </Description>
     </Section>
     <Section>
-        <Title>Conseguiu resolver o seu problema?</Title>
-        <ButtonContainer>
+      <Title>Conseguiu resolver o seu problema?</Title>
+      <ButtonContainer>
         <Button>Sim</Button>
-        <Button type={"secondary"}>Não</Button>
-        </ButtonContainer>
+        <Button type={'secondary'}>Não</Button>
+      </ButtonContainer>
     </Section>
   </Container>
 );

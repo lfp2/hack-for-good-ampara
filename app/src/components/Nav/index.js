@@ -42,7 +42,13 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
       <Anchor icon="ios-person" iconPack={Ionicons} noRightArrow>
         Meus Dados
       </Anchor>
-      <Anchor icon="check" iconPack={fontAwesomeIcon} noRightArrow>
+      <Anchor
+        icon="check"
+        iconPack={fontAwesomeIcon}
+        onPress={() => {
+          navigation.navigate('NiceHabits');
+        }}
+        noRightArrow>
         Boas práticas
       </Anchor>
       <BackFold

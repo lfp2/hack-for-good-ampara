@@ -33,4 +33,5 @@ export const Title = styled.Text`
   line-height: 35px;
   text-align: center;
   margin: 10px auto;
+  width: 70%;
 `;
