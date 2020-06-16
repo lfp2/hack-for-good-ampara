@@ -18,7 +18,12 @@ const SecurityScreen = ({ navigation }) => {
           }}>
           Senha
         </Anchor>
-        <Anchor iconSize={20} icon="key">
+        <Anchor
+          iconSize={20}
+          icon="key"
+          onPress={() => {
+            navigation.navigate('LoginInfo');
+          }}>
           Informação de Login Salvas
         </Anchor>
       </Anchors>
