@@ -20,7 +20,7 @@ const Button = styled(({ type, ...props }) => (
   border-radius: 500px;
   margin: 10px auto;
   box-shadow: 0px 5px 10px #00000029;
-  elevation: 2;
+  elevation: 1;
   width: ${(props) => props.width || '90%'};
   max-width: 350px;
   background-color: ${(p) => (p.type === 'primary' ? '#74b0e8' : 'white')};

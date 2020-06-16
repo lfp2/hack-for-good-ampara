@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { ScreenCenter, TextCenter } from '../../assets/styles';
+import Button from '../../components/Button';
 import {
-  MenuButton,
-  MenuIcon,
-  MenuText,
-  MenuView,
-  MenuRow,
-  RectangleBackground,
-  Logo,
-  HeaderView,
-  PrimaryText,
-  HeaderTextView,
-  CircleButton,
-  HeaderPictureTextView,
-  SecondaryText,
-  TextTitle,
-  MenuIconView,
+  Container,
+  Body,
+  ProfilePic,
+  Name,
+  Role,
+  LogoBranca,
+  Title,
+  MenuBtn,
+  SwitchText,
+  SwitchContainer,
+  MenuBtnWrapper,
+  TopSection,
+  Border,
 } from '../../assets/styles/homepage';
+
+import FontAwesome5Icons from 'react-native-vector-icons/FontAwesome5';
 
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Linking } from 'react-native';
+import ProfileButton, { ProfileButtons } from '../../components/ProfileButton';
 
 export default function HomePageScreen() {
   const navigation = useNavigation();
@@ -35,9 +36,9 @@ export default function HomePageScreen() {
       try {
         const value = await AsyncStorage.getItem('@AmparaApp:health');
         const item = JSON.parse(value);
-        setName(item.volunteer.name);
-        setBio(item.volunteer.bio);
-        setNumberRegistry(item.volunteer.number_registry);
+        // setName(item.volunteer.name);
+        // setBio(item.volunteer.bio);
+        // setNumberRegistry(item.volunteer.number_registry);
       } catch (error) {
         console.error(error);
       }
@@ -50,46 +51,80 @@ export default function HomePageScreen() {
   }
 
   return (
-    <ScreenCenter>
-      <RectangleBackground />
-      <HeaderView>
-        <Logo
-          source={require('../../assets/images/Ampara-Simbolo-branco.png')}
-        />
-        <TextTitle>Meu Perfil</TextTitle>
-        <HeaderPictureTextView>
-          <CircleButton />
-          <HeaderTextView>
-            <PrimaryText>{name}</PrimaryText>
-            <SecondaryText>{bio}</SecondaryText>
-            <SecondaryText>{number_registry}</SecondaryText>
-          </HeaderTextView>
-        </HeaderPictureTextView>
-      </HeaderView>
-      <MenuView>
-        <MenuRow>
-          <MenuButton onPress={() => handleAgendaPress()}>
-            <MenuIconView>
-              <MenuIcon name="calendar" />
-            </MenuIconView>
-            <MenuText>Agendar Consulta</MenuText>
-          </MenuButton>
-          <MenuButton>
-            <MenuIcon source={require('../../assets/icons/awesome-book.png')} />
-            <MenuText>Minhas Consultas</MenuText>
-          </MenuButton>
-        </MenuRow>
-        <MenuRow>
-          <MenuButton>
-            <MenuIcon source={require('../../assets/icons/message.png')} />
-            <MenuText>Mensagens</MenuText>
-          </MenuButton>
-          <MenuButton>
-            <MenuIcon source={require('../../assets/icons/hospital.png')} />
-            <MenuText>Histórico</MenuText>
-          </MenuButton>
-        </MenuRow>
-      </MenuView>
-    </ScreenCenter>
+    <Container>
+      <TopSection>
+        <MenuBtnWrapper
+          onPress={() => {
+            navigation.openDrawer();
+          }}>
+          <MenuBtn />
+        </MenuBtnWrapper>
+        <LogoBranca />
+        <Title>Meu Perfil</Title>
+      </TopSection>
+      <Body>
+        <Border />
+        <ProfilePic />
+        <Name>Emanuelly Figueiredo</Name>
+        <Role>Técnica em Enfermagem</Role>
+        <Role>COREN 58963</Role>
+        <ProfileButtons>
+          <ProfileButton icon="calendar-month">Agendar Consulta</ProfileButton>
+          <ProfileButton
+            icon="book"
+            iconPack={FontAwesome5Icons}
+            onPress={() => {
+              navigation.navigate('MyAppointments');
+            }}>
+            Consultas
+          </ProfileButton>
+        </ProfileButtons>
+        <Button width="80%">QUERO ATENDIMENTO AGORA</Button>
+      </Body>
+    </Container>
   );
+
+  // return (
+  //   <ScreenCenter>
+  //     <RectangleBackground />
+  //     <HeaderView>
+  //       <Logo
+  //         source={require('../../assets/images/Ampara-Simbolo-branco.png')}
+  //       />
+  //       <TextTitle>Meu Perfil</TextTitle>
+  //       <HeaderPictureTextView>
+  //         <CircleButton />
+  //         <HeaderTextView>
+  //           <PrimaryText>{name}</PrimaryText>
+  //           <SecondaryText>{bio}</SecondaryText>
+  //           <SecondaryText>{number_registry}</SecondaryText>
+  //         </HeaderTextView>
+  //       </HeaderPictureTextView>
+  //     </HeaderView>
+  //     <MenuView>
+  //       <MenuRow>
+  //         <MenuButton onPress={() => handleAgendaPress()}>
+  //           <MenuIconView>
+  //             <MenuIcon name="calendar" />
+  //           </MenuIconView>
+  //           <MenuText>Agendar Consulta</MenuText>
+  //         </MenuButton>
+  //         <MenuButton>
+  //           <MenuIcon source={require('../../assets/icons/awesome-book.png')} />
+  //           <MenuText>Minhas Consultas</MenuText>
+  //         </MenuButton>
+  //       </MenuRow>
+  //       <MenuRow>
+  //         <MenuButton>
+  //           <MenuIcon source={require('../../assets/icons/message.png')} />
+  //           <MenuText>Mensagens</MenuText>
+  //         </MenuButton>
+  //         <MenuButton>
+  //           <MenuIcon source={require('../../assets/icons/hospital.png')} />
+  //           <MenuText>Histórico</MenuText>
+  //         </MenuButton>
+  //       </MenuRow>
+  //     </MenuView>
+  //   </ScreenCenter>
+  // );
 }

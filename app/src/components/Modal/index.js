@@ -1,5 +1,14 @@
 import React from 'react';
-import { Overlay, Container, Icon, Title, Desc } from './styles';
+import {
+  Overlay,
+  Container,
+  Icon,
+  Title,
+  Desc,
+  ModalBigButton,
+  ModalButtons,
+  ModalSmallButton,
+} from './styles';
 export { ModalBigButton, ModalButtons, ModalSmallButton } from './styles';
 const Modal = ({ icon, title, desc, children, isOn }) => {
   if (isOn === false) {
@@ -16,5 +25,11 @@ const Modal = ({ icon, title, desc, children, isOn }) => {
     </Overlay>
   );
 };
+
+Modal.BigButton = ModalBigButton;
+
+Modal.SmallButton = ModalSmallButton;
+
+Modal.Buttons = ModalButtons;
 
 export default Modal;

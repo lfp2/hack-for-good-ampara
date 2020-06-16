@@ -7,7 +7,7 @@ const times = [...Array(25)].map((e, index) =>
 
 const extractKey = (_, index) => index;
 
-const Calendar = ({ onChange }) => {
+const TimeSelector = ({ onChange }) => {
   const [selected, setSelected] = useState(0);
   useEffect(() => {
     if (onChange) {
@@ -36,4 +36,4 @@ const Calendar = ({ onChange }) => {
   );
 };
 
-export default Calendar;
+export default TimeSelector;

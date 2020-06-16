@@ -98,8 +98,10 @@ const LoginScreen = () => {
           '@AmparaApp:health',
           JSON.stringify(response.data),
         );
-
-        // navigation.navigate('HealthHome');
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'HealthHome' }],
+        });
         toggleHealthProfessionalLoading(false);
       } catch (error) {
         toggleHealthProfessionalLoading(false);
@@ -109,7 +111,6 @@ const LoginScreen = () => {
       }
     }
   };
-
   return (
     <Container>
       <Logo />

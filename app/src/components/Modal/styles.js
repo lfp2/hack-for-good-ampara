@@ -8,6 +8,7 @@ export const Overlay = styled.View`
   left: 0;
   bottom: 0;
   right: 0;
+  elevation: 2;
   background: rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 100%;

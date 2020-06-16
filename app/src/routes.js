@@ -19,18 +19,10 @@ import SecurityScreen from './pages/SecurityScreen';
 import NotificationsScreen from './pages/NotificationsScreen';
 import HelpScreen from './pages/HelpScreen';
 import AboutScreen from './pages/About';
+import MyAppointmentScreen from './pages/health_professional/Appointments';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-
-// function VolunteerHomePage() {
-//   return (
-//     <Drawer.Navigator screenOptions={{ headerShown: false }}>
-//       <Drawer.Screen name="Perfil" component={VolunteerHomePageScreen} />
-//       <Drawer.Screen name="Calendar" component={CalendarScreen} />
-//     </Drawer.Navigator>
-//   );
-// }
 
 function VolunteerHomeTabs() {
   const orientation = useOrientation();
@@ -54,6 +46,7 @@ function HealthHomeTabs() {
   return (
     <Drawer.Navigator initialRouteName="Perfil">
       <Drawer.Screen name="Perfil" component={HealthHomePageScreen} />
+      <Drawer.Screen name="MyAppointments" component={MyAppointmentScreen} />
     </Drawer.Navigator>
   );
 }

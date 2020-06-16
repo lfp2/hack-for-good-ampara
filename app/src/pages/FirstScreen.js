@@ -29,6 +29,12 @@ export default function FirstScreen() {
             routes: [{ name: 'VolunteerHome' }],
           });
         }
+        if (health_value != null) {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'HealthHome' }],
+          });
+        }
       } catch (error) {
         console.error(error);
       }

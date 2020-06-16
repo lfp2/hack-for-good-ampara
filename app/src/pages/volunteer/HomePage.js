@@ -6,8 +6,6 @@ import {
   ProfilePic,
   Name,
   Role,
-  Buttons,
-  Button,
   LogoBranca,
   Title,
   MenuBtn,
@@ -17,13 +15,11 @@ import {
   TopSection,
   Border,
 } from '../../assets/styles/homepage';
-import { SwitchNotification } from '../../assets/styles/signup';
 import useToggle from 'react-use/lib/useToggle';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { StyledSwitch } from '../../components/Switch/base';
-import useBackHandle from '../../util/useBackHandle';
-import Modal, { ModalButtons, ModalSmallButton } from '../../components/Modal';
+import ProfileButton, { ProfileButtons } from '../../components/ProfileButton';
 
 const VolunteerProfile = () => {
   const navigation = useNavigation();
@@ -66,14 +62,18 @@ const VolunteerProfile = () => {
           <Name>{name}</Name>
           <Role>Psicólogo</Role>
           <Role>CRP {number_registry}</Role>
-          <Buttons>
-            <Button onPress={() => handleNavigate('Calendar')} icon="clock">
+          <ProfileButtons>
+            <ProfileButton
+              onPress={() => handleNavigate('Calendar')}
+              icon="clock">
               Meus horários
-            </Button>
-            <Button onPress={() => handleNavigate('Appointment')} icon="book">
+            </ProfileButton>
+            <ProfileButton
+              onPress={() => handleNavigate('Appointment')}
+              icon="book">
               Consultas
-            </Button>
-          </Buttons>
+            </ProfileButton>
+          </ProfileButtons>
           <SwitchContainer>
             <SwitchText>Plantão</SwitchText>
             <StyledSwitch

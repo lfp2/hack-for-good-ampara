@@ -180,9 +180,10 @@ export const ProfilePic = styled.Image.attrs({
 `;
 
 export const Name = styled.Text`
-  font-family: 'Poppins';
+  font-family: Poppins-Bold;
   font-weight: bold;
-  font-size: 29px;
+  color: #333333;
+  font-size: 24px;
 `;
 
 export const Role = styled.Text`
@@ -190,40 +191,6 @@ export const Role = styled.Text`
   font-weight: 600;
   font-size: 18px;
   color: #333333;
-`;
-
-export const Buttons = styled.View`
-  flex-direction: row;
-  justify-content: center;
-`;
-
-const ButtonIcon = styled(Icon)``;
-
-const ButtonText = styled.Text`
-  color: #333333;
-  text-align: center;
-  font-family: 'Poppins';
-  font-weight: bold;
-`;
-
-export const Button = styled((props) => (
-  <TouchableOpacity onPress={props.onPress}>
-    <View {...props}>
-      <ButtonIcon name={props.icon} color="#74E8E2" size={40} />
-      <ButtonText>{props.children}</ButtonText>
-    </View>
-  </TouchableOpacity>
-))`
-  background-color: white;
-  padding: 20px 10px;
-  box-shadow: 0px 3px 6px #0000004d;
-  border-radius: 10px;
-  elevation: 1;
-  justify-content: center;
-  align-items: center;
-  width: 150px;
-  margin: 10px;
-  flex-direction: column;
 `;
 
 export const LogoBranca = styled.Image.attrs({
