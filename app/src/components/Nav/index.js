@@ -24,7 +24,15 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
   };
   const exit = async () => {
     await AsyncStorage.removeItem('@AmparaApp:volunteer');
-    navigation.navigate('Login');
+    await AsyncStorage.removeItem('@AmparaApp:health');
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'FirstScreen',
+        },
+      ],
+    });
   };
   return (
     <Container orientation={orientation}>
