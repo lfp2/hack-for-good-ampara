@@ -151,17 +151,9 @@ export default function SignUpProfileScreen() {
           icon="file-document-box-multiple"
           scrollViewRef={scrollRef}
           afterFinishing={() => {
-            formRef.current?.getFieldRef('profession').focus();
-          }}
-        />
-        <IconedInput
-          name="profession"
-          placeholder="Profissão*"
-          icon="clipboard-plus"
-          blurOnSubmit={false}
-          returnKeyType="next"
-          onSubmitEditing={() => {
-            formRef.current?.getFieldRef('numberRegistry').focus();
+            accountType === 'volunteer' ?
+            formRef.current?.getFieldRef('numberRegistry').focus() :
+            formRef.current?.getFieldRef('phone').focus();
           }}
         />
         {accountType === 'volunteer' && (

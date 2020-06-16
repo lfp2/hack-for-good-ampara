@@ -19,16 +19,13 @@ import {
 } from '../../assets/styles/homepage';
 import { SwitchNotification } from '../../assets/styles/signup';
 import useToggle from 'react-use/lib/useToggle';
-import { useNavigation, Link, DrawerActions } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
-import useOrientation from '../../util/useOrientation';
-import { ScrollView, View } from 'react-native';
 
 const VolunteerProfile = () => {
   const navigation = useNavigation();
   const [name, setName] = useState('');
   const [number_registry, setNumberRegistry] = useState('');
-  // const orientation = useOrientation();
   useEffect(() => {
     async function fetchData() {
       try {

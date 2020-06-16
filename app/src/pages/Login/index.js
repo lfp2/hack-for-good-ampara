@@ -42,7 +42,7 @@ const signVolunteer = ({ email, password }) =>
     password,
   });
 const signHealthProfessional = ({ email, password }) =>
-  api.post('/volunteer/signIn', {
+  api.post('/healthprofessional/signIn', {
     email,
     password,
   });
