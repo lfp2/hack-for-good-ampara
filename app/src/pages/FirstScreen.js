@@ -24,7 +24,7 @@ export default function FirstScreen() {
         );
         const health_value = await AsyncStorage.getItem('@AmparaApp:health');
         if (volunteer_value != null) {
-          navigation.navigate('VolunteerHome');
+          navigation.replace('VolunteerHome');
         }
       } catch (error) {
         console.error(error);

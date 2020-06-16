@@ -12,12 +12,13 @@ import {
   Text,
 } from './styles';
 import { Form } from '@unform/mobile';
+import { BackHandler } from 'react-native';
 import Input, { SecretInput } from '../../components/Input';
 import Selector from '../../components/Selector';
 import validate from '../../util/validate';
 import { schema } from './validation';
 import AsyncStorage from '@react-native-community/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import api from '../../services/api';
 import useAwait from '../../util/useAwait';
 import LoadingButton from '../../components/LoadingButton';
@@ -106,6 +107,7 @@ const LoginScreen = () => {
       }
     }
   };
+
   return (
     <Container>
       <Logo />

@@ -21,6 +21,9 @@ import { SwitchNotification } from '../../assets/styles/signup';
 import useToggle from 'react-use/lib/useToggle';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { StyledSwitch } from '../../components/Switch/base';
+import useBackHandle from '../../util/useBackHandle';
+import Modal, { ModalButtons, ModalSmallButton } from '../../components/Modal';
 
 const VolunteerProfile = () => {
   const navigation = useNavigation();
@@ -43,41 +46,44 @@ const VolunteerProfile = () => {
   const handleNavigate = (to) => {
     navigation.navigate(to);
   };
+
   return (
-    <Container>
-      <TopSection>
-        <MenuBtnWrapper
-          onPress={() => {
-            navigation.openDrawer();
-          }}>
-          <MenuBtn />
-        </MenuBtnWrapper>
-        <LogoBranca />
-        <Title>Meu Perfil</Title>
-      </TopSection>
-      <Body>
-        <Border />
-        <ProfilePic />
-        <Name>{name}</Name>
-        <Role>Psicólogo</Role>
-        <Role>CRP {number_registry}</Role>
-        <Buttons>
-          <Button onPress={() => handleNavigate('Calendar')} icon="clock">
-            Meus horários
-          </Button>
-          <Button onPress={() => handleNavigate('Appointment')} icon="book">
-            Consultas
-          </Button>
-        </Buttons>
-        <SwitchContainer>
-          <SwitchText>Plantão</SwitchText>
-          <SwitchNotification
-            onValueChange={() => toggleNotification()}
-            value={notification}
-          />
-        </SwitchContainer>
-      </Body>
-    </Container>
+    <>
+      <Container>
+        <TopSection>
+          <MenuBtnWrapper
+            onPress={() => {
+              navigation.openDrawer();
+            }}>
+            <MenuBtn />
+          </MenuBtnWrapper>
+          <LogoBranca />
+          <Title>Meu Perfil</Title>
+        </TopSection>
+        <Body>
+          <Border />
+          <ProfilePic />
+          <Name>{name}</Name>
+          <Role>Psicólogo</Role>
+          <Role>CRP {number_registry}</Role>
+          <Buttons>
+            <Button onPress={() => handleNavigate('Calendar')} icon="clock">
+              Meus horários
+            </Button>
+            <Button onPress={() => handleNavigate('Appointment')} icon="book">
+              Consultas
+            </Button>
+          </Buttons>
+          <SwitchContainer>
+            <SwitchText>Plantão</SwitchText>
+            <StyledSwitch
+              onValueChange={() => toggleNotification()}
+              value={notification}
+            />
+          </SwitchContainer>
+        </Body>
+      </Container>
+    </>
   );
 };
 

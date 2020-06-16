@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyledSwitch } from './styles';
+export { StyledSwitch } from './styles';
 
 const BaseSwitch = ({
   defaultValue = false,
