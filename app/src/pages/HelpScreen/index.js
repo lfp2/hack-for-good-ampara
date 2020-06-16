@@ -7,10 +7,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const HelpScreen = ({ navigation }) => {
   return (
     <Container>
-      <Header title="Segurança" type="secondary" />
+      <Header title="Ajuda" type="secondary" />
       <Anchors>
         <Anchor
         src={require("../../assets/images/Ampara-Simbolo.png")}
+        onPress={() => {
+          navigation.navigate('Troubleshoot');
+        }}
         >
             Problemas com o aplicativo
         </Anchor>
@@ -19,7 +22,7 @@ const HelpScreen = ({ navigation }) => {
           iconPack={Ionicons}
           iconSize={30}
           onPress={() => {
-            navigation.navigate('Security');
+            navigation.navigate('Faq');
           }}>
           Dúvidas Frequentes
         </Anchor>

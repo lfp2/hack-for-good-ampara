@@ -18,6 +18,8 @@ import ConfigurationScreen from './pages/ConfigurationScreen';
 import SecurityScreen from './pages/SecurityScreen';
 import NotificationsScreen from './pages/NotificationsScreen';
 import HelpScreen from './pages/HelpScreen';
+import TroubleshootScreen from './pages/TroubleshootScreen';
+import FaqScreen from './pages/FaqScreen';
 import AboutScreen from './pages/About';
 import MyAppointmentScreen from './pages/health_professional/Appointments';
 
@@ -37,16 +39,28 @@ function VolunteerHomeTabs() {
       <Drawer.Screen name="Security" component={SecurityScreen} />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
       <Drawer.Screen name="Help" component={HelpScreen} />
+      <Drawer.Screen name="Troubleshoot" component={TroubleshootScreen} />
+      <Drawer.Screen name="Faq" component={FaqScreen} />
       <Drawer.Screen name="About" component={AboutScreen} />
     </Drawer.Navigator>
   );
 }
 
 function HealthHomeTabs() {
+  const orientation = useOrientation();
   return (
-    <Drawer.Navigator initialRouteName="Perfil">
+    <Drawer.Navigator initialRouteName="Perfil"
+    screenOptions={{ headerShown: false }}
+      drawerContent={(props) => <Nav {...props} orientation={orientation} />}>
       <Drawer.Screen name="Perfil" component={HealthHomePageScreen} />
       <Drawer.Screen name="MyAppointments" component={MyAppointmentScreen} />
+      <Drawer.Screen name="Configuration" component={ConfigurationScreen} />
+      <Drawer.Screen name="Security" component={SecurityScreen} />
+      <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+      <Drawer.Screen name="Help" component={HelpScreen} />
+      <Drawer.Screen name="Troubleshoot" component={TroubleshootScreen} />
+      <Drawer.Screen name="Faq" component={FaqScreen} />
+      <Drawer.Screen name="About" component={AboutScreen} />
     </Drawer.Navigator>
   );
 }
