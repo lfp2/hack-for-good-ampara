@@ -14,7 +14,7 @@ const SecurityScreen = ({ navigation }) => {
           iconPack={Ionicons}
           iconSize={30}
           onPress={() => {
-            navigation.navigate('Security');
+            navigation.navigate('NewPassword');
           }}>
           Senha
         </Anchor>

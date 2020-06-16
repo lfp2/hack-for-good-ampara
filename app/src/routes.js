@@ -19,6 +19,7 @@ import SecurityScreen from './pages/SecurityScreen';
 import NotificationsScreen from './pages/NotificationsScreen';
 import AboutScreen from './pages/About';
 import MyAppointmentScreen from './pages/health_professional/Appointments';
+import NewPasswordScreen from './pages/NewPasswordScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -32,17 +33,16 @@ function VolunteerHomeTabs() {
       drawerContent={(props) => <Nav {...props} orientation={orientation} />}>
       <Drawer.Screen name="Perfil" component={VolunteerHomePageScreen} />
       <Drawer.Screen name="Calendar" component={CalendarScreen} />
-      <Drawer.Screen name="Configuration" component={ConfigurationScreen} />
-      <Drawer.Screen name="Security" component={SecurityScreen} />
-      <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-      <Drawer.Screen name="About" component={AboutScreen} />
     </Drawer.Navigator>
   );
 }
 
 function HealthHomeTabs() {
+  const orientation = useOrientation();
   return (
-    <Drawer.Navigator initialRouteName="Perfil">
+    <Drawer.Navigator
+      initialRouteName="Perfil"
+      drawerContent={(props) => <Nav {...props} orientation={orientation} />}>
       <Drawer.Screen name="Perfil" component={HealthHomePageScreen} />
       <Drawer.Screen name="MyAppointments" component={MyAppointmentScreen} />
     </Drawer.Navigator>
@@ -56,6 +56,11 @@ export default function Routes() {
         initialRouteName="FirstScreen"
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name="FirstScreen" component={FirstScreen} />
+        <Stack.Screen name="Configuration" component={ConfigurationScreen} />
+        <Stack.Screen name="Security" component={SecurityScreen} />
+        <Stack.Screen name="NewPassword" component={NewPasswordScreen} />
+        <Stack.Screen name="Notifications" component={NotificationsScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
         <Stack.Screen name="SignUpEmail" component={SignUpEmailScreen} />

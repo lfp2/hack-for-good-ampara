@@ -19,9 +19,10 @@ export const IconedInputTemplate = ({
   reverseIcon,
   children,
   footer,
+  style,
 }) => {
   return (
-    <IconedContainer>
+    <IconedContainer style={style}>
       {label && <Label>{label}</Label>}
       <Row>
         <InputIcon reverse={reverseIcon} name={icon} />

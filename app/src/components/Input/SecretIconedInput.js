@@ -13,6 +13,7 @@ function SecretIconedInput({
   hint,
   reverseIcon,
   children,
+  style,
   ...rest
 }) {
   const props = useField(name);
@@ -20,6 +21,7 @@ function SecretIconedInput({
   const [isHidden, toggle] = useToggle(true);
   return (
     <IconedInputTemplate
+      style={style}
       label={label}
       hint={hint}
       reverseIcon={reverseIcon}
