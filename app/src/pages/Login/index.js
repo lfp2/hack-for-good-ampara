@@ -134,7 +134,12 @@ const LoginScreen = () => {
         />
         <InfoRow>
           {errorMessage !== '' && <Error>{errorMessage}</Error>}
-          <Forgot>Esqueceu a senha?</Forgot>
+          <Forgot
+            onPress={() => {
+              navigation.navigate('LoginTroubleshoot');
+            }}>
+            Esqueceu a senha?
+          </Forgot>
         </InfoRow>
 
         <Selector defaultValue="none" name="role" options={rolesOptions} />

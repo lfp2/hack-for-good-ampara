@@ -25,6 +25,7 @@ import MyAppointmentScreen from './pages/health_professional/Appointments';
 import NewPasswordScreen from './pages/NewPasswordScreen';
 import NiceHabitsScreen from './pages/NiceHabits';
 import LoginInfoScreen from './pages/LoginInfoScreen';
+import LoginTroubleshootScreen from './pages/LoginTroubleshootScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -80,6 +81,10 @@ export default function Routes() {
         <Stack.Screen name="Appointment" component={AppointmentScreen} />
         <Stack.Screen name="LoginInfo" component={LoginInfoScreen} />
         <Stack.Screen name="NiceHabits" component={NiceHabitsScreen} />
+        <Stack.Screen
+          name="LoginTroubleshoot"
+          component={LoginTroubleshootScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
