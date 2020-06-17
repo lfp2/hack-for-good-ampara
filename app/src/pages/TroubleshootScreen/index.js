@@ -18,7 +18,7 @@ const TroubleshootScreen = () => (
         1. Verifique se seu celular está com acesso à internet; {'\n'}
         2. Reinicie seu celular; {'\n'}
         3. Atualize o sistema operacional; {'\n'}
-        4. Faça a última atualização do aplicativo. {'\n'}
+        4. Faça a última atualização do aplicativo.
       </Description>
     </Section>
     <Section>
