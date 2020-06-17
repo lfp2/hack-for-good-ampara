@@ -69,7 +69,9 @@ export default function HomePageScreen() {
         <Role>Técnica em Enfermagem</Role>
         <Role>COREN 58963</Role>
         <ProfileButtons>
-          <ProfileButton icon="calendar-month">Agendar Consulta</ProfileButton>
+          <ProfileButton icon="calendar-month" onPress={() => {
+            navigation.navigate("HealthCalendar");
+          }}>Agendar Consulta</ProfileButton>
           <ProfileButton
             icon="book"
             iconPack={FontAwesome5Icons}

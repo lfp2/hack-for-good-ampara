@@ -25,6 +25,8 @@ import MyAppointmentScreen from './pages/health_professional/Appointments';
 import NewPasswordScreen from './pages/NewPasswordScreen';
 import NiceHabitsScreen from './pages/NiceHabits';
 import LoginInfoScreen from './pages/LoginInfoScreen';
+import HealthCalendarScreen from './pages/health_professional/Calendar';
+import AvailableDoctorsScreen from './pages/health_professional/AvailableDoctors';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -77,6 +79,8 @@ export default function Routes() {
         <Stack.Screen name="VolunteerHome" component={VolunteerHomeTabs} />
         <Stack.Screen name="VolunteerCalendar" component={CalendarScreen} />
         <Stack.Screen name="HealthHome" component={HealthHomeTabs} />
+        <Stack.Screen name="HealthCalendar" component={HealthCalendarScreen} />
+        <Stack.Screen name="AvailableDoctors" component={AvailableDoctorsScreen} />
         <Stack.Screen name="Appointment" component={AppointmentScreen} />
         <Stack.Screen name="LoginInfo" component={LoginInfoScreen} />
         <Stack.Screen name="NiceHabits" component={NiceHabitsScreen} />
