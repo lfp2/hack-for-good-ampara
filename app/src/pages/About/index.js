@@ -17,7 +17,7 @@ const AboutScreen = () => (
     </Section>
     <Section>
       <Text>Para saber mais acesse </Text>
-      <Link>www.amparaapp.com.br</Link>
+      <Link to="http://www.amparaapp.com.br">www.amparaapp.com.br</Link>
     </Section>
     <Section>
       <Text>Sobre a Twilio: </Text>

@@ -123,6 +123,7 @@ export default function SignUpProfileScreen() {
   const bioRef = useRef();
   const phoneRef = useRef();
   const cepRef = useRef();
+  const numberRegistryRef = useRef();
   return (
     <Container ref={scrollRef}>
       <CircleGradientBackground colors={['#79e7e1', '#FFFFFF']} />
@@ -151,13 +152,18 @@ export default function SignUpProfileScreen() {
           icon="file-document-box-multiple"
           scrollViewRef={scrollRef}
           afterFinishing={() => {
-            accountType === 'volunteer' ?
-            formRef.current?.getFieldRef('numberRegistry').focus() :
-            formRef.current?.getFieldRef('phone').focus();
+            accountType === 'volunteer'
+              ? numberRegistryRef.current?.focus()
+              : formRef.current?.getFieldRef('phone').focus();
           }}
         />
         {accountType === 'volunteer' && (
-          <IconedInput
+          <MaskedIconedInput
+            type={'custom'}
+            options={{
+              mask: '99/99999',
+            }}
+            ref={numberRegistryRef}
             name="numberRegistry"
             placeholder="CRP*"
             icon="account-card-details"
@@ -213,6 +219,7 @@ export default function SignUpProfileScreen() {
             cepRef.current?.getElement().focus();
           }}
         />
+
         <MaskedIconedInput
           type={'custom'}
           options={{
@@ -223,6 +230,9 @@ export default function SignUpProfileScreen() {
           placeholder="CEP*"
           icon="city"
         />
+        {accountType === 'health' && (
+          <Switch label="Perfil anônimo" name="anonymous" />
+        )}
         <Switch label="Habilitar notificações" name="notifications" />
         <Switch label="Concordo com os Termos de Uso" name="terms" />
       </Form>
