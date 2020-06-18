@@ -23,32 +23,34 @@ export default function CalendarScreen({ navigation }) {
 
   const handleSubmit = () => {
     const timestamp = moment
-    .tz(dateSelected + ' ' + timeSelected, 'MM/DD/YYYY hh:mm', deviceTimezone)
-    .toISOString();
+      .tz(dateSelected + ' ' + timeSelected, 'MM/DD/YYYY hh:mm', deviceTimezone)
+      .toISOString();
 
-    console.log(timestamp);
+    // console.log(timestamp);
 
     navigation.navigate('AvailableDoctors', {
-       timestamp
+      timestamp,
     });
-  }
+  };
 
   return (
-      <MyScreen>
-        <RectangleBackground />
-        <Header title="Agende sua consulta" />
-        <CalendarView>
-          <CalendarStrip
-            scrollable={true}
-            useIsoWeekday={false}
-            selectedDate={today}
-            minDate={today}
-            maxDate={moment(new Date()).add(1, 'M')}
-            onDateSelected={onDateSelected}
-          />
-        </CalendarView>
-        <TimeSelector onChange={setTime} />
-        <AppointmentButton onPress={handleSubmit}>AGENDAR CONSULTA</AppointmentButton>
-      </MyScreen>
+    <MyScreen>
+      <RectangleBackground />
+      <Header title="Agende sua consulta" />
+      <CalendarView>
+        <CalendarStrip
+          scrollable={true}
+          useIsoWeekday={false}
+          selectedDate={today}
+          minDate={today}
+          maxDate={moment(new Date()).add(1, 'M')}
+          onDateSelected={onDateSelected}
+        />
+      </CalendarView>
+      <TimeSelector onChange={setTime} />
+      <AppointmentButton onPress={handleSubmit}>
+        AGENDAR CONSULTA
+      </AppointmentButton>
+    </MyScreen>
   );
 }
