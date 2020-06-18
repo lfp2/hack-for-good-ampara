@@ -7,8 +7,8 @@ const appointmentRef = db.collection("appointmentAgenda");
 const validStatus = "Consulta agendada";
 
 
-class AgendaController {
-  async availableDoctors(req, res) {
+class AppointmentsController {
+  async index(req, res) {
     try {
       const { timestamp } = req.body;
 
@@ -34,7 +34,7 @@ class AgendaController {
     }
   }
 
-  async appointmentDoctor(req, res) {
+  async store(req, res) {
     try {
       const {
         timestamp,
@@ -131,7 +131,7 @@ class AgendaController {
     }
   }
 
-  async cancelAppointmentDoctor(req, res) {
+  async destroy(req, res) {
     try {
       const { timestamp, healthEmail, accountType } = req.body;
 
@@ -192,4 +192,4 @@ class AgendaController {
   }
 }
 
-module.exports = new AgendaController();
+module.exports = new AppointmentsController();
