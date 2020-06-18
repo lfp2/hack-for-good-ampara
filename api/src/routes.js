@@ -1,30 +1,30 @@
-const { Router } = require('express')
+const { Router } = require("express");
 
 const HealthProfessionalController = require("./app/controllers/HealthProfessionalController");
-const VolunteerController = require('./app/controllers/VolunteerController')
-const VolunteerVerifyController = require('./app/controllers/VolunteerVerifyController')
-const AgendaController = require('./app/controllers/AgendaController')
+const VolunteerController = require("./app/controllers/VolunteerController");
+const VolunteerVerifyController = require("./app/controllers/VolunteerVerifyController");
+const AvailableHoursController = require("./app/controllers/AvailableHoursController");
+const AppointmentsController = require("./app/controllers/AppointmentsController");
 
-const routes = new Router()
+const routes = new Router();
 
-routes.post('/agenda/availableDoctors', AgendaController.availableDoctors)
+routes.post("/volunteer", VolunteerController.store);
 
-routes.post('/agenda/cancelAppointmentDoctor', AgendaController.cancelAppointmentDoctor);
+routes.put("/volunteer", VolunteerController.update);
 
-routes.post('/agenda/appointmentDoctor', AgendaController.appointmentDoctor)
+routes.get("/appointments", AppointmentsController.index);
 
-routes.post('/volunteer', VolunteerController.store)
+routes.delete("/appointments", AppointmentsController.destroy);
 
-routes.post('/volunteer/signIn', VolunteerController.login)
+routes.post("/appointments", AppointmentsController.store);
 
-routes.post("/volunteer/makeAvailableHours", VolunteerController.makeAvailableHours);
+routes.post("/volunteer/signIn", VolunteerController.login);
 
-routes.post("/volunteer/makeUnavailableHours", VolunteerController.makeUnavailableHours);
+routes.post("/available_hours", AvailableHoursController.store);
 
-routes.post(
-  "/volunteer/retrieveAvailableHours",
-  VolunteerController.retrieveAvailableHours
-);
+routes.delete("/available_hours", AvailableHoursController.destroy);
+
+routes.get("/available_hours", AvailableHoursController.index);
 
 routes.post(
   "/volunteer/listAppointments",
@@ -33,8 +33,8 @@ routes.post(
 
 routes.post("/healthprofessional", HealthProfessionalController.store);
 
-routes.post("/healthprofessional/signIn", HealthProfessionalController.login)
+routes.post("/healthprofessional/signIn", HealthProfessionalController.login);
 
-routes.get('/verify/volunteer', VolunteerVerifyController.index)
+routes.get("/verify/volunteer", VolunteerVerifyController.index);
 
-module.exports = routes
+module.exports = routes;
