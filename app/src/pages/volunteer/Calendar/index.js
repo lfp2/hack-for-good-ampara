@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import TimeSelector from '../../../components/TimeSelector';
+import TimeSelector from 'src/components/TimeSelector';
 import { MyScreen, RectangleBackground, CalendarView } from './styles';
 import { View, Text, FlatList, ScrollView } from 'react-native';
 import moment from 'moment';
 import 'moment-timezone';
 import * as RNLocalize from 'react-native-localize';
-import Header from '../../../components/Header';
-import CalendarStrip from '../../../components/CalendarStrip';
-import Button from '../../../components/Button';
+import Header from 'src/components/Header';
+import CalendarStrip from 'src/components/CalendarStrip';
+import Button from 'src/components/Button';
 import AsyncStorage from '@react-native-community/async-storage';
-import api from '../../../services/api';
-import DataCard from '../../../components/DataCard';
+import api from 'src/services/api';
+import DataCard from 'src/components/DataCard';
 import useToggle from 'react-use/lib/useToggle';
-import Modal from '../../../components/Modal';
+import Modal from 'src/components/Modal';
 
 export default function CalendarScreen() {
   moment.locale('pt-br');
@@ -146,7 +146,7 @@ export default function CalendarScreen() {
       </MyScreen>
       <Modal
         isOn={modalVisibility}
-        icon={require('../../../assets/images/appointment_cancelation.png')}
+        icon={require('src/assets/images/appointment_cancelation.png')}
         title="Você ja desponibilizou esse horário">
         <Modal.BigButton
           onPress={() => {

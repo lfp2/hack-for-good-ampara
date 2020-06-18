@@ -13,15 +13,15 @@ import {
 } from './styles';
 import { Form } from '@unform/mobile';
 import { BackHandler } from 'react-native';
-import Input, { SecretInput } from '../../components/Input';
-import Selector from '../../components/Selector';
-import validate from '../../util/validate';
+import Input, { SecretInput } from 'src/components/Input';
+import Selector from 'src/components/Selector';
+import validate from 'src/util/validate';
 import { schema } from './validation';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import api from '../../services/api';
-import useAwait from '../../util/useAwait';
-import LoadingButton from '../../components/LoadingButton';
+import api from 'src/services/api';
+import useAwait from 'src/util/useAwait';
+import LoadingButton from 'src/components/LoadingButton';
 
 const rolesOptions = [
   { value: 'none', label: 'Escolha seu perfil' },
@@ -134,7 +134,12 @@ const LoginScreen = () => {
         />
         <InfoRow>
           {errorMessage !== '' && <Error>{errorMessage}</Error>}
-          <Forgot>Esqueceu a senha?</Forgot>
+          <Forgot
+            onPress={() => {
+              navigation.navigate('LoginTroubleshoot');
+            }}>
+            Esqueceu a senha?
+          </Forgot>
         </InfoRow>
 
         <Selector defaultValue="none" name="role" options={rolesOptions} />

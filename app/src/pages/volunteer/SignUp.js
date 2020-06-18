@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text } from 'react-native';
 import * as Yup from 'yup';
-import { ScreenCenter } from '../../assets/styles';
+import { ScreenCenter } from 'src/assets/styles';
 import { ScrollView } from 'react-native';
 
 import {
@@ -22,9 +22,9 @@ import {
   TextTitle,
   Button,
   TextButton,
-} from '../../assets/styles/signup';
+} from 'src/assets/styles/signup';
 
-import api from '../../services/api';
+import api from 'src/services/api';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -105,14 +105,14 @@ export default function SignUpScreen() {
       <HeaderView>
         <CameraView>
           <CircleButton>
-            <CircleIcon source={require('../../assets/icons/camera.png')} />
+            <CircleIcon source={require('src/assets/icons/camera.png')} />
           </CircleButton>
           <CircleButtonText>foto de perfil</CircleButtonText>
         </CameraView>
         <HeaderTextView>
           <TextInputView>
             <TextInputIcons
-              source={require('../../assets/icons/ionic-ios-person.png')}
+              source={require('src/assets/icons/ionic-ios-person.png')}
             />
             <ViewInput>
               <HeaderInput
@@ -123,7 +123,7 @@ export default function SignUpScreen() {
           </TextInputView>
           <TextInputView>
             <TextInputIcons
-              source={require('../../assets/icons/ionic-ios-paper.png')}
+              source={require('src/assets/icons/ionic-ios-paper.png')}
             />
             <ViewInput>
               <HeaderInput
@@ -137,7 +137,7 @@ export default function SignUpScreen() {
       <ScrollView>
         <TextInputView>
           <TextInputIcons
-            source={require('../../assets/icons/material-location-city.png')}
+            source={require('src/assets/icons/material-location-city.png')}
           />
           <ViewInput>
             <Input
@@ -148,16 +148,14 @@ export default function SignUpScreen() {
         </TextInputView>
         <TextInputView>
           <TextInputIcons
-            source={require('../../assets/icons/map-city-hall.png')}
+            source={require('src/assets/icons/map-city-hall.png')}
           />
           <ViewInput>
             <Input placeholder="UF" onChangeText={(data) => setUf(data)} />
           </ViewInput>
         </TextInputView>
         <TextInputView>
-          <TextInputIcons
-            source={require('../../assets/icons/map-doctor.png')}
-          />
+          <TextInputIcons source={require('src/assets/icons/map-doctor.png')} />
           <ViewInput>
             <Input
               placeholder="Número de registro profissional"
@@ -167,7 +165,7 @@ export default function SignUpScreen() {
         </TextInputView>
         <TextInputView>
           <TextInputIcons
-            source={require('../../assets/icons/awesome-phone-alt.png')}
+            source={require('src/assets/icons/awesome-phone-alt.png')}
           />
           <ViewInput>
             <Input
@@ -178,7 +176,7 @@ export default function SignUpScreen() {
         </TextInputView>
         <TextInputView>
           <TextInputIcons
-            source={require('../../assets/icons/material-email.png')}
+            source={require('src/assets/icons/material-email.png')}
           />
           <ViewInput>
             <Input
@@ -189,7 +187,7 @@ export default function SignUpScreen() {
         </TextInputView>
         <TextInputView>
           <TextInputIcons
-            source={require('../../assets/icons/awesome-key.png')}
+            source={require('src/assets/icons/awesome-key.png')}
           />
           <ViewInput>
             <Input

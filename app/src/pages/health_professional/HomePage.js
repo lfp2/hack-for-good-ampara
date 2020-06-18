@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Button from '../../components/Button';
+import Button from 'src/components/Button';
 import {
   Container,
   Body,
@@ -14,14 +14,14 @@ import {
   MenuBtnWrapper,
   TopSection,
   Border,
-} from '../../assets/styles/homepage';
+} from 'src/assets/styles/homepage';
 
 import FontAwesome5Icons from 'react-native-vector-icons/FontAwesome5';
 
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { Linking } from 'react-native';
-import ProfileButton, { ProfileButtons } from '../../components/ProfileButton';
+import ProfileButton, { ProfileButtons } from 'src/components/ProfileButton';
 
 export default function HomePageScreen() {
   const navigation = useNavigation();
@@ -69,9 +69,13 @@ export default function HomePageScreen() {
         <Role>Técnica em Enfermagem</Role>
         <Role>COREN 58963</Role>
         <ProfileButtons>
-          <ProfileButton icon="calendar-month" onPress={() => {
-            navigation.navigate("HealthCalendar");
-          }}>Agendar Consulta</ProfileButton>
+          <ProfileButton
+            icon="calendar-month"
+            onPress={() => {
+              navigation.navigate('HealthCalendar');
+            }}>
+            Agendar Consulta
+          </ProfileButton>
           <ProfileButton
             icon="book"
             iconPack={FontAwesome5Icons}
@@ -91,7 +95,7 @@ export default function HomePageScreen() {
   //     <RectangleBackground />
   //     <HeaderView>
   //       <Logo
-  //         source={require('../../assets/images/Ampara-Simbolo-branco.png')}
+  //         source={require('src/assets/images/Ampara-Simbolo-branco.png')}
   //       />
   //       <TextTitle>Meu Perfil</TextTitle>
   //       <HeaderPictureTextView>
@@ -112,17 +116,17 @@ export default function HomePageScreen() {
   //           <MenuText>Agendar Consulta</MenuText>
   //         </MenuButton>
   //         <MenuButton>
-  //           <MenuIcon source={require('../../assets/icons/awesome-book.png')} />
+  //           <MenuIcon source={require('src/assets/icons/awesome-book.png')} />
   //           <MenuText>Minhas Consultas</MenuText>
   //         </MenuButton>
   //       </MenuRow>
   //       <MenuRow>
   //         <MenuButton>
-  //           <MenuIcon source={require('../../assets/icons/message.png')} />
+  //           <MenuIcon source={require('src/assets/icons/message.png')} />
   //           <MenuText>Mensagens</MenuText>
   //         </MenuButton>
   //         <MenuButton>
-  //           <MenuIcon source={require('../../assets/icons/hospital.png')} />
+  //           <MenuIcon source={require('src/assets/icons/hospital.png')} />
   //           <MenuText>Histórico</MenuText>
   //         </MenuButton>
   //       </MenuRow>

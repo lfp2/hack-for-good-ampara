@@ -16,7 +16,7 @@ export const TextCenter = styled.Text`
 `;
 
 export const BackgroundImage = styled.Image.attrs({
-  source: require('../../assets/images/background.png'),
+  source: require('src/assets/images/background.png'),
 })`
   flex: 1;
   resize-mode: cover;

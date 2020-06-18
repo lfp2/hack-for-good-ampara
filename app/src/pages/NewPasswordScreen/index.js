@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Button, SecretIconedInput } from './styles';
 import { Form } from '@unform/mobile';
-import Header from '../../components/Header';
+import Header from 'src/components/Header';
 
 const NewPasswordScreen = () => {
   const formRef = React.useRef();

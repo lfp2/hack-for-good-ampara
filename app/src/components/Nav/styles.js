@@ -5,7 +5,7 @@ import { DrawerContentScrollView } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity, View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import Anchor, { Separator } from '../../components/Anchor';
+import Anchor, { Separator } from 'src/components/Anchor';
 
 export const Container = styled(({ orientation, ...props }) =>
   orientation === 'portrait' ? (
@@ -27,7 +27,7 @@ export const Header = styled.TouchableOpacity`
 `;
 
 export const ProfilePicture = styled.Image.attrs({
-  source: require('../../assets/images/julio.png'),
+  source: require('src/assets/images/julio.png'),
 })`
   width: 70px;
   height: 70px;

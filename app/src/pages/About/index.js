@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Logo } from './styles';
-import Header from '../../components/Header';
-import Section, { Text, Link, Description } from '../../components/Section';
+import Header from 'src/components/Header';
+import Section, { Text, Link, Description } from 'src/components/Section';
 
 const AboutScreen = () => (
   <Container>

@@ -10,7 +10,7 @@ import {
   BackFold,
 } from './styles';
 
-import Anchor, { Separator } from '../../components/Anchor';
+import Anchor, { Separator } from 'src/components/Anchor';
 import fontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import entypoIcon from 'react-native-vector-icons/Entypo';

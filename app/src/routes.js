@@ -25,8 +25,10 @@ import MyAppointmentScreen from './pages/health_professional/Appointments';
 import NewPasswordScreen from './pages/NewPasswordScreen';
 import NiceHabitsScreen from './pages/NiceHabits';
 import LoginInfoScreen from './pages/LoginInfoScreen';
+import LoginTroubleshootScreen from './pages/LoginTroubleshootScreen';
 import HealthCalendarScreen from './pages/health_professional/Calendar';
 import AvailableDoctorsScreen from './pages/health_professional/AvailableDoctors';
+import MyInfoScreen from './pages/MyInfoScreen';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -52,6 +54,7 @@ function HealthHomeTabs() {
       screenOptions={{ headerShown: false }}
       drawerContent={(props) => <Nav {...props} orientation={orientation} />}>
       <Drawer.Screen name="Perfil" component={HealthHomePageScreen} />
+      <Drawer.Screen name="MyInfo" component={MyInfoScreen} />
       <Drawer.Screen name="MyAppointments" component={MyAppointmentScreen} />
     </Drawer.Navigator>
   );
@@ -80,10 +83,17 @@ export default function Routes() {
         <Stack.Screen name="VolunteerCalendar" component={CalendarScreen} />
         <Stack.Screen name="HealthHome" component={HealthHomeTabs} />
         <Stack.Screen name="HealthCalendar" component={HealthCalendarScreen} />
-        <Stack.Screen name="AvailableDoctors" component={AvailableDoctorsScreen} />
+        <Stack.Screen
+          name="AvailableDoctors"
+          component={AvailableDoctorsScreen}
+        />
         <Stack.Screen name="Appointment" component={AppointmentScreen} />
         <Stack.Screen name="LoginInfo" component={LoginInfoScreen} />
         <Stack.Screen name="NiceHabits" component={NiceHabitsScreen} />
+        <Stack.Screen
+          name="LoginTroubleshoot"
+          component={LoginTroubleshootScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

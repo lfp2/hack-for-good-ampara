@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Description } from './styles';
-import Header from '../../components/Header';
-import { RegularSwitch } from '../../components/Switch';
+import Header from 'src/components/Header';
+import { RegularSwitch } from 'src/components/Switch';
 import useToggle from 'react-use/lib/useToggle';
 
 const NotificationsScreen = () => {

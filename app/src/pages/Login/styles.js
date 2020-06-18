@@ -13,7 +13,7 @@ const centerize = css`
 `;
 
 export const Logo = styled.Image.attrs({
-  source: require('../../assets/images/Ampara-Simbolo.png'),
+  source: require('src/assets/images/Ampara-Simbolo.png'),
 })`
   resize-mode: contain;
   min-width: 150px;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './styles';
-import Anchor, { Anchors } from '../../components/Anchor';
-import Header from '../../components/Header';
+import Anchor, { Anchors } from 'src/components/Anchor';
+import Header from 'src/components/Header';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const HelpScreen = ({ navigation }) => {
@@ -10,7 +10,7 @@ const HelpScreen = ({ navigation }) => {
       <Header title="Ajuda" type="secondary" />
       <Anchors>
         <Anchor
-          src={require('../../assets/images/Ampara-Simbolo.png')}
+          src={require('src/assets/images/Ampara-Simbolo.png')}
           onPress={() => {
             navigation.navigate('Troubleshoot');
           }}>

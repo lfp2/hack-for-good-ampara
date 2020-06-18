@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container } from './styles';
-import Header from '../../../components/Header';
+import Header from 'src/components/Header';
 import AppointmentCard, {
   AppointmentCards,
-} from '../../../components/AppointmentCard';
+} from 'src/components/AppointmentCard';
 import { FlatList } from 'react-native-gesture-handler';
-import Modal from '../../../components/Modal';
+import Modal from 'src/components/Modal';
 import useToggle from 'react-use/lib/useToggle';
 const AppointmentScreen = () => {
   const [isConfirmedModalVisible, toggleConfirmedModalVisibility] = useToggle(
@@ -42,7 +42,7 @@ const AppointmentScreen = () => {
       </AppointmentCards>
       <Modal
         isOn={isConfirmedModalVisible}
-        icon={require('../../../assets/images/appointment_confirmation.png')}
+        icon={require('src/assets/images/appointment_confirmation.png')}
         title="Sua consulta foi agendada!"
         desc="Verifique o e-mail cadastrado para mais detalhes da consulta.">
         <Modal.BigButton
@@ -54,7 +54,7 @@ const AppointmentScreen = () => {
       </Modal>
       <Modal
         isOn={isFinishedModalVisible}
-        icon={require('../../../assets/images/appointment_finished.png')}
+        icon={require('src/assets/images/appointment_finished.png')}
         title="Sua consulta foi finalizada!"
         desc="Verifique o e-mail cadastrado para mais detalhes da sua consulta.">
         <Modal.BigButton
@@ -66,7 +66,7 @@ const AppointmentScreen = () => {
       </Modal>
       <Modal
         isOn={isCancelationModalVisible}
-        icon={require('../../../assets/images/appointment_cancelation.png')}
+        icon={require('src/assets/images/appointment_cancelation.png')}
         title="Deseja cancelar sua consulta?">
         <Modal.Buttons>
           <Modal.SmallButton

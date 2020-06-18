@@ -7,7 +7,7 @@ import {
   Button,
   ButtonContainer,
 } from './styles';
-import Header from '../../components/Header';
+import Header from 'src/components/Header';
 
 const TroubleshootScreen = () => (
   <Container>

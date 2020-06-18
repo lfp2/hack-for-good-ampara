@@ -11,7 +11,6 @@ import {
 } from './styles';
 
 const AvailableCard = ({ appointmentAction, data }) => {
-    
   return (
     <Container>
       <Header>
@@ -20,14 +19,14 @@ const AvailableCard = ({ appointmentAction, data }) => {
           <Name>{data.displayName}</Name>
         </Info>
       </Header>
-        <Section>
+      <Section>
         <T>{data.bio}</T>
         <T>CRP: {data.documentNumber}</T>
-        </Section>
+      </Section>
       <Button
         onPress={() => {
           if (appointmentAction) {
-            appointmentAction();
+            appointmentAction(data);
           }
         }}>
         Agendar consulta
