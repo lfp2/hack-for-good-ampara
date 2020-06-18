@@ -16,7 +16,7 @@ const MaskedBaseInput = React.forwardRef(
           setValue('');
         },
         setValue(_, newValue) {
-          setValue(value);
+          setValue(newValue);
           // inputRef.current.value = value;
         },
         getValue() {

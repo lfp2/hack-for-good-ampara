@@ -47,7 +47,13 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
         </Info>
       </Header>
       <Separator />
-      <Anchor icon="ios-person" iconPack={Ionicons} noRightArrow>
+      <Anchor
+        icon="ios-person"
+        iconPack={Ionicons}
+        noRightArrow
+        onPress={() => {
+          goTo('MyInfo');
+        }}>
         Meus Dados
       </Anchor>
       <Anchor

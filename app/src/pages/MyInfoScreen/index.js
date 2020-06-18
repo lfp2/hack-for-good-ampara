@@ -18,6 +18,7 @@ import ModalInput from 'src/components/Input/ModalInput';
 import { useStoreState } from 'easy-peasy';
 import useAwait from 'src/util/useAwait';
 import api from 'src/services/api';
+import { useFocusEffect } from '@react-navigation/native';
 
 const healthTypes = [
   { label: 'Tipo de Profissional', value: 'none' },
@@ -101,6 +102,7 @@ export default function MyInfoScreen() {
     { toggle: toggleIsCreatingHealthProfessional },
   ] = useAwait(createVolunteer);
   const handleSubmit = async (data) => {
+    console.log(data);
     const isValid = await validate(
       accountType === 'health' ? healthSchema : volunteerSchema,
       data,
@@ -124,13 +126,22 @@ export default function MyInfoScreen() {
   const phoneRef = useRef();
   const cepRef = useRef();
   const numberRegistryRef = useRef();
+  useFocusEffect(() => {
+    console.log('alo');
+    formRef.current.setData({
+      name: 'name',
+      bio: 'bio',
+      phone: '123',
+      state: 'AC',
+      city: 'Ferraz',
+      cep: '08544600',
+      terms: true,
+    });
+  }, []);
   return (
     <Container ref={scrollRef}>
       <CircleGradientBackground colors={['#79e7e1', '#FFFFFF']} />
-      <Header title="Perfil" type="secondary" />
-      <Description>
-        Falta pouco para você acessar o Ampara. Preencha seus dados abaixo:
-      </Description>
+      <Header title="Editar Dados" type="secondary" />
       <Camera onPress={() => pickImage()} source={avatarSource} />
 
       <Form ref={formRef} onSubmit={handleSubmit}>
@@ -151,11 +162,6 @@ export default function MyInfoScreen() {
           placeholder={accountType === 'health' ? 'Biografia' : 'Biografia*'}
           icon="file-document-box-multiple"
           scrollViewRef={scrollRef}
-          afterFinishing={() => {
-            accountType === 'volunteer'
-              ? numberRegistryRef.current?.focus()
-              : formRef.current?.getFieldRef('phone').focus();
-          }}
         />
         {accountType === 'volunteer' && (
           <MaskedIconedInput

@@ -19,39 +19,20 @@ import Header from '../Header';
 import { useFocusEffect } from '@react-navigation/native';
 
 function Input({
-  fieldName,
-  registerField,
-  defaultValue = '',
+  e = '',
   innerRef,
   onChange,
   value,
+  setValue,
+  defaultValue,
   ...rest
 }) {
   const inputRef = useRef(null);
-  const [innerValue, setInnerValue] = React.useState(value);
+
   const handleChange = (text) => {
-    setInnerValue(text);
     onChange(text);
   };
-  useEffect(() => {
-    setInnerValue(value);
-  }, [value]);
-  useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: { innerValue },
-      path: 'innerValue',
-      clearValue(ref) {
-        setInnerValue('');
-      },
-      setValue(ref, value) {
-        setInnerValue(value);
-      },
-      getValue() {
-        return innerValue;
-      },
-    });
-  }, [fieldName, registerField, innerValue]);
+
   return (
     <ModalTextInput
       ref={(ref) => {
@@ -64,7 +45,7 @@ function Input({
       defaultValue={defaultValue}
       placeholderTextColor="#7777774D"
       onChangeText={handleChange}
-      value={innerValue}
+      value={value}
       {...rest}
     />
   );
@@ -86,11 +67,27 @@ const ModalInput = React.forwardRef(
     },
     ref,
   ) => {
-    const props = useField(name);
-    const { error } = props;
+    const { fieldName, registerField, defaultValue, error } = useField(name);
     const [value, setValue] = useState('');
     const [isModalOpened, setIsModalOpen] = useState(false);
     const [counter, setCounter] = useState(150);
+
+    useEffect(() => {
+      registerField({
+        name: fieldName,
+        ref: { value },
+        path: 'value',
+        clearValue(ref) {
+          setValue('');
+        },
+        setValue(ref, newValue) {
+          setValue(newValue);
+        },
+        getValue() {
+          return value;
+        },
+      });
+    }, [fieldName, registerField, value, setValue]);
 
     useEffect(() => {
       setCounter(150 - value.length);
@@ -165,13 +162,13 @@ const ModalInput = React.forwardRef(
             <InnerModal>
               <InputWrapper>
                 <Input
-                  placeholder={placeholder}
                   value={value}
+                  placeholder={placeholder}
                   onChange={setValue}
                   innerRef={inputRef}
                   multiline
+                  defaultValue={defaultValue}
                   {...rest}
-                  {...props}
                   blurOnSubmit
                   onSubmitEditing={handleSubmit}
                 />
