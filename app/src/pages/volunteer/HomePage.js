@@ -14,12 +14,12 @@ import {
   MenuBtnWrapper,
   TopSection,
   Border,
-} from '../../assets/styles/homepage';
+} from 'src/assets/styles/homepage';
 import useToggle from 'react-use/lib/useToggle';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { StyledSwitch } from '../../components/Switch/base';
-import ProfileButton, { ProfileButtons } from '../../components/ProfileButton';
+import { StyledSwitch } from 'src/components/Switch/base';
+import ProfileButton, { ProfileButtons } from 'src/components/ProfileButton';
 
 const VolunteerProfile = () => {
   const navigation = useNavigation();

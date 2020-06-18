@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components/native';
-import BaseButton from '../../components/Button';
+import BaseButton from 'src/components/Button';
 
 export const Button = styled(BaseButton)`
   padding: 5px 10px;
@@ -37,7 +37,7 @@ export const Row = styled.View`
 `;
 
 export const ProfilePic = styled.Image.attrs({
-  source: require('../../assets/images/emanuelly.png'),
+  source: require('src/assets/images/emanuelly.png'),
 })`
   border-radius: 500px;
   margin: 10px;

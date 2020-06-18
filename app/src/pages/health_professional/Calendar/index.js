@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import TimeSelector from '../../../components/TimeSelector';
+import TimeSelector from 'src/components/TimeSelector';
 import { MyScreen, RectangleBackground, CalendarView } from './styles';
 import moment from 'moment';
 import 'moment-timezone';
 import * as RNLocalize from 'react-native-localize';
-import Header from '../../../components/Header';
-import CalendarStrip from '../../../components/CalendarStrip';
-import AppointmentButton from '../../../components/Button';
+import Header from 'src/components/Header';
+import CalendarStrip from 'src/components/CalendarStrip';
+import AppointmentButton from 'src/components/Button';
 
 export default function CalendarScreen({ navigation }) {
   moment.locale('pt-br');

@@ -1,11 +1,7 @@
 import React from 'react';
 import { Container } from './styles';
-import Header from '../../components/Header';
-import Section, {
-  Title,
-  Description,
-  BgEffect,
-} from '../../components/Section';
+import Header from 'src/components/Header';
+import Section, { Title, Description, BgEffect } from 'src/components/Section';
 
 const NiceHabitsScreen = () => {
   return (

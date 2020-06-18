@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container } from './styles';
-import Header from '../../../components/Header';
-import MyAppointmentCard from '../../../components/MyAppointmentCard';
+import Header from 'src/components/Header';
+import MyAppointmentCard from 'src/components/MyAppointmentCard';
 import { FlatList } from 'react-native';
 import useToggle from 'react-use/lib/useToggle';
-import Modal from '../../../components/Modal';
+import Modal from 'src/components/Modal';
 const MyAppointmentScreen = () => {
   const [cancelModal, toggleCancelModal] = useToggle(false);
   const [canceledModal, toggleCanceledModal] = useToggle(false);
@@ -26,7 +26,7 @@ const MyAppointmentScreen = () => {
       </Container>
       <Modal
         isOn={cancelModal}
-        icon={require('../../../assets/images/appointment_cancelation.png')}
+        icon={require('src/assets/images/appointment_cancelation.png')}
         title="Deseja cancelar sua consulta?">
         <Modal.Buttons>
           <Modal.SmallButton
@@ -47,7 +47,7 @@ const MyAppointmentScreen = () => {
       </Modal>
       <Modal
         isOn={canceledModal}
-        icon={require('../../../assets/images/appointment_cancelled.png')}
+        icon={require('src/assets/images/appointment_cancelled.png')}
         title="Sua consulta foi cancelada!"
         desc="Verifique o e-mail cadastrado para mais detalhes do seu cancelamento.">
         <Modal.BigButton

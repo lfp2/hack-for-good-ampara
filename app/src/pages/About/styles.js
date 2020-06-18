@@ -6,7 +6,7 @@ export const Container = styled.View`
 `;
 
 export const Logo = styled.Image.attrs({
-  source: require('../../assets/images/Ampara-Logo-preto.png'),
+  source: require('src/assets/images/Ampara-Logo-preto.png'),
 })`
   margin: 10px auto;
   width: 60%;

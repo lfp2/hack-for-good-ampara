@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import BaseButton from '../../components/Button';
-import BaseSecretIconedInput from '../../components/Input/SecretIconedInput';
+import BaseButton from 'src/components/Button';
+import BaseSecretIconedInput from 'src/components/Input/SecretIconedInput';
 
 export const Container = styled.View`
   flex: 1;

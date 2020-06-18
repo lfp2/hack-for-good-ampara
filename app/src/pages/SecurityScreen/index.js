@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './styles';
-import Anchor, { Anchors } from '../../components/Anchor';
-import Header from '../../components/Header';
+import Anchor, { Anchors } from 'src/components/Anchor';
+import Header from 'src/components/Header';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const SecurityScreen = ({ navigation }) => {

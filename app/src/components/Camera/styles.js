@@ -15,7 +15,7 @@ export const Touchable = styled.TouchableOpacity`
 `;
 
 export const DefaultImage = styled.Image.attrs({
-  source: require('../../assets/icons/camera.png'),
+  source: require('src/assets/icons/camera.png'),
 })`
   width: 30%;
   /* height: 50px; */

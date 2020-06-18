@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { FlatList, AsyncStorage } from 'react-native';
-import AvailableCard from '../../../components/AvailableCard';
-import api from '../../../services/api';
-import Modal from '../../../components/Modal';
+import AvailableCard from 'src/components/AvailableCard';
+import api from 'src/services/api';
+import Modal from 'src/components/Modal';
 import useToggle from 'react-use/lib/useToggle';
 import Container from './styles';
 
@@ -66,7 +66,7 @@ export default function AvailableDoctors({ route, navigation }) {
       />
       <Modal
         isOn={isConfirmedModalVisible}
-        icon={require('../../../assets/images/appointment_confirmation.png')}
+        icon={require('src/assets/images/appointment_confirmation.png')}
         title="Sua consulta foi agendada!"
         desc="Verifique o e-mail cadastrado para mais detalhes da consulta.">
         <Modal.BigButton

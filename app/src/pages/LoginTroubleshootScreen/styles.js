@@ -8,7 +8,7 @@ export const Container = styled.ScrollView`
 `;
 
 export const Illustration = styled.Image.attrs({
-  source: require('../../assets/images/forgot-password.png'),
+  source: require('src/assets/images/forgot-password.png'),
 })`
   width: 60%;
   max-width: 350px;

@@ -1,14 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { useStoreActions } from 'easy-peasy';
-import IconedInput from '../../components/Input/IconedInput';
+import IconedInput from 'src/components/Input/IconedInput';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
-import Header from '../../components/Header';
-import Button from '../../components/Button';
+import Header from 'src/components/Header';
+import Button from 'src/components/Button';
 import { Container, Spacer, Description } from './styles';
-import SecretIconedInput from '../../components/Input/SecretIconedInput';
+import SecretIconedInput from 'src/components/Input/SecretIconedInput';
 import { schema } from './validation';
-import validate from '../../util/validate';
+import validate from 'src/util/validate';
 
 export default function SignUpEmailScreen() {
   const navigation = useNavigation();

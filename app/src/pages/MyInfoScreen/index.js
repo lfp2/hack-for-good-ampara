@@ -73,7 +73,7 @@ const createHealthProfessional = ({
     city,
   });
 
-export default function SignUpProfileScreen() {
+export default function MyInfoScreen() {
   const [avatarSource, setAvatarSource] = useState('');
   const accountType = useStoreState((state) => state.userData.accountType);
   const { email, password } = useStoreState((state) => state.userData);

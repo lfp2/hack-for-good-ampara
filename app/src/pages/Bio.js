@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input } from '../../assets/styles/signup';
+import { Input } from 'src/assets/styles/signup';
 import { Controller } from 'react-hook-form';
 
 export default function BioScreen(control) {

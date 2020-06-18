@@ -31,7 +31,7 @@ export const Row = styled.View`
 `;
 
 export const ProfilePic = styled.Image.attrs({
-  source: require('../../assets/images/emanuelly.png'),
+  source: require('src/assets/images/emanuelly.png'),
 })`
   border-radius: 500px;
   flex: 1;

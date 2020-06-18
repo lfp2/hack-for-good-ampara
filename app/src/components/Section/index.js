@@ -24,7 +24,7 @@ export const LinkText = styled(Text)`
 `;
 
 export const BgEffect = styled.Image.attrs({
-  source: require('../../assets/images/bg-effect.png'),
+  source: require('src/assets/images/bg-effect.png'),
 })`
   width: 100%;
   height: 100px;

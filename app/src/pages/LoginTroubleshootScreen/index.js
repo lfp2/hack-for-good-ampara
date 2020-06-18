@@ -8,8 +8,8 @@ import {
   InvisibleButton,
 } from './styles';
 import { Form } from '@unform/mobile';
-import RoundedInput from '../../components/Input/Rounded';
-import Button from '../../components/Button';
+import RoundedInput from 'src/components/Input/Rounded';
+import Button from 'src/components/Button';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginTroubleshootScreen = () => {

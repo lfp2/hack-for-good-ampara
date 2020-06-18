@@ -168,7 +168,7 @@ export const Border = styled((props) => (
 `;
 
 export const ProfilePic = styled.Image.attrs({
-  source: require('../../assets/images/julio.png'),
+  source: require('src/assets/images/julio.png'),
 })`
   width: 150px;
   height: 150px;
@@ -194,7 +194,7 @@ export const Role = styled.Text`
 `;
 
 export const LogoBranca = styled.Image.attrs({
-  source: require('../../assets/images/Ampara-Simbolo-branco.png'),
+  source: require('src/assets/images/Ampara-Simbolo-branco.png'),
 })`
   /* width: 150px; */
   height: 50px;
@@ -218,7 +218,7 @@ export const MenuBtnWrapper = styled.TouchableOpacity`
 `;
 
 export const MenuBtn = styled.Image.attrs({
-  source: require('../../assets/icons/menu-btn.png'),
+  source: require('src/assets/icons/menu-btn.png'),
 })`
   width: 40px;
   resize-mode: contain;
