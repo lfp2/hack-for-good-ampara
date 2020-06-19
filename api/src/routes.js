@@ -5,6 +5,8 @@ const VolunteerController = require("./app/controllers/VolunteerController");
 const VolunteerVerifyController = require("./app/controllers/VolunteerVerifyController");
 const AvailableHoursController = require("./app/controllers/AvailableHoursController");
 const AppointmentsController = require("./app/controllers/AppointmentsController");
+const EmergencyLineController = require("./app/controllers/EmergencyLineController");
+const Twilio = require("./app/twilio/Twilio");
 
 const routes = new Router();
 
@@ -36,5 +38,13 @@ routes.post("/healthprofessional", HealthProfessionalController.store);
 routes.post("/healthprofessional/signIn", HealthProfessionalController.login);
 
 routes.get("/verify/volunteer", VolunteerVerifyController.index);
+
+routes.post("/emergency_line", EmergencyLineController.store);
+
+routes.delete("/emergency_line", EmergencyLineController.destroy);
+
+routes.post("/call_volunteer/welcome", Twilio.welcome);
+
+routes.post("/call_volunteer/goodbye", Twilio.goodbye);
 
 module.exports = routes;

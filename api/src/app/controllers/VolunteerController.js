@@ -20,6 +20,7 @@ class VolunteerController {
         documentNumber,
         uf,
         city,
+        cep
       } = req.body;
 
       const verifyEmailExists = await volunteerRef
@@ -64,6 +65,7 @@ class VolunteerController {
         tokenEmailVerify,
         uf,
         city,
+        cep,
         verified: false,
       });
 
@@ -109,6 +111,7 @@ class VolunteerController {
         documentNumber,
         uf,
         city,
+        cep
       });
 
       return res.json({
@@ -144,7 +147,8 @@ class VolunteerController {
         bio,
         documentNumber,
         uf,
-        city;
+        city,
+        cep;
 
       verifyEmailExists.forEach((doc) => {
         token = doc.id;
@@ -156,6 +160,7 @@ class VolunteerController {
         documentNumber = doc.data().documentNumber;
         uf = doc.data().uf;
         city = doc.data().city;
+        cep = doc.data().cep;
       });
 
       const passwordValidation = await bcrypt.compare(
@@ -176,6 +181,7 @@ class VolunteerController {
         documentNumber,
         uf,
         city,
+        cep
       });
     } catch (err) {
       return res.status(500).json({ err });
