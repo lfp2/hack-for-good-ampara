@@ -13,7 +13,7 @@ export const AppointmentCards = styled.View`
 
 export const Container = styled.View`
   padding: 5px 10px;
-  background: #ffffff;
+  background: ${(props) => props.theme.white};
   box-shadow: 0px 3px 6px #00000029;
   elevation: 2;
   justify-content: center;
@@ -47,23 +47,23 @@ export const Info = styled.View`
 
 export const T = styled.Text`
   font-size: 12px;
-  color: #333333;
+  color: ${(props) => props.theme.black};
 `;
 
 export const Name = styled.Text`
-  color: #333333;
+  color: ${(props) => props.theme.black};
   font-family: 'Poppins';
   font-size: 15px;
   font-weight: bold;
 `;
 
 export const Desc = styled.Text`
-  color: #333333;
+  color: ${(props) => props.theme.black};
   font-size: 10px;
 `;
 
 const Time = styled.Text`
-  color: #74b0e8;
+  color: ${(props) => props.theme.blue};
   font-size: 12px;
   width: 35px;
 `;
@@ -91,7 +91,7 @@ export const DateSection = styled.View`
 const ButtonText = styled.Text`
   font-size: 12px;
   text-transform: uppercase;
-  color: ${(p) => (p.type === 'primary' ? 'white' : '#74b0e8')};
+  color: ${(p) => (p.type === 'primary' ? p.theme.white : p.theme.blue)};
 `;
 
 export const Button = styled(({ type, ...props }) => (
@@ -106,7 +106,8 @@ export const Button = styled(({ type, ...props }) => (
   box-shadow: 0px 5px 10px #00000029;
   elevation: 1;
   width: 100%;
-  background-color: ${(p) => (p.type === 'primary' ? '#74b0e8' : 'white')};
+  background-color: ${(p) =>
+    p.type === 'primary' ? p.theme.blue : p.theme.white};
 `;
 
 Button.defaultProps = {
@@ -114,7 +115,7 @@ Button.defaultProps = {
 };
 
 const CircleIcon = styled(FontAwesomeIcon)`
-  color: ${(p) => (p.type === 'primary' ? 'white' : '#ADADAD')};
+  color: ${(p) => (p.type === 'primary' ? p.theme.white : '#ADADAD')};
   font-size: 16px;
 `;
 

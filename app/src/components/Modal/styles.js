@@ -25,7 +25,7 @@ export const Overlay = styled.View`
 
 export const Container = styled.View`
   box-shadow: 0px 5px 30px #00000029;
-  background: white;
+  background: ${(props) => props.theme.white};
   border-radius: 15px;
   padding: 5px;
   width: 80%;
@@ -45,21 +45,21 @@ export const Title = styled.Text`
   font-weight: bold;
   font-size: 25px;
   padding: 0 20px;
-  color: #333333;
+  color: ${(props) => props.theme.black};
 `;
 
 export const Desc = styled.Text`
   text-align: center;
   font-size: 15px;
   padding: 0 30px;
-  color: #333333;
+  color: ${(props) => props.theme.black};
   margin: 10px auto;
 `;
 
 const ButtonText = styled.Text`
   font-size: 16px;
   text-transform: uppercase;
-  color: ${(p) => (p.type === 'primary' ? 'white' : '#333333')};
+  color: ${(p) => (p.type === 'primary' ? p.theme.white : p.theme.black)};
   font-weight: bold;
   text-align: center;
 `;
@@ -69,7 +69,8 @@ export const ModalBigButton = styled(({ type, ...props }) => (
     <ButtonText type={type}>{props.children}</ButtonText>
   </TouchableOpacity>
 ))`
-  background-color: ${(p) => (p.type === 'primary' ? '#74b0e8' : 'white')};
+  background-color: ${(p) =>
+    p.type === 'primary' ? p.theme.blue : p.theme.white};
   padding: 10px 15px;
   border-radius: 26px;
   margin: 10px auto;

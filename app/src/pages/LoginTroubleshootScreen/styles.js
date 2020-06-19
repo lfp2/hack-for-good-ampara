@@ -4,7 +4,7 @@ import { View, TouchableOpacity } from 'react-native';
 
 export const Container = styled.ScrollView`
   flex: 1;
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
 `;
 
 export const Illustration = styled.Image.attrs({
@@ -21,7 +21,7 @@ export const Title = styled.Text`
   font-family: Poppins;
   font-weight: bold;
   font-size: 25px;
-  color: #333333;
+  color: ${(props) => props.theme.black};
 `;
 export const Info = styled.Text`
   margin: 10px auto;
@@ -38,7 +38,7 @@ const Or = styled.Text`
   font-size: 14px;
   font-family: Poppins;
   font-weight: bold;
-  color: #333333;
+  color: ${(props) => props.theme.black};
 `;
 
 export const ORSeparator = styled((props) => (
@@ -56,7 +56,7 @@ export const ORSeparator = styled((props) => (
 const InvisibleButtonText = styled.Text`
   text-align: center;
   font-weight: bold;
-  color: #333333;
+  color: ${(props) => props.theme.black};
 `;
 
 export const InvisibleButton = styled(({ children, ...props }) => (

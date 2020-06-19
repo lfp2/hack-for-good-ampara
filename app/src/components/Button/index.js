@@ -8,7 +8,7 @@ const ButtonText = styled.Text`
   text-transform: uppercase;
   text-align: center;
   letter-spacing: 0.5px;
-  color: ${(p) => (p.type === 'primary' ? 'white' : '#333333')};
+  color: ${(p) => (p.type === 'primary' ? p.theme.white : p.theme.black)};
 `;
 
 const Button = styled(({ type, ...props }) => (
@@ -23,7 +23,8 @@ const Button = styled(({ type, ...props }) => (
   elevation: 1;
   width: ${(props) => props.width || '90%'};
   max-width: 350px;
-  background-color: ${(p) => (p.type === 'primary' ? '#74b0e8' : 'white')};
+  background-color: ${(p) =>
+    p.type === 'primary' ? p.theme.blue : p.theme.white};
 `;
 
 Button.defaultProps = {

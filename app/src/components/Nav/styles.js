@@ -52,10 +52,10 @@ export const Role = styled.Text`
   font-size: 10px;
 `;
 
-export const Icon = styled(Ionicons).attrs({
-  color: '#74B0E8',
+export const Icon = styled(Ionicons).attrs((props) => ({
+  color: props.theme.blue,
   size: 30,
-})`
+}))`
   margin: 0 20px;
   width: 30px;
 `;
@@ -84,7 +84,7 @@ export const BackFold = styled((props) => (
   width: ${backFoldSize}px;
   height: ${backFoldSize}px;
   border-radius: 500px;
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
   position: absolute;
   top: 50%;
   right: 0;

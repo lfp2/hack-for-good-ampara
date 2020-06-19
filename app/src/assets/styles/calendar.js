@@ -16,7 +16,7 @@ export const RectangleBackground = styled.View`
 
 export const TextHeader = styled.Text`
   font-family: Suprema-Bold;
-  color: #fff;
+  color: ${(props) => props.theme.white};
   font-size: 23px;
   text-align: center;
 `;
@@ -31,7 +31,7 @@ export const HeaderView = styled.View`
 `;
 
 export const HeaderIcon = styled(Icon)`
-  color: #fff;
+  color: ${(props) => props.theme.white};
   font-size: 30px;
 `;
 

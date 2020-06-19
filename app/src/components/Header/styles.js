@@ -9,7 +9,7 @@ export const Container = styled.View`
   justify-content: space-around;
   align-items: center;
   background-color: ${(props) =>
-    props.type === 'primary' ? '#74B0E8' : 'transparent'};
+    props.type === 'primary' ? props.theme.blue : 'transparent'};
 `;
 
 export const IconWrapper = styled.TouchableOpacity`
@@ -21,7 +21,7 @@ export const IconWrapper = styled.TouchableOpacity`
 
 export const BackIcon = styled(Icon).attrs((props) => ({
   name: 'arrow-left',
-  color: props.type === 'primary' ? 'white' : '#74B0E8',
+  color: props.type === 'primary' ? props.theme.white : props.theme.blue,
   size: 30,
 }))``;
 
@@ -29,7 +29,8 @@ export const Title = styled.Text`
   font-size: 24px;
   font-family: Poppins-ExtraBold;
   letter-spacing: 1px;
-  color: ${(props) => (props.type === 'primary' ? 'white' : '#333333')};
+  color: ${(props) =>
+    props.type === 'primary' ? props.theme.white : props.theme.black};
   line-height: 35px;
   text-align: center;
   margin: 10px auto;

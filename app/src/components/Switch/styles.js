@@ -23,7 +23,7 @@ export const StyledSwitch = styled.Switch.attrs((props) => {
 })``;
 
 export const Text = styled.Text`
-  color: #333333;
+  color: ${(props) => props.theme.black};
   font-family: Poppins-Medium;
   font-weight: 600;
   font-size: 14px;

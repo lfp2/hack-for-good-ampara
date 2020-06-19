@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 
 export const Container = styled.ScrollView`
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
 `;
 
 const centerize = css`
@@ -41,7 +41,7 @@ export const Forgot = styled(({ children, ...props }) => (
 ))``;
 
 const ButtonText = styled.Text`
-  color: white;
+  color: ${(props) => props.theme.white};
   text-align: center;
   font-size: 15px;
   font-weight: bold;
@@ -57,7 +57,7 @@ export const Button = styled(({ children, ...props }) => (
   margin: 10px auto;
   justify-content: center;
   align-items: center;
-  background-color: #74b0e8;
+  background-color: ${(props) => props.theme.blue};
   padding: 15px 0;
   border-radius: 500px;
 `;
@@ -86,6 +86,6 @@ export const Text = styled.Text`
 `;
 
 export const Link = styled.Text`
-  color: #74b0e8;
+  color: ${(props) => props.theme.blue};
   margin: 0 10px;
 `;

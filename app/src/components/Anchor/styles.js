@@ -15,9 +15,9 @@ export const Anchors = styled.View`
   margin: 20px 0;
 `;
 
-export const Icon = styled(FontAwesome5Icons).attrs({
-  color: '#74B0E8',
-})`
+export const Icon = styled(FontAwesome5Icons).attrs((props) => ({
+  color: props.theme.blue,
+}))`
   margin: 0 20px;
   width: 30px;
 `;
@@ -45,7 +45,7 @@ export const Separator = styled.View`
   background-color: #adadad29;
 `;
 export const AnchorText = styled.Text`
-  color: #333333;
+  color: ${(props) => props.theme.black};
   font-weight: bold;
   font-size: 16px;
 `;

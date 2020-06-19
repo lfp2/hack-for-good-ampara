@@ -4,7 +4,7 @@ import BaseSpinner from 'react-native-spinkit';
 
 const SpinnerWrapper = styled.View`
   position: absolute;
-  background-color: #74b0e8;
+  background-color: ${(props) => props.theme.blue};
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   /* top: ${(props) => (props.isVisible ? '10px' : '-100%')};
   transform: translateX(-35px);
@@ -29,7 +29,7 @@ export const Row = styled.View`
 `;
 
 export const ButtonText = styled.Text`
-  color: white;
+  color: ${(props) => props.theme.white};
   font-size: 14px;
   font-family: Poppins-Medium;
   text-transform: uppercase;
@@ -53,5 +53,5 @@ export const Container = styled.TouchableOpacity`
   elevation: 2;
   width: ${(props) => props.width || '90%'};
   max-width: 350px;
-  background-color: #74b0e8;
+  background-color: ${(props) => props.theme.blue};
 `;

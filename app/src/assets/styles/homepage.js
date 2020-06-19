@@ -85,13 +85,13 @@ export const CircleButton = styled.TouchableOpacity`
 `;
 
 export const PrimaryText = styled.Text`
-  color: #fff;
+  color: ${(props) => props.theme.white};
   font-size: 24px;
   text-align: left;
   font-family: Suprema-SemiBold;
 `;
 export const SecondaryText = styled.Text`
-  color: #fff;
+  color: ${(props) => props.theme.white};
   font-size: 16px;
   text-align: left;
   font-family: Suprema-Light;
@@ -110,7 +110,7 @@ export const HeaderPictureTextView = styled.View`
 
 export const TextTitle = styled.Text`
   font-family: Suprema-Bold;
-  color: #fff;
+  color: ${(props) => props.theme.white};
   font-size: 24px;
   text-align: center;
 `;
@@ -124,7 +124,7 @@ export const Container = styled.ScrollView.attrs({
   height: 100%;
   position: relative;
   flex: 1;
-  background: white;
+  background: ${(props) => props.theme.white};
 `;
 
 export const Body = styled.View`
@@ -135,7 +135,7 @@ export const Body = styled.View`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  /* background: white; */
+  /* background: ${(props) => props.theme.white}; */
   margin-top: 90px;
   border-top-left-radius: 35px;
   border-top-right-radius: 35px;
@@ -151,7 +151,7 @@ const InnerBorder = styled.View`
   right: 0;
   width: 100%;
   height: 30px;
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
 `;
 export const Border = styled((props) => (
   <View {...props}>
@@ -164,7 +164,7 @@ export const Border = styled((props) => (
   right: 0;
   width: 100%;
   height: 90px;
-  background-color: #74b0e8;
+  background-color: ${(props) => props.theme.blue};
 `;
 
 export const ProfilePic = styled.Image.attrs({
@@ -182,7 +182,7 @@ export const ProfilePic = styled.Image.attrs({
 export const Name = styled.Text`
   font-family: Poppins-Bold;
   font-weight: bold;
-  color: #333333;
+  color: ${(props) => props.theme.black};
   font-size: 24px;
 `;
 
@@ -190,7 +190,7 @@ export const Role = styled.Text`
   font-family: 'Poppins';
   font-weight: 600;
   font-size: 18px;
-  color: #333333;
+  color: ${(props) => props.theme.black};
 `;
 
 export const LogoBranca = styled.Image.attrs({
@@ -203,7 +203,7 @@ export const LogoBranca = styled.Image.attrs({
 `;
 
 export const Title = styled.Text`
-  color: #ffffff;
+  color: ${(props) => props.theme.white};
   text-align: center;
   font-family: 'Poppins';
   font-weight: bold;
@@ -238,6 +238,6 @@ export const SwitchContainer = styled.View`
 `;
 
 export const TopSection = styled.View`
-  background-color: #74b0e8;
+  background-color: ${(props) => props.theme.blue};
   flex-direction: column;
 `;

@@ -4,7 +4,7 @@ import BaseSecretIconedInput from 'src/components/Input/SecretIconedInput';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
 `;
 
 export const Button = styled(BaseButton)`

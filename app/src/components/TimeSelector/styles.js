@@ -10,7 +10,7 @@ export const Container = styled.View`
 const TimeText = styled.Text`
   font-size: 14px;
   font-weight: 700;
-  color: ${(p) => (p.selected ? '#74B0E8' : '#333333')};
+  color: ${(p) => (p.selected ? p.theme.blue : p.theme.black)};
 `;
 
 export const Times = styled.View`

@@ -4,7 +4,7 @@ import { TouchableOpacity, Linking } from 'react-native';
 
 export const Text = styled.Text`
   font-family: Poppins;
-  color: #333333;
+  color: ${(props) => props.theme.black};
   margin: 0;
   width: 100%;
   max-width: 500px;
@@ -20,7 +20,7 @@ export const Title = styled(Text)`
 export const Description = Text;
 
 export const LinkText = styled(Text)`
-  color: #74b0e8;
+  color: ${(props) => props.theme.blue};
 `;
 
 export const BgEffect = styled.Image.attrs({

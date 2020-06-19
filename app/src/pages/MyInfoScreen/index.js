@@ -19,6 +19,7 @@ import { useStoreState } from 'easy-peasy';
 import useAwait from 'src/util/useAwait';
 import api from 'src/services/api';
 import { useFocusEffect } from '@react-navigation/native';
+import { ThemeContext } from 'styled-components';
 
 const healthTypes = [
   { label: 'Tipo de Profissional', value: 'none' },
@@ -138,9 +139,10 @@ export default function MyInfoScreen() {
       terms: true,
     });
   }, []);
+  const { lightBlue, white } = React.useContext(ThemeContext);
   return (
     <Container ref={scrollRef}>
-      <CircleGradientBackground colors={['#79e7e1', '#FFFFFF']} />
+      <CircleGradientBackground colors={[lightBlue, white]} />
       <Header title="Editar Dados" type="secondary" />
       <Camera onPress={() => pickImage()} source={avatarSource} />
 

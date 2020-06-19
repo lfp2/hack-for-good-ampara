@@ -86,7 +86,7 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const TextButton = styled.Text`
-  color: #ffffff;
+  color: ${(props) => props.theme.white};
   font-size: 15px;
   font-family: Suprema-Regular;
   text-align: center;

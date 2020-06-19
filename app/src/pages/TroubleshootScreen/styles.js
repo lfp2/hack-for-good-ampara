@@ -3,12 +3,12 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export const Container = styled.ScrollView`
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
   flex: 1;
 `;
 
 const Text = styled.Text`
-  color: #333333;
+  color: ${(props) => props.theme.black};
   margin: 0;
   width: 100%;
   padding: 0 20px;
@@ -39,7 +39,7 @@ export const Section = styled.View`
 const ButtonText = styled.Text`
   font-size: 16px;
   text-transform: uppercase;
-  color: ${(p) => (p.type === 'primary' ? 'white' : '#333333')};
+  color: ${(p) => (p.type === 'primary' ? p.theme.white : p.theme.black)};
   font-weight: bold;
   text-align: center;
 `;
@@ -49,7 +49,8 @@ export const Button = styled(({ type, ...props }) => (
     <ButtonText type={type}>{props.children}</ButtonText>
   </TouchableOpacity>
 ))`
-  background-color: ${(p) => (p.type === 'primary' ? '#74E8E2' : 'white')};
+  background-color: ${(p) =>
+    p.type === 'primary' ? p.theme.blue : p.theme.white};
   padding: 10px 15px;
   border-radius: 26px;
   margin: 10px auto;

@@ -27,13 +27,13 @@ export const Line = styled.View`
 
 export const TextInput = styled.TextInput`
   padding: 5px 5px;
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
 
   flex: 1;
 `;
 export const ModalTextInput = styled.TextInput`
   padding: 5px 5px;
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
 `;
 
 export const Error = styled.Text`
@@ -98,7 +98,7 @@ export const ModalOverlay = styled.KeyboardAvoidingView.attrs({
   /* height: 100%;
   width: 100%; */
   /* flex: 1; */
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
   z-index: 10;
 `;
 
@@ -133,6 +133,6 @@ export const ButtonWrapper = styled.TouchableOpacity`
 `;
 
 export const FinishText = styled.Text`
-  color: #74b0e8;
+  color: ${(props) => props.theme.blue};
   font-weight: bold;
 `;

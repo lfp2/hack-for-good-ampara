@@ -1,12 +1,12 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.ScrollView`
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
   flex: 1;
 `;
 
 const Text = styled.Text`
-  color: #333333;
+  color: ${(props) => props.theme.black};
   margin: 0;
   width: 100%;
   padding: 0 20px;

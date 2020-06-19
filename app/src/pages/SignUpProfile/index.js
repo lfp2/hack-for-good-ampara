@@ -18,6 +18,7 @@ import ModalInput from 'src/components/Input/ModalInput';
 import { useStoreState } from 'easy-peasy';
 import useAwait from 'src/util/useAwait';
 import api from 'src/services/api';
+import { ThemeContext } from 'styled-components';
 
 const healthTypes = [
   { label: 'Tipo de Profissional', value: 'none' },
@@ -124,9 +125,10 @@ export default function SignUpProfileScreen() {
   const phoneRef = useRef();
   const cepRef = useRef();
   const numberRegistryRef = useRef();
+  const { lightBlue, white } = React.useContext(ThemeContext);
   return (
     <Container ref={scrollRef}>
-      <CircleGradientBackground colors={['#79e7e1', '#FFFFFF']} />
+      <CircleGradientBackground colors={[lightBlue, white]} />
       <Header title="Perfil" type="secondary" />
       <Description>
         Falta pouco para você acessar o Ampara. Preencha seus dados abaixo:

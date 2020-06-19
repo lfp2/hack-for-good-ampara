@@ -12,7 +12,7 @@ export const Container = styled.View`
   width: 80%;
   max-width: 350px;
   margin: 10px auto;
-  background: #ffffff;
+  background: ${(props) => props.theme.white};
   box-shadow: 0px 3px 6px #00000029;
   elevation: 2;
   justify-content: center;
@@ -44,12 +44,12 @@ export const Info = styled.View`
 
 export const T = styled.Text`
   font-size: 15px;
-  color: #333333;
+  color: ${(props) => props.theme.black};
   font-family: Poppins;
 `;
 
 export const Name = styled.Text`
-  color: #333333;
+  color: ${(props) => props.theme.black};
   font-family: Poppins-Medium;
   font-size: 18px;
   font-weight: bold;

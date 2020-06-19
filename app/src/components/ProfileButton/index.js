@@ -9,7 +9,7 @@ const ButtonIcon = styled(Icon)`
 `;
 
 const ButtonText = styled.Text`
-  color: #333333;
+  color: ${(props) => props.theme.black};
   text-align: center;
   font-family: 'Poppins';
   font-weight: bold;
@@ -33,7 +33,7 @@ const ProfileButton = styled(({ iconPack, ...props }) => (
     </View>
   </TouchableOpacity>
 ))`
-  background-color: white;
+  background-color: ${(props) => props.theme.white};
   padding: 20px 10px;
   box-shadow: 0px 3px 6px #0000004d;
   border-radius: 10px;

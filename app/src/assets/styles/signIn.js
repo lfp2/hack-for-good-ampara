@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 
-import {TextCenter} from './index';
+import { TextCenter } from './index';
 
 export const ContainerForm = styled.View`
   width: 80%;
-  background: #fff;
+  background: ${(props) => props.theme.white};
   padding: 18px;
   border-radius: 8px;
 `;
@@ -34,7 +34,7 @@ export const Button = styled.TouchableOpacity`
 `;
 
 export const TextButton = styled(TextCenter)`
-  color: #fff;
+  color: ${(props) => props.theme.white};
   font-size: 15px;
 `;
 

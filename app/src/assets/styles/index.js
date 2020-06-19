@@ -8,7 +8,7 @@ export const ViewCenter = styled.View`
 `;
 
 export const ScreenCenter = styled(ViewCenter)`
-  background: #ffffff;
+  background: ${(props) => props.theme.white};
 `;
 
 export const TextCenter = styled.Text`
@@ -27,7 +27,7 @@ export const BackgroundImage = styled.Image.attrs({
 `;
 
 export const Button = styled.TouchableOpacity`
-  background: #ffffff;
+  background: ${(props) => props.theme.white};
   width: 250px;
   height: 40px;
   padding: 12px;
@@ -45,5 +45,5 @@ export const TextButton = styled(TextCenter)`
 `;
 
 export const PrimaryTextButton = styled(TextButton)`
-  color: #ffffff;
+  color: ${(props) => props.theme.white};
 `;
