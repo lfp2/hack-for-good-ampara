@@ -1,15 +1,6 @@
 import React, { useEffect } from 'react';
-import Button from '../components/Button';
-
-import {
-  ScreenCenter,
-  BackgroundImage,
-  PrimaryButton,
-  PrimaryTextButton,
-  TextButton,
-} from '../assets/styles';
-import { Buttons, LogoImage } from '../assets/styles/firstscreen';
-
+import Button from 'src/components/Button';
+import { Container, BackgroundImage, Logo, Buttons } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -51,9 +42,9 @@ export default function FirstScreen() {
   }
 
   return (
-    <ScreenCenter>
+    <Container>
       <BackgroundImage />
-      <LogoImage source={require('../assets/images/Ampara-Logo-branco.png')} />
+      <Logo />
       <Buttons>
         <Button width="80%" onPress={() => navigateToWelcome()} type="primary">
           QUERO ME CADASTRAR
@@ -67,6 +58,6 @@ export default function FirstScreen() {
           </Button>
         </ButtonView> */}
       </Buttons>
-    </ScreenCenter>
+    </Container>
   );
 }

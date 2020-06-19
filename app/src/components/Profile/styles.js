@@ -2,75 +2,11 @@ import React from 'react';
 import { View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-export const MenuButton = styled.TouchableOpacity`
-    height: 100px;
-    width: 100px;
-    padding: 10px;
-    border-radius: 20px;
-    background: #ffff;
-    justify-content: center;
-    align-content: center;
-    shadowColor: rgba(0,0,0,0.4);
-    shadowOffset: {
-        width: 0,
-        height:1,
-    };
-    shadowOpacity: 0.05;
-    elevation: 2;
-`;
-
-export const RectangleBackground = styled.View`
-  position: absolute;
-  height: 60%;
-  width: 100%;
-  background: #76b1e6;
-  top: 0;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-`;
-
-export const MenuIcon = styled(Icon)`
-  color: #79e7e1;
-  font-size: 30px;
-`;
-
-export const MenuIconView = styled.View`
-  align-items: center;
-`;
-
-export const MenuText = styled.Text`
-  color: #000000;
-  font-size: 12px;
-  margin: 2px;
-  text-align: center;
-  font-family: Suprema-Bold;
-`;
-
-export const MenuRow = styled.View`
-  justify-content: space-around;
-  flex-direction: row;
-  margin: 10px;
-`;
-
-export const MenuView = styled.View`
-  margin: 24px;
-  width: 80%;
-`;
 
 export const Logo = styled.Image`
   height: 50px;
   margin: 10px;
   resize-mode: contain;
-`;
-
-export const HeaderView = styled.View`
-  margin: 24px;
-  flex: 2;
-  flex-direction: column;
-  justify-content: space-between;
-  align-content: center;
 `;
 
 export const CircleButton = styled.TouchableOpacity`
@@ -84,30 +20,6 @@ export const CircleButton = styled.TouchableOpacity`
   align-items: center;
 `;
 
-export const PrimaryText = styled.Text`
-  color: ${(props) => props.theme.white};
-  font-size: 24px;
-  text-align: left;
-  font-family: Suprema-SemiBold;
-`;
-export const SecondaryText = styled.Text`
-  color: ${(props) => props.theme.white};
-  font-size: 16px;
-  text-align: left;
-  font-family: Suprema-Light;
-`;
-
-export const HeaderTextView = styled.View`
-  justify-content: flex-start;
-  margin: 10px;
-`;
-
-export const HeaderPictureTextView = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
-`;
-
 export const TextTitle = styled.Text`
   font-family: Suprema-Bold;
   color: ${(props) => props.theme.white};
@@ -115,12 +27,7 @@ export const TextTitle = styled.Text`
   text-align: center;
 `;
 
-export const Container = styled.ScrollView.attrs({
-  contentContainerStyle: {
-    // flex: 1,
-    // marginBottom: 20,
-  },
-})`
+export const Container = styled.ScrollView`
   height: 100%;
   position: relative;
   flex: 1;

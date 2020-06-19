@@ -21,7 +21,7 @@ export const TextHeader = styled.Text`
   text-align: center;
 `;
 
-export const HeaderView = styled.View`
+export const HeaderContainer = styled.View`
   flex-direction: row;
   width: 100%;
   height: 8%;

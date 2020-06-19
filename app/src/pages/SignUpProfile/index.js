@@ -1,8 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import Button from 'src/components/LoadingButton';
-import { CircleGradientBackground } from 'src/assets/styles/signup';
 import { brazilStates } from 'src/assets/strings/states';
-import ImagePicker from 'react-native-image-picker';
 import IconedInput, {
   MaskedIconedInput,
 } from 'src/components/Input/IconedInput';
@@ -11,14 +9,12 @@ import Switch from 'src/components/Switch';
 import { Form } from '@unform/mobile';
 import { Container, Description, SeeTerms } from './styles';
 import Header from 'src/components/Header';
-import Camera from 'src/components/Camera';
+import Camera from 'src/components/Input/Camera';
 import validate from 'src/util/validate';
 import { volunteerSchema, healthSchema } from './validation';
 import ModalInput from 'src/components/Input/ModalInput';
 import { useStoreState } from 'easy-peasy';
-import useAwait from 'src/util/useAwait';
-import api from 'src/services/api';
-import { ThemeContext } from 'styled-components';
+import { CircleGradientBackground } from 'src/assets/styles/signup';
 
 const healthTypes = [
   { label: 'Tipo de Profissional', value: 'none' },
@@ -29,78 +25,9 @@ const healthTypes = [
   { label: 'Outro', value: 'other' },
 ];
 
-const createVolunteer = ({
-  name,
-  bio,
-  documentName,
-  documentNumber,
-  email,
-  password,
-  phone,
-  state,
-  city,
-}) =>
-  api.post('/volunteer', {
-    displayName: name,
-    bio,
-    documentName,
-    documentNumber,
-    email,
-    password,
-    phoneNumber: phone,
-    uf: state,
-    city,
-  });
-const createHealthProfessional = ({
-  name,
-  bio,
-  documentName,
-  documentNumber,
-  email,
-  password,
-  phone,
-  state,
-  city,
-}) =>
-  api.post('/healthprofessional', {
-    displayName: name,
-    bio,
-    documentName,
-    documentNumber,
-    email,
-    password,
-    phoneNumber: phone,
-    uf: state,
-    city,
-  });
-
 export default function SignUpProfileScreen() {
-  const [avatarSource, setAvatarSource] = useState('');
   const accountType = useStoreState((state) => state.userData.accountType);
-  const { email, password } = useStoreState((state) => state.userData);
-  function pickImage() {
-    ImagePicker.showImagePicker((response) => {
-      if (response.didCancel) {
-        ('You cancelled image picker 😟');
-      } else if (response.error) {
-        alert('And error occured: ', response.error);
-      } else {
-        const source = { uri: response.uri };
-        setAvatarSource(source);
-      }
-    });
-  }
   const formRef = useRef(null);
-  const [
-    isCreatingVolunteer,
-    signUpVolunteer,
-    { toggle: toggleIsCreatingVolunteer },
-  ] = useAwait(createVolunteer);
-  const [
-    isCreatingHealthProfessional,
-    signUpHealthProfessional,
-    { toggle: toggleIsCreatingHealthProfessional },
-  ] = useAwait(createVolunteer);
   const handleSubmit = async (data) => {
     const isValid = await validate(
       accountType === 'health' ? healthSchema : volunteerSchema,
@@ -125,17 +52,16 @@ export default function SignUpProfileScreen() {
   const phoneRef = useRef();
   const cepRef = useRef();
   const numberRegistryRef = useRef();
-  const { lightBlue, white } = React.useContext(ThemeContext);
   return (
     <Container ref={scrollRef}>
-      <CircleGradientBackground colors={[lightBlue, white]} />
+      <CircleGradientBackground />
       <Header title="Perfil" type="secondary" />
       <Description>
         Falta pouco para você acessar o Ampara. Preencha seus dados abaixo:
       </Description>
-      <Camera onPress={() => pickImage()} source={avatarSource} />
 
       <Form ref={formRef} onSubmit={handleSubmit}>
+        <Camera />
         <IconedInput
           name="name"
           placeholder="Nome Completo*"

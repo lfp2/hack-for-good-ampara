@@ -1,25 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import Button from 'src/components/LoadingButton';
-import { CircleGradientBackground } from 'src/assets/styles/signup';
 import { brazilStates } from 'src/assets/strings/states';
-import ImagePicker from 'react-native-image-picker';
 import IconedInput, {
   MaskedIconedInput,
 } from 'src/components/Input/IconedInput';
 import IconedSelector from 'src/components/Input/iconedSelector';
 import Switch from 'src/components/Switch';
 import { Form } from '@unform/mobile';
-import { Container, Description, SeeTerms } from './styles';
+import { Container, SeeTerms } from './styles';
 import Header from 'src/components/Header';
-import Camera from 'src/components/Camera';
+import Camera from 'src/components/Input/Camera';
 import validate from 'src/util/validate';
 import { volunteerSchema, healthSchema } from './validation';
 import ModalInput from 'src/components/Input/ModalInput';
 import { useStoreState } from 'easy-peasy';
-import useAwait from 'src/util/useAwait';
-import api from 'src/services/api';
 import { useFocusEffect } from '@react-navigation/native';
-import { ThemeContext } from 'styled-components';
+import { CircleGradientBackground } from 'src/components/CircleGradientBackground';
 
 const healthTypes = [
   { label: 'Tipo de Profissional', value: 'none' },
@@ -30,80 +26,11 @@ const healthTypes = [
   { label: 'Outro', value: 'other' },
 ];
 
-const createVolunteer = ({
-  name,
-  bio,
-  documentName,
-  documentNumber,
-  email,
-  password,
-  phone,
-  state,
-  city,
-}) =>
-  api.post('/volunteer', {
-    displayName: name,
-    bio,
-    documentName,
-    documentNumber,
-    email,
-    password,
-    phoneNumber: phone,
-    uf: state,
-    city,
-  });
-const createHealthProfessional = ({
-  name,
-  bio,
-  documentName,
-  documentNumber,
-  email,
-  password,
-  phone,
-  state,
-  city,
-}) =>
-  api.post('/healthprofessional', {
-    displayName: name,
-    bio,
-    documentName,
-    documentNumber,
-    email,
-    password,
-    phoneNumber: phone,
-    uf: state,
-    city,
-  });
-
 export default function MyInfoScreen() {
-  const [avatarSource, setAvatarSource] = useState('');
   const accountType = useStoreState((state) => state.userData.accountType);
-  const { email, password } = useStoreState((state) => state.userData);
-  function pickImage() {
-    ImagePicker.showImagePicker((response) => {
-      if (response.didCancel) {
-        ('You cancelled image picker 😟');
-      } else if (response.error) {
-        alert('And error occured: ', response.error);
-      } else {
-        const source = { uri: response.uri };
-        setAvatarSource(source);
-      }
-    });
-  }
   const formRef = useRef(null);
-  const [
-    isCreatingVolunteer,
-    signUpVolunteer,
-    { toggle: toggleIsCreatingVolunteer },
-  ] = useAwait(createVolunteer);
-  const [
-    isCreatingHealthProfessional,
-    signUpHealthProfessional,
-    { toggle: toggleIsCreatingHealthProfessional },
-  ] = useAwait(createVolunteer);
+
   const handleSubmit = async (data) => {
-    console.log(data);
     const isValid = await validate(
       accountType === 'health' ? healthSchema : volunteerSchema,
       data,
@@ -112,15 +39,6 @@ export default function MyInfoScreen() {
     if (!isValid) {
       return;
     }
-    // const {
-    //   name,
-    //   bio,
-    //   documentNumber,
-
-    //   phone,
-    //   state,
-    //   city,
-    // } = data;
   };
   const scrollRef = useRef();
   const bioRef = useRef();
@@ -128,7 +46,6 @@ export default function MyInfoScreen() {
   const cepRef = useRef();
   const numberRegistryRef = useRef();
   useFocusEffect(() => {
-    console.log('alo');
     formRef.current.setData({
       name: 'name',
       bio: 'bio',
@@ -139,12 +56,11 @@ export default function MyInfoScreen() {
       terms: true,
     });
   }, []);
-  const { lightBlue, white } = React.useContext(ThemeContext);
   return (
     <Container ref={scrollRef}>
-      <CircleGradientBackground colors={[lightBlue, white]} />
+      <CircleGradientBackground />
       <Header title="Editar Dados" type="secondary" />
-      <Camera onPress={() => pickImage()} source={avatarSource} />
+      <Camera />
 
       <Form ref={formRef} onSubmit={handleSubmit}>
         <IconedInput

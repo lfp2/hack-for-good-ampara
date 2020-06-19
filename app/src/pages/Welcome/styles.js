@@ -1,20 +1,29 @@
 import styled from 'styled-components/native';
 
-import { Button } from './index';
+export const Container = styled.View`
+  flex: 1;
+  background-color: ${(props) => props.theme.white};
+`;
 
-export const VoluntarioImage = styled.Image`
+export const VoluntarioImage = styled.Image.attrs({
+  source: require('src/assets/images/voluntario.png'),
+})`
   width: 250px;
   height: 40px;
+  margin: 0 auto;
   resize-mode: contain;
   margin: 20px auto;
   flex: 3;
   justify-content: center;
 `;
 
-export const FootnoteImage = styled.Image`
+export const FootnoteImage = styled.Image.attrs({
+  source: require('src/assets/images/footnote_volunteer.png'),
+})`
   resize-mode: cover;
   flex: 1;
-  justify-content: flex-end;
+  background-color: yellow;
+  /* justify-content: flex-end; */
 `;
 
 export const ButtonsView = styled.View`
@@ -34,14 +43,9 @@ export const ButtonView = styled.View`
   align-items: center;
 `;
 
-export const BoxShadowButton = styled(Button)`
-  box-shadow: 5px 5px 5px #000;
-  elevation: 1;
-`;
-
 export const TitleText = styled.Text`
   font-size: 48px;
-  color: #000000;
+  color: ${(props) => props.theme.black};
 `;
 
 export const SubtitleText = styled.Text`
