@@ -19,7 +19,7 @@ class AppointmentsController {
 
       if (getDoctorsSnapshot.empty) {
         return res
-          .status(400)
+          .status(204)
           .json({ error: "Não há voluntários disponíveis nesse horário" });
       }
       var doctors = [];

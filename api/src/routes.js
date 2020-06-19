@@ -1,11 +1,14 @@
 const { Router } = require("express");
 
-const HealthProfessionalController = require("./app/controllers/HealthProfessionalController");
+const HealthController = require("./app/controllers/HealthController");
 const VolunteerController = require("./app/controllers/VolunteerController");
+const VolunteerSessionController = require("./app/controllers/VolunteerSessionController");
+const HealthSessionController = require("./app/controllers/HealthSessionController");
 const VolunteerVerifyController = require("./app/controllers/VolunteerVerifyController");
 const AvailableHoursController = require("./app/controllers/AvailableHoursController");
 const AppointmentsController = require("./app/controllers/AppointmentsController");
 const EmergencyLineController = require("./app/controllers/EmergencyLineController");
+const VolunteerAppointmentsController = require("./app/controllers/VolunteerAppointmentsController");
 const Twilio = require("./app/twilio/Twilio");
 
 const routes = new Router();
@@ -14,30 +17,30 @@ routes.post("/volunteer", VolunteerController.store);
 
 routes.put("/volunteer", VolunteerController.update);
 
-routes.get("/appointments", AppointmentsController.index);
+routes.post("/appointments/list", AppointmentsController.index);
 
 routes.delete("/appointments", AppointmentsController.destroy);
 
 routes.post("/appointments", AppointmentsController.store);
 
-routes.post("/volunteer/signIn", VolunteerController.login);
+routes.post("/volunteer/sign_in", VolunteerSessionController.store);
 
 routes.post("/available_hours", AvailableHoursController.store);
 
 routes.delete("/available_hours", AvailableHoursController.destroy);
 
-routes.get("/available_hours", AvailableHoursController.index);
+routes.post("/available_hours/list", AvailableHoursController.index);
 
 routes.post(
-  "/volunteer/listAppointments",
-  VolunteerController.listAppointments
+  "/volunteer/list_appointments",
+  VolunteerAppointmentsController.store
 );
 
-routes.post("/healthprofessional", HealthProfessionalController.store);
+routes.post("/health", HealthController.store);
 
-routes.post("/healthprofessional/signIn", HealthProfessionalController.login);
+routes.post("/health/sign_in", HealthSessionController.store);
 
-routes.get("/verify/volunteer", VolunteerVerifyController.index);
+routes.post("/verify/volunteer", VolunteerVerifyController.index);
 
 routes.post("/emergency_line", EmergencyLineController.store);
 

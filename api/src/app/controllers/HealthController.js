@@ -8,7 +8,7 @@ const Mail = require('../../lib/Mail')
 const db =  firebaseConfig.firestore()
 const healthProfessionalRef = db.collection('healthprofessionals')
 
-class HealthProfessionalController {
+class HealthController {
   async store (req, res) {
     try {
       const {
@@ -87,59 +87,46 @@ class HealthProfessionalController {
     }
   }
 
-  async login (req, res) {
+  async update(req, res) {
     try {
-      const verifyEmailExists = await healthProfessionalRef
-        .where('email', '==', req.body.email)
-        .get()
-
-      if (verifyEmailExists.empty) {
-        return res.status(400).json({ error: 'Email ou senha incorreta' })
-      }
-
-      var token,
-        displayName,
-        phoneNumber,
-        password,
+      const {
         email,
+          phoneNumber,
+          displayName,
+          bio,
+          profession,
+          uf,
+          city,
+          cep
+      } = req.body;
+
+      const docRef = healthProfessionalRef.doc(token);
+
+      await docRef.update({
+        email,
+        phoneNumber,
+        displayName,
         bio,
-        profession,
+        documentNumber,
         uf,
-        city
-
-      verifyEmailExists.forEach((doc) => {
-        token = doc.id
-        displayName = doc.data().displayName
-        phoneNumber = doc.data().phoneNumber
-        password = doc.data().password
-        email = doc.data().email
-        bio = doc.data().bio
-        profession = doc.data().profession
-        uf = doc.data().uf
-        city = doc.data().city
-      })
-
-      const passwordValidation = await bcrypt.compare(
-        req.body.password,
-        password
-      )
-
-      if (!passwordValidation) { return res.status(400).json({ error: 'Email ou senha incorreta' }) }
+        city,
+        cep
+      });
 
       return res.json({
         token,
-        displayName,
-        phoneNumber,
         email,
+        phoneNumber,
+        displayName,
         bio,
-        profession,
+        documentNumber,
         uf,
         city
-      })
-    } catch (err) {
-      return res.status(500).json({ err })
+      });
+    } catch(error) {
+      return res.status(500).json({ err });
     }
   }
 }
 
-module.exports = new HealthProfessionalController()
+module.exports = new HealthController()
