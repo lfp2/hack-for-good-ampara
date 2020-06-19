@@ -54,7 +54,6 @@ function HealthHomeTabs() {
       screenOptions={{ headerShown: false }}
       drawerContent={(props) => <Nav {...props} orientation={orientation} />}>
       <Drawer.Screen name="Perfil" component={HealthHomePageScreen} />
-      <Drawer.Screen name="MyInfo" component={MyInfoScreen} />
       <Drawer.Screen name="MyAppointments" component={MyAppointmentScreen} />
     </Drawer.Navigator>
   );
@@ -66,6 +65,7 @@ export default function Routes() {
       <Stack.Navigator
         initialRouteName="FirstScreen"
         screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="MyInfo" component={MyInfoScreen} />
         <Stack.Screen name="FirstScreen" component={FirstScreen} />
         <Stack.Screen name="Configuration" component={ConfigurationScreen} />
         <Stack.Screen name="Security" component={SecurityScreen} />
