@@ -11,6 +11,7 @@ Yup.setLocale({
 });
 
 export const volunteerSchema = Yup.object().shape({
+  email: Yup.string().email('Email invalido').required(),
   displayName: Yup.string().required(),
   bio: Yup.string()
     .max(150, 'Defina uma biografia com o maximo de ${max} caracteres')
@@ -26,6 +27,7 @@ export const volunteerSchema = Yup.object().shape({
   ),
 });
 export const healthSchema = Yup.object().shape({
+  email: Yup.string().email().required(),
   displayName: Yup.string().required(),
   bio: Yup.string()
     .max(150, 'Defina uma biografia com o maximo de ${max} caracteres')

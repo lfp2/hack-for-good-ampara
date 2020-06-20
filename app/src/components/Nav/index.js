@@ -32,7 +32,7 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
   const { displayName } = data;
   const profession =
     healthTypes.find(({ value }) => value === data.profession)?.label ||
-    'Psicólogo';
+    'Psicólogo(a)';
 
   const exit = async () => {
     await resetVolunteer();

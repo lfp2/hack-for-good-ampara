@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Button from 'src/components/LoadingButton';
+import Button, { LoadingButton } from 'src/components/LoadingButton';
 import { brazilStates } from 'src/assets/strings/states';
 import IconedInput, {
   MaskedIconedInput,
@@ -16,6 +16,7 @@ import ModalInput from 'src/components/Input/ModalInput';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import CircleGradientBackground from 'src/components/CircleGradientBackground';
+import useAwait from 'src/util/useAwait';
 
 const healthTypes = [
   { label: 'Tipo de Profissional', value: 'none' },
@@ -32,9 +33,9 @@ export default function MyInfoScreen() {
   const formRef = useRef(null);
   const volunteerData = useStoreState((state) => state.volunteer);
   const healthData = useStoreState((state) => state.health);
-  const update = useStoreActions((actions) => actions.update);
+  const updateAction = useStoreActions((actions) => actions.update);
   const navigation = useNavigation();
-
+  const [isLoading, update, { toggle }] = useAwait(updateAction);
   const handleSubmit = async (data) => {
     const isValid = await validate(
       accountType === 'health' ? healthSchema : volunteerSchema,
@@ -45,11 +46,16 @@ export default function MyInfoScreen() {
     if (!isValid) {
       return;
     }
-    await update({
-      role: accountType,
-      data: { ...data, token },
-    });
-    navigation.goBack();
+    try {
+      await update({
+        role: accountType,
+        data: { ...data, token },
+      });
+      navigation.goBack();
+    } catch (err) {
+      console.log(err);
+      toggle(false);
+    }
   };
   const scrollRef = useRef();
   const bioRef = useRef();
@@ -71,6 +77,16 @@ export default function MyInfoScreen() {
       <Camera />
 
       <Form ref={formRef} onSubmit={handleSubmit}>
+        <IconedInput
+          icon="email"
+          name="email"
+          placeholder="E-mail*"
+          blurOnSubmit={false}
+          returnKeyType="next"
+          onSubmitEditing={() => {
+            formRef.current?.getFieldRef('displayName').focus();
+          }}
+        />
         <IconedInput
           name="displayName"
           placeholder="Nome Completo*"
@@ -166,7 +182,11 @@ export default function MyInfoScreen() {
           <Switch label="Perfil anônimo" name="anonymous" />
         )}
       </Form>
-      <Button onPress={() => formRef.current.submitForm()}>ATUALIZAR</Button>
+      <LoadingButton
+        isLoading={isLoading}
+        onPress={() => formRef.current.submitForm()}>
+        ATUALIZAR
+      </LoadingButton>
       <SeeTerms to="/Terms">
         VER TERMOS DE USO E POLÍTICA DE PRIVACIDADE
       </SeeTerms>

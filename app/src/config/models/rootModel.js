@@ -18,6 +18,15 @@ const rootModel = {
     (accountType, healthToken, volunteerToken) =>
       accountType === 'health' ? healthToken : volunteerToken,
   ),
+  email: computed(
+    [
+      (state) => state.user.accountType,
+      (state) => state.health.email,
+      (state) => state.volunteer.email,
+    ],
+    (accountType, healthEmail, volunteerEmail) =>
+      accountType === 'health' ? healthEmail : volunteerEmail,
+  ),
   start: thunk(async (actions, navigation) => {
     const volunteer_value = await AsyncStorage.getItem('@AmparaApp:volunteer');
     if (volunteer_value) {

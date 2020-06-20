@@ -100,7 +100,7 @@ const volunteerModel = {
       email,
       password,
     });
-    await actions.setUser(response.data);
+    await actions.setUser({ ...response.data, password, email });
   }),
   register: thunk(async (actions, payload) => {
     await api.post('/volunteer', payload);
