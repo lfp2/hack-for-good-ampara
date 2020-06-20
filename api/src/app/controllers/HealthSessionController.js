@@ -23,7 +23,8 @@ class HealthSessionController {
         bio,
         profession,
         uf,
-        city;
+        city,
+        cep;
 
       verifyEmailExists.forEach((doc) => {
         token = doc.id;
@@ -35,6 +36,7 @@ class HealthSessionController {
         profession = doc.data().profession;
         uf = doc.data().uf;
         city = doc.data().city;
+        cep = doc.data().cep;
       });
 
       const passwordValidation = await bcrypt.compare(
@@ -55,6 +57,7 @@ class HealthSessionController {
         profession,
         uf,
         city,
+        cep
       });
     } catch (err) {
       return res.status(500).json({ err });

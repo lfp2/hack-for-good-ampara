@@ -98,6 +98,7 @@ class VolunteerController {
         documentNumber,
         uf,
         city,
+        cep,
         token
       } = req.body;
 
@@ -122,7 +123,8 @@ class VolunteerController {
         bio,
         documentNumber,
         uf,
-        city
+        city,
+        cep
       });
     } catch(error) {
       return res.status(500).json({ err });

@@ -18,7 +18,8 @@ class HealthController {
         bio,
         profession,
         uf,
-        city
+        city,
+        cep
       } = req.body
 
       const verifyEmailExists = await healthProfessionalRef
@@ -65,6 +66,7 @@ class HealthController {
           tokenEmailVerify,
           uf,
           city,
+          cep,
           verified: false
         })
 
@@ -94,7 +96,6 @@ class HealthController {
           phoneNumber,
           displayName,
           bio,
-          profession,
           uf,
           city,
           cep
