@@ -12,8 +12,9 @@ const volunteerModel = {
   city: '',
   uf: '',
   token: '',
-  setUser: action((state, payload) => {
+  set: action((state, payload) => {
     const {
+      token,
       displayName,
       phoneNumber,
       documentNumber,
@@ -24,6 +25,7 @@ const volunteerModel = {
       cep,
     } = payload;
     return {
+      token,
       displayName,
       phoneNumber,
       documentNumber,
@@ -34,14 +36,58 @@ const volunteerModel = {
       cep,
     };
   }),
-  reset: thunk(async (actions) => {
+  setUser: thunk(async (actions, payload) => {
+    console.log('setting', payload);
+    await AsyncStorage.setItem('@AmparaApp:volunteer', JSON.stringify(payload));
+    actions.set(payload);
+  }),
+  update: thunk(async (actions, payload) => {
+    try {
+      const {
+        token,
+        displayName,
+        phoneNumber,
+        documentNumber,
+        bio,
+        email,
+        uf,
+        city,
+        cep,
+      } = payload;
+      const response = await api.put('/volunteer', {
+        token,
+        displayName,
+        phoneNumber,
+        documentNumber,
+        bio,
+        email,
+        uf,
+        city,
+        cep,
+      });
+      await actions.setUser({
+        token,
+        displayName,
+        phoneNumber,
+        documentNumber,
+        bio,
+        email,
+        uf,
+        city,
+        cep,
+      });
+    } catch (err) {
+      console.log(err.response);
+    }
+  }),
+  reset: thunk(async (actions, payload) => {
     await AsyncStorage.removeItem('@AmparaApp:volunteer');
-    actions.setUser({
+    actions.set({
       displayName: '',
       bio: '',
       email: '',
       cep: '',
-      documentNumber: '',
+      profession: '',
       phoneNumber: '',
       city: '',
       uf: '',
@@ -54,11 +100,7 @@ const volunteerModel = {
       email,
       password,
     });
-    await AsyncStorage.setItem(
-      '@AmparaApp:volunteer',
-      JSON.stringify(response.data),
-    );
-    actions.setUser(response.data);
+    await actions.setUser(response.data);
   }),
   register: thunk(async (actions, payload) => {
     await api.post('/volunteer', payload);

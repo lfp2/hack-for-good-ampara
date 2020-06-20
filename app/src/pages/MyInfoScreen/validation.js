@@ -15,9 +15,8 @@ export const volunteerSchema = Yup.object().shape({
   bio: Yup.string()
     .max(150, 'Defina uma biografia com o maximo de ${max} caracteres')
     .required(),
-  profession: Yup.string().required(),
   documentNumber: Yup.string().required(),
-  phoneNumber: Yup.string().min(14).max(15).required(),
+  phoneNumber: Yup.string().required(),
   uf: Yup.string().notOneOf(['none', ''], 'Selecione um Estado'),
   city: Yup.string().required(),
   cep: Yup.string().required(),

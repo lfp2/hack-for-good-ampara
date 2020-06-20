@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { action, thunk, memo } from 'easy-peasy';
+import { action, thunk, memo, computed } from 'easy-peasy';
 
 const redirectAction = memo((toCallAction) =>
   memo((actions, payload) => {
@@ -9,6 +9,15 @@ const redirectAction = memo((toCallAction) =>
 );
 
 const rootModel = {
+  token: computed(
+    [
+      (state) => state.user.accountType,
+      (state) => state.health.token,
+      (state) => state.volunteer.token,
+    ],
+    (accountType, healthToken, volunteerToken) =>
+      accountType === 'health' ? healthToken : volunteerToken,
+  ),
   start: thunk(async (actions, navigation) => {
     const volunteer_value = await AsyncStorage.getItem('@AmparaApp:volunteer');
     if (volunteer_value) {
@@ -32,6 +41,7 @@ const rootModel = {
   }),
   login: thunk(redirectAction('login')),
   register: thunk(redirectAction('register')),
+  update: thunk(redirectAction('update')),
 };
 
 export default rootModel;

@@ -12,7 +12,7 @@ const healthModel = {
   uf: '',
   profession: '',
   token: '',
-  setUser: action((state, payload) => {
+  set: action((state, payload) => {
     const {
       token,
       displayName,
@@ -36,9 +36,54 @@ const healthModel = {
       cep,
     };
   }),
+  setUser: thunk(async (actions, payload) => {
+    await AsyncStorage.setItem('@AmparaApp:health', JSON.stringify(payload));
+    actions.set(payload);
+  }),
+  update: thunk(async (actions, payload) => {
+    console.log(payload);
+    const {
+      token,
+      displayName,
+      phoneNumber,
+      profession,
+      bio,
+      email,
+      uf,
+      city,
+      cep,
+    } = payload;
+    try {
+      const response = await api.put('/health', {
+        token,
+        displayName,
+        phoneNumber,
+        profession,
+        bio,
+        email,
+        uf,
+        city,
+        cep,
+      });
+      console.log(response.data);
+      await actions.setUser({
+        token,
+        displayName,
+        phoneNumber,
+        profession,
+        bio,
+        email,
+        uf,
+        city,
+        cep,
+      });
+    } catch (err) {
+      console.log(err.response);
+    }
+  }),
   reset: thunk(async (actions, payload) => {
     await AsyncStorage.removeItem('@AmparaApp:health');
-    actions.setUser({
+    actions.set({
       displayName: '',
       bio: '',
       email: '',
@@ -56,11 +101,8 @@ const healthModel = {
       email,
       password,
     });
-    await AsyncStorage.setItem(
-      '@AmparaApp:health',
-      JSON.stringify(response.data),
-    );
-    actions.setUser(response.data);
+
+    await actions.setUser(response.data);
   }),
   register: thunk(async (actions, payload) => {
     const {

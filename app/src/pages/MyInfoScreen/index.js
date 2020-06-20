@@ -13,8 +13,8 @@ import Camera from 'src/components/Input/Camera';
 import validate from 'src/util/validate';
 import { volunteerSchema, healthSchema } from './validation';
 import ModalInput from 'src/components/Input/ModalInput';
-import { useStoreState } from 'easy-peasy';
-import { useFocusEffect } from '@react-navigation/native';
+import { useStoreState, useStoreActions } from 'easy-peasy';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import CircleGradientBackground from 'src/components/CircleGradientBackground';
 
 const healthTypes = [
@@ -27,8 +27,13 @@ const healthTypes = [
 ];
 
 export default function MyInfoScreen() {
+  const token = useStoreState((state) => state.token);
   const accountType = useStoreState((state) => state.user.accountType);
   const formRef = useRef(null);
+  const volunteerData = useStoreState((state) => state.volunteer);
+  const healthData = useStoreState((state) => state.health);
+  const update = useStoreActions((actions) => actions.update);
+  const navigation = useNavigation();
 
   const handleSubmit = async (data) => {
     const isValid = await validate(
@@ -36,19 +41,21 @@ export default function MyInfoScreen() {
       data,
       formRef,
     );
-    console.log(isValid);
+    console.log(data, isValid);
     if (!isValid) {
       return;
     }
+    await update({
+      role: accountType,
+      data: { ...data, token },
+    });
+    navigation.goBack();
   };
   const scrollRef = useRef();
   const bioRef = useRef();
   const phoneRef = useRef();
   const cepRef = useRef();
   const numberRegistryRef = useRef();
-
-  const volunteerData = useStoreState((state) => state.volunteer);
-  const healthData = useStoreState((state) => state.health);
   useFocusEffect(() => {
     if (accountType === 'health') {
       formRef.current.setData(healthData);
