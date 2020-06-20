@@ -27,7 +27,7 @@ export const Header = styled.TouchableOpacity`
 `;
 
 export const ProfilePicture = styled.Image.attrs({
-  source: require('src/assets/images/julio.png'),
+  source: require('src/assets/images/profile-ex.png'),
 })`
   width: 70px;
   height: 70px;

@@ -16,15 +16,27 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import entypoIcon from 'react-native-vector-icons/Entypo';
 import { useIsDrawerOpen } from '@react-navigation/drawer';
 import { interpolate } from 'react-native-reanimated';
-import AsyncStorage from '@react-native-community/async-storage';
+import { useStoreActions, useStoreState } from 'easy-peasy';
+import healthTypes from 'src/assets/strings/healthTypes';
 const Nav = ({ orientation, navigation, progress, ...props }) => {
   const goTo = (to) => {
     navigation.navigate(to);
     navigation.closeDrawer();
   };
+  const resetVolunteer = useStoreActions((state) => state.volunteer.reset);
+  const resetHealth = useStoreActions((state) => state.health.reset);
+  const accountType = useStoreState((state) => state.user.accountType);
+  const volunteerData = useStoreState((state) => state.volunteer);
+  const healthData = useStoreState((state) => state.health);
+  const data = accountType === 'health' ? healthData : volunteerData;
+  const { displayName } = data;
+  const profession =
+    healthTypes.find(({ value }) => value === data.profession)?.label ||
+    'Psicólogo';
+
   const exit = async () => {
-    await AsyncStorage.removeItem('@AmparaApp:volunteer');
-    await AsyncStorage.removeItem('@AmparaApp:health');
+    await resetVolunteer();
+    await resetHealth();
     navigation.reset({
       index: 0,
       routes: [
@@ -42,8 +54,8 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
         }}>
         <ProfilePicture />
         <Info>
-          <Name>Julio Figueiredo</Name>
-          <Role>Psicologo</Role>
+          <Name>{displayName}</Name>
+          <Role>{profession}</Role>
         </Info>
       </Header>
       <Separator />

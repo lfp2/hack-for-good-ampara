@@ -22,6 +22,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import api from 'src/services/api';
 import useAwait from 'src/util/useAwait';
 import LoadingButton from 'src/components/LoadingButton';
+import { useStoreActions } from 'easy-peasy';
 
 const rolesOptions = [
   { value: 'none', label: 'Escolha seu perfil' },
@@ -29,7 +30,8 @@ const rolesOptions = [
   { value: 'health', label: 'Paciente' },
 ];
 
-const showError = (error, path, action) => {
+const showError = (path, action, error) => {
+  console.error(error);
   const isFormated = path;
   if (isFormated) {
     const formattedError = path;
@@ -37,30 +39,11 @@ const showError = (error, path, action) => {
   }
 };
 
-const signVolunteer = ({ email, password }) =>
-  api.post('/volunteer/signIn', {
-    email,
-    password,
-  });
-const signHealthProfessional = ({ email, password }) =>
-  api.post('/healthprofessional/signIn', {
-    email,
-    password,
-  });
-
 const LoginScreen = () => {
   const formRef = useRef(null);
+  const signIn = useStoreActions((actions) => actions.login);
   const navigation = useNavigation();
-  const [
-    isLoadingVolunteer,
-    signVolunteerIn,
-    { toggle: toggleVolunteerLoading },
-  ] = useAwait(signVolunteer);
-  const [
-    isLoadingHealthProfessional,
-    signHealthProfessionalIn,
-    { toggle: toggleHealthProfessionalLoading },
-  ] = useAwait(signHealthProfessional);
+  const [isLoading, login, { toggle }] = useAwait(signIn);
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (data) => {
@@ -69,46 +52,17 @@ const LoginScreen = () => {
       return;
     }
     const { role, email, password } = data;
-    if (role === 'volunteer') {
-      try {
-        const response = await signVolunteerIn({ email, password });
-        await AsyncStorage.setItem(
-          '@AmparaApp:volunteer',
-          JSON.stringify(response.data),
-        );
-
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'VolunteerHome' }],
-        });
-        toggleVolunteerLoading(false);
-      } catch (error) {
-        toggleVolunteerLoading(false);
-        showError(error, error?.response?.data?.error, (newErrorMessage) =>
-          setErrorMessage(newErrorMessage),
-        );
-      }
-    }
-
-    if (role === 'health') {
-      try {
-        const response = await signHealthProfessionalIn({ email, password });
-
-        await AsyncStorage.setItem(
-          '@AmparaApp:health',
-          JSON.stringify(response.data),
-        );
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'HealthHome' }],
-        });
-        toggleHealthProfessionalLoading(false);
-      } catch (error) {
-        toggleHealthProfessionalLoading(false);
-        showError(error, error?.response?.data?.error, (newErrorMessage) =>
-          setErrorMessage(newErrorMessage),
-        );
-      }
+    try {
+      await login({ role, data: { email, password } });
+      navigation.navigate('FirstScreen');
+      toggle(false);
+    } catch (error) {
+      toggle(false);
+      showError(
+        error?.response?.data?.error,
+        (newErrorMessage) => setErrorMessage(newErrorMessage),
+        error,
+      );
     }
   };
   return (
@@ -144,7 +98,7 @@ const LoginScreen = () => {
 
         <Selector defaultValue="none" name="role" options={rolesOptions} />
         <LoadingButton
-          isLoading={isLoadingVolunteer || isLoadingHealthProfessional}
+          isLoading={isLoading}
           onPress={() => formRef.current.submitForm()}>
           Login
         </LoadingButton>

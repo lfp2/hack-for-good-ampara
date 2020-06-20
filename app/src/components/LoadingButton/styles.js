@@ -4,6 +4,10 @@ import BaseSpinner from 'react-native-spinkit';
 
 const SpinnerWrapper = styled.View`
   position: absolute;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: ${(props) => props.theme.blue};
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   /* top: ${(props) => (props.isVisible ? '10px' : '-100%')};

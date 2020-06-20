@@ -75,7 +75,7 @@ export const Border = styled((props) => (
 `;
 
 export const ProfilePic = styled.Image.attrs({
-  source: require('src/assets/images/julio.png'),
+  source: require('src/assets/images/profile-ex.png'),
 })`
   width: 150px;
   height: 150px;

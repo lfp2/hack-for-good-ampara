@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useStoreActions } from 'easy-peasy';
+import { useStoreActions, useStoreState } from 'easy-peasy';
 import IconedInput from 'src/components/Input/IconedInput';
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
@@ -9,20 +9,28 @@ import { Container, Spacer, Description } from './styles';
 import SecretIconedInput from 'src/components/Input/SecretIconedInput';
 import { schema } from './validation';
 import validate from 'src/util/validate';
+import { useEffect } from 'react';
 
 export default function SignUpEmailScreen() {
   const navigation = useNavigation();
-  const updateUserData = useStoreActions((actions) => actions.updateUserData);
+  const d = useStoreState((state) => state.user);
+  const setCredentials = useStoreActions(
+    (actions) => actions.user.setCredentials,
+  );
   const formRef = useRef();
+  useEffect(() => {
+    console.log(d);
+  }, [d]);
   const handleSubmit = async (data) => {
     const isValid = await validate(schema, data, formRef);
     if (!isValid) {
       return;
     }
     navigation.navigate('SignUpProfile');
-    updateUserData({
-      email: data.email,
-      password: data.password,
+    const { email, password } = data;
+    setCredentials({
+      email,
+      password,
     });
   };
   return (

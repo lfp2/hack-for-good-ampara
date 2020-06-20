@@ -4,12 +4,21 @@ import FontAwesome5Icons from 'react-native-vector-icons/FontAwesome5';
 import ProfileButton, { ProfileButtons } from 'src/components/ProfileButton';
 import { useNavigation } from '@react-navigation/native';
 import Button from 'src/components/Button';
+import { useStoreState } from 'easy-peasy';
+import healthTypes from 'src/assets/strings/healthTypes';
 
 const HomePageScreen = () => {
-  const navigation = useNavigation();
+  const { displayName, profession } = useStoreState((state) => state.health);
 
+  const navigation = useNavigation();
+  const safeProfession = healthTypes.find(({ value }) => value === profession)
+    ?.label;
   return (
-    <Profile>
+    <Profile
+      data={{
+        name: displayName,
+        profession: safeProfession,
+      }}>
       <ProfileButtons>
         <ProfileButton
           icon="calendar-month"

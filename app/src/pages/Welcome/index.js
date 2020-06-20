@@ -16,19 +16,17 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function WelcomeScreen() {
   const navigation = useNavigation();
-  const updateUserData = useStoreActions((actions) => actions.updateUserData);
+  const updateAccountType = useStoreActions(
+    (actions) => actions.user.updateAccountType,
+  );
 
   function navigateToVolunteerSignUp() {
-    updateUserData({
-      accountType: 'volunteer',
-    });
+    updateAccountType('volunteer');
     navigation.navigate('SignUpEmail');
   }
 
   function navigateToHealthSignUp() {
-    updateUserData({
-      accountType: 'health',
-    });
+    updateAccountType('health');
     navigation.navigate('SignUpEmail');
   }
 

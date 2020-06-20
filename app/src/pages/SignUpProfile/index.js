@@ -1,34 +1,47 @@
 import React, { useRef } from 'react';
-import Button from 'src/components/LoadingButton';
+import { Form } from '@unform/mobile';
+import { useStoreState, useStoreActions } from 'easy-peasy';
+import { Container, Description, SeeTerms } from './styles';
+import { volunteerSchema, healthSchema } from './validation';
 import { brazilStates } from 'src/assets/strings/states';
+
+import Button, { LoadingButton } from 'src/components/LoadingButton';
 import IconedInput, {
   MaskedIconedInput,
 } from 'src/components/Input/IconedInput';
 import IconedSelector from 'src/components/Input/iconedSelector';
 import Switch from 'src/components/Switch';
-import { Form } from '@unform/mobile';
-import { Container, Description, SeeTerms } from './styles';
 import Header from 'src/components/Header';
 import Camera from 'src/components/Input/Camera';
 import validate from 'src/util/validate';
-import { volunteerSchema, healthSchema } from './validation';
 import ModalInput from 'src/components/Input/ModalInput';
-import { useStoreState } from 'easy-peasy';
-import { CircleGradientBackground } from 'src/assets/styles/signup';
-
-const healthTypes = [
-  { label: 'Tipo de Profissional', value: 'none' },
-  { label: 'Médico(a)', value: 'medic' },
-  { label: 'Enfermeiro(a)', value: 'nurse' },
-  { label: 'Técnico(a) de enfermagem', value: 'practicalNurse' },
-  { label: 'Auxiliar de enfermagem', value: 'nursingAssistant' },
-  { label: 'Outro', value: 'other' },
-];
+import CircleGradientBackground from 'src/components/CircleGradientBackground';
+import useAwait from 'src/util/useAwait';
+import api from 'src/services/api';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import healthTypes from 'src/assets/strings/healthTypes';
 
 export default function SignUpProfileScreen() {
-  const accountType = useStoreState((state) => state.userData.accountType);
+  const signUp = useStoreActions((state) => state.register);
+  const navigation = useNavigation();
+  const [isLoading, register, { toggle }] = useAwait(signUp);
+  const accountType = useStoreState((state) => state.user.accountType);
+  const userData = useStoreState((state) => state.user);
   const formRef = useRef(null);
-  const handleSubmit = async (data) => {
+  useFocusEffect(() => {
+    formRef.current.setData({
+      displayName: 'name',
+      bio: 'bio',
+      phoneNumber: '12345678933333',
+      uf: 'AC',
+      city: 'Ferraz',
+      cep: '08544600',
+      documentNumber: '1111111',
+      terms: true,
+      profession: 'medic',
+    });
+  }, []);
+  const handleSubmit = async ({ terms, ...data }) => {
     const isValid = await validate(
       accountType === 'health' ? healthSchema : volunteerSchema,
       data,
@@ -37,6 +50,39 @@ export default function SignUpProfileScreen() {
     if (!isValid) {
       return;
     }
+    const { email, password } = userData;
+    const {
+      bio,
+      uf,
+      city,
+      cep,
+      phoneNumber,
+      displayName,
+      documentNumber,
+      profession,
+    } = data;
+
+    try {
+      await register({
+        role: accountType,
+        data: {
+          email,
+          password,
+          phoneNumber,
+          displayName,
+          bio,
+          documentNumber,
+          profession,
+          uf,
+          city,
+          cep,
+        },
+      });
+      navigation.navigate('FirstScreen');
+    } catch (err) {
+      toggle(false);
+    }
+
     // const {
     //   name,
     //   bio,
@@ -63,7 +109,7 @@ export default function SignUpProfileScreen() {
       <Form ref={formRef} onSubmit={handleSubmit}>
         <Camera />
         <IconedInput
-          name="name"
+          name="displayName"
           placeholder="Nome Completo*"
           icon="account"
           blurOnSubmit={false}
@@ -79,11 +125,6 @@ export default function SignUpProfileScreen() {
           placeholder={accountType === 'health' ? 'Biografia' : 'Biografia*'}
           icon="file-document-box-multiple"
           scrollViewRef={scrollRef}
-          afterFinishing={() => {
-            accountType === 'volunteer'
-              ? numberRegistryRef.current?.focus()
-              : formRef.current?.getFieldRef('phone').focus();
-          }}
         />
         {accountType === 'volunteer' && (
           <MaskedIconedInput
@@ -92,7 +133,7 @@ export default function SignUpProfileScreen() {
               mask: '99/99999',
             }}
             ref={numberRegistryRef}
-            name="numberRegistry"
+            name="documentNumber"
             placeholder="CRP*"
             icon="account-card-details"
             blurOnSubmit={false}
@@ -111,18 +152,13 @@ export default function SignUpProfileScreen() {
             withDDD: true,
             dddMask: '(99) ',
           }}
-          name="phone"
+          name="phoneNumber"
           placeholder="Telefone*"
           icon="phone"
-          blurOnSubmit={false}
-          returnKeyType="next"
-          onSubmitEditing={() => {
-            phoneRef.current?.getElement().focus();
-          }}
         />
 
         <IconedSelector
-          name="state"
+          name="uf"
           icon="city"
           options={brazilStates.map((item, index) => ({
             label: item,
@@ -131,7 +167,7 @@ export default function SignUpProfileScreen() {
         />
         {accountType === 'health' && (
           <IconedSelector
-            name="healthType"
+            name="profession"
             icon="clipboard-plus"
             options={healthTypes}
             mode="dropdown"
@@ -155,6 +191,7 @@ export default function SignUpProfileScreen() {
           }}
           ref={cepRef}
           name="cep"
+          keyboardType="numeric"
           placeholder="CEP*"
           icon="city"
         />
@@ -164,7 +201,11 @@ export default function SignUpProfileScreen() {
         <Switch label="Habilitar notificações" name="notifications" />
         <Switch label="Concordo com os Termos de Uso" name="terms" />
       </Form>
-      <Button onPress={() => formRef.current.submitForm()}>CADASTRAR</Button>
+      <LoadingButton
+        isLoading={isLoading}
+        onPress={() => formRef.current.submitForm()}>
+        CADASTRAR
+      </LoadingButton>
       <SeeTerms to="/Terms">
         VER TERMOS DE USO E POLÍTICA DE PRIVACIDADE
       </SeeTerms>

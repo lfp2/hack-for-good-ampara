@@ -4,17 +4,21 @@ Yup.setLocale({
   mixed: {
     required: 'Obrigatorio',
   },
+  string: {
+    min: 'Minimo de ${min} caracteres',
+    max: 'Maximo de ${max} caracteres',
+  },
 });
 
 export const volunteerSchema = Yup.object().shape({
-  name: Yup.string().required(),
+  displayName: Yup.string().required(),
   bio: Yup.string()
     .max(150, 'Defina uma biografia com o maximo de ${max} caracteres')
     .required(),
   profession: Yup.string().required(),
-  numberRegistry: Yup.string().required(),
-  phone: Yup.string().required(),
-  state: Yup.string().notOneOf(['none', ''], 'Selecione um Estado'),
+  documentNumber: Yup.string().required(),
+  phoneNumber: Yup.string().min(14).max(15).required(),
+  uf: Yup.string().notOneOf(['none', ''], 'Selecione um Estado'),
   city: Yup.string().required(),
   cep: Yup.string().required(),
   terms: Yup.bool().oneOf(
@@ -23,14 +27,13 @@ export const volunteerSchema = Yup.object().shape({
   ),
 });
 export const healthSchema = Yup.object().shape({
-  name: Yup.string().required(),
+  displayName: Yup.string().required(),
   bio: Yup.string()
     .max(150, 'Defina uma biografia com o maximo de ${max} caracteres')
     .notRequired(),
-  profession: Yup.string().required(),
-  phone: Yup.string().required(),
-  healthType: Yup.string().notOneOf(['none', ''], 'Selecione um Tipo'),
-  state: Yup.string().notOneOf(['none', ''], 'Selecione um Estado'),
+  phoneNumber: Yup.string().required(),
+  profession: Yup.string().notOneOf(['none', ''], 'Selecione um Tipo'),
+  uf: Yup.string().notOneOf(['none', ''], 'Selecione um Estado'),
   city: Yup.string().required(),
   cep: Yup.string().required(),
   terms: Yup.bool().oneOf(

@@ -14,8 +14,9 @@ import {
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
-const Profile = ({ children }) => {
+const Profile = ({ data, children }) => {
   const navigation = useNavigation();
+  const { name = '', profession = '' } = data;
 
   return (
     <Container>
@@ -32,9 +33,8 @@ const Profile = ({ children }) => {
       <Body>
         <Border />
         <ProfilePic />
-        <Name>Emanuelly Figueiredo</Name>
-        <Role>Técnica em Enfermagem</Role>
-        <Role>COREN 58963</Role>
+        <Name>{name}</Name>
+        <Role>{profession}</Role>
         {children}
       </Body>
     </Container>

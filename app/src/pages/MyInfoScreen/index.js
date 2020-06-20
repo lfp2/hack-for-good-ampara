@@ -15,7 +15,7 @@ import { volunteerSchema, healthSchema } from './validation';
 import ModalInput from 'src/components/Input/ModalInput';
 import { useStoreState } from 'easy-peasy';
 import { useFocusEffect } from '@react-navigation/native';
-import { CircleGradientBackground } from 'src/components/CircleGradientBackground';
+import CircleGradientBackground from 'src/components/CircleGradientBackground';
 
 const healthTypes = [
   { label: 'Tipo de Profissional', value: 'none' },
@@ -27,7 +27,7 @@ const healthTypes = [
 ];
 
 export default function MyInfoScreen() {
-  const accountType = useStoreState((state) => state.userData.accountType);
+  const accountType = useStoreState((state) => state.user.accountType);
   const formRef = useRef(null);
 
   const handleSubmit = async (data) => {
@@ -36,6 +36,7 @@ export default function MyInfoScreen() {
       data,
       formRef,
     );
+    console.log(isValid);
     if (!isValid) {
       return;
     }
@@ -45,16 +46,16 @@ export default function MyInfoScreen() {
   const phoneRef = useRef();
   const cepRef = useRef();
   const numberRegistryRef = useRef();
+
+  const volunteerData = useStoreState((state) => state.volunteer);
+  const healthData = useStoreState((state) => state.health);
   useFocusEffect(() => {
-    formRef.current.setData({
-      name: 'name',
-      bio: 'bio',
-      phone: '123',
-      state: 'AC',
-      city: 'Ferraz',
-      cep: '08544600',
-      terms: true,
-    });
+    if (accountType === 'health') {
+      formRef.current.setData(healthData);
+    }
+    if (accountType === 'volunteer') {
+      formRef.current.setData(volunteerData);
+    }
   }, []);
   return (
     <Container ref={scrollRef}>
@@ -64,7 +65,7 @@ export default function MyInfoScreen() {
 
       <Form ref={formRef} onSubmit={handleSubmit}>
         <IconedInput
-          name="name"
+          name="displayName"
           placeholder="Nome Completo*"
           icon="account"
           blurOnSubmit={false}
@@ -88,7 +89,7 @@ export default function MyInfoScreen() {
               mask: '99/99999',
             }}
             ref={numberRegistryRef}
-            name="numberRegistry"
+            name="documentNumber"
             placeholder="CRP*"
             icon="account-card-details"
             blurOnSubmit={false}
@@ -107,7 +108,7 @@ export default function MyInfoScreen() {
             withDDD: true,
             dddMask: '(99) ',
           }}
-          name="phone"
+          name="phoneNumber"
           placeholder="Telefone*"
           icon="phone"
           blurOnSubmit={false}
@@ -118,7 +119,7 @@ export default function MyInfoScreen() {
         />
 
         <IconedSelector
-          name="state"
+          name="uf"
           icon="city"
           options={brazilStates.map((item, index) => ({
             label: item,
@@ -127,7 +128,7 @@ export default function MyInfoScreen() {
         />
         {accountType === 'health' && (
           <IconedSelector
-            name="healthType"
+            name="profession"
             icon="clipboard-plus"
             options={healthTypes}
             mode="dropdown"
@@ -157,10 +158,8 @@ export default function MyInfoScreen() {
         {accountType === 'health' && (
           <Switch label="Perfil anônimo" name="anonymous" />
         )}
-        <Switch label="Habilitar notificações" name="notifications" />
-        <Switch label="Concordo com os Termos de Uso" name="terms" />
       </Form>
-      <Button onPress={() => formRef.current.submitForm()}>CADASTRAR</Button>
+      <Button onPress={() => formRef.current.submitForm()}>ATUALIZAR</Button>
       <SeeTerms to="/Terms">
         VER TERMOS DE USO E POLÍTICA DE PRIVACIDADE
       </SeeTerms>

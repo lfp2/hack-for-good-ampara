@@ -1,23 +1,18 @@
 import { action } from 'easy-peasy';
 
 const userDataModel = {
-  userData: {
-    accountType: '',
-    name: '',
-    bio: '',
-    profession: '',
-    numberRegistry: '',
-    phone: '',
-    city: '',
-  },
+  accountType: '',
+  email: '',
+  password: '',
   updateUserData: action((state, payload) => {
-    return {
-      ...state,
-      userData: {
-        ...state.userData,
-        ...payload,
-      },
-    };
+    return payload;
+  }),
+  updateAccountType: action((state, payload) => {
+    state.accountType = payload;
+  }),
+  setCredentials: action((state, payload) => {
+    state.email = payload.email;
+    state.password = payload.password;
   }),
 };
 

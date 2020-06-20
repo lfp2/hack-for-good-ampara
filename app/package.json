@@ -34,6 +34,7 @@
     "react-native-calendar-strip": "^2.0.1",
     "react-native-calendars": "^1.265.0",
     "react-native-dropdown-menu": "^2.0.0",
+    "react-native-flipper": "^0.47.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-gifted-chat": "^0.13.0",
     "react-native-image-picker": "^2.3.1",
@@ -50,6 +51,8 @@
     "react-native-vector-icons": "^6.6.0",
     "react-redux": "^7.2.0",
     "react-use": "^15.1.1",
+    "redux-flipper": "^1.2.0",
+    "remote-redux-devtools": "0.5.0",
     "styled-components": "^5.0.1",
     "twilio": "^3.42.0",
     "yup": "^0.29.1"
