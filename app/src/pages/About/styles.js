@@ -1,6 +1,11 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Wrapper = styled.View`
+  flex: 1;
+  background-color: ${(props) => props.theme.white};
+`;
+
+export const Container = styled.ScrollView`
   background-color: ${(props) => props.theme.white};
   flex: 1;
 `;

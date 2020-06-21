@@ -77,22 +77,24 @@ const Nav = ({ orientation, navigation, progress, ...props }) => {
         noRightArrow>
         Boas práticas
       </Anchor>
-      <BackFold
-        onPress={() => {
-          navigation.closeDrawer();
-        }}
-        style={{
-          transform: [
-            {
-              translateY: -80 / 2,
-              translateX: interpolate(progress, {
-                inputRange: [0, 1],
-                outputRange: [0, 26],
-              }),
-            },
-          ],
-        }}
-      />
+      {orientation === 'portrait' && (
+        <BackFold
+          onPress={() => {
+            navigation.closeDrawer();
+          }}
+          style={{
+            transform: [
+              {
+                translateY: -80 / 2,
+                translateX: interpolate(progress, {
+                  inputRange: [0, 1],
+                  outputRange: [0, 26],
+                }),
+              },
+            ],
+          }}
+        />
+      )}
       <Anchor
         icon="cog"
         iconPack={entypoIcon}

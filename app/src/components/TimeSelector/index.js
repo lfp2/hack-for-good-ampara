@@ -5,7 +5,7 @@ const times = [...Array(25)].map((e, index) =>
   index < 10 ? `0${index}:00` : `${index}:00`,
 );
 
-const extractKey = (_, index) => index;
+const extractKey = (_, index) => index.toString();
 
 const TimeSelector = ({ onChange }) => {
   const [selected, setSelected] = useState(0);

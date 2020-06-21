@@ -2,6 +2,11 @@ import styled from 'styled-components/native';
 import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+export const Wrapper = styled.View`
+  flex: 1;
+  background-color: ${(props) => props.theme.white};
+`;
+
 export const Container = styled.ScrollView`
   background-color: ${(props) => props.theme.white};
   flex: 1;

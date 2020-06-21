@@ -28,19 +28,6 @@ export default function SignUpProfileScreen() {
   const accountType = useStoreState((state) => state.user.accountType);
   const userData = useStoreState((state) => state.user);
   const formRef = useRef(null);
-  useFocusEffect(() => {
-    formRef.current.setData({
-      displayName: 'name',
-      bio: 'bio',
-      phoneNumber: '12345678933333',
-      uf: 'AC',
-      city: 'Ferraz',
-      cep: '08544600',
-      documentNumber: '1111111',
-      terms: true,
-      profession: 'medic',
-    });
-  }, []);
   const handleSubmit = async ({ terms, ...data }) => {
     const isValid = await validate(
       accountType === 'health' ? healthSchema : volunteerSchema,

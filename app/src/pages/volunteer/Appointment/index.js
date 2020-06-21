@@ -23,7 +23,7 @@ const AppointmentScreen = () => {
       <Header title="Consultas" />
       <AppointmentCards>
         <FlatList
-          keyExtractor={(e) => e}
+          keyExtractor={(e) => e.toString()}
           data={[0, 1, 2]}
           renderItem={() => (
             <AppointmentCard

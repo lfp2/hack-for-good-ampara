@@ -37,7 +37,8 @@ export const ProfilePic = styled.Image.attrs({
   flex: 1;
   margin: 10px;
   aspect-ratio: 1;
-  border: 6px #74e8e2;
+  border-width: 6px;
+  border-color: #74e8e2;
 `;
 
 export const Info = styled.View`
