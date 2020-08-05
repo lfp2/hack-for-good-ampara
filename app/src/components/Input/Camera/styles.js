@@ -1,21 +1,21 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   align-items: center;
 `;
 export const Touchable = styled.TouchableOpacity`
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
   padding: 5px;
   border-radius: 200px;
-  background: #779fe0;
+  background-color: ${(props) => props.theme.blue};
   flex-direction: row;
   justify-content: center;
   align-items: center;
 `;
 
 export const DefaultImage = styled.Image.attrs({
-  source: require('src/assets/icons/camera.png'),
+  source: require("src/assets/icons/camera.png"),
 })`
   width: 30%;
   /* height: 50px; */
@@ -24,10 +24,13 @@ export const DefaultImage = styled.Image.attrs({
   aspect-ratio: 1;
 `;
 export const CircleImage = styled.Image`
-  height: 80px;
-  width: 80px;
+  height: 120px;
+  width: 120px;
   padding: 5px;
   border-radius: 160px;
+  border-width: 5px;
+  border-color: ${(props) => props.theme.blue};
+  margin: 10px auto;
 `;
 
 export const Info = styled.Text`

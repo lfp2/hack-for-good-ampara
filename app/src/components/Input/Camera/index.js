@@ -6,22 +6,47 @@ import {
   CircleImage,
   Info,
 } from './styles';
-import ImagePicker from 'react-native-image-picker';
+import * as ImagePicker from 'expo-image-picker';
+import * as Permissions from 'expo-permissions';
+// import ImagePicker from 'react-native-image-picker';
 import { useState } from 'react';
 
 const Camera = () => {
+  // return null;
   const [source, setSource] = useState('');
-  function pickImage() {
-    ImagePicker.showImagePicker((response) => {
-      if (response.didCancel) {
-        ('You cancelled image picker 😟');
-      } else if (response.error) {
-        alert('And error occured: ', response.error);
-      } else {
-        const source = { uri: response.uri };
+  const getPermissionAsync = async () => {
+    let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      throw new Error('Permission to access camera roll is required!');
+    }
+  };
+
+  async function pickImage() {
+    try {
+      await getPermissionAsync();
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+      });
+      if (!result.cancelled) {
+        const source = { uri: result.uri };
         setSource(source);
       }
-    });
+      // console.log(result);
+    } catch (E) {
+      // console.log("You cancelled image picker 😟");
+      // console.log(E);
+    }
+    //   ImagePicker.showImagePicker((response) => {
+    //     if (response.didCancel) {
+    //     } else if (response.error) {
+    //       alert('And error occured: ', response.error);
+    //     } else {
+    //     }
+    //   });
   }
   return (
     <Container>

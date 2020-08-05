@@ -17,7 +17,6 @@ export default function AvailableDoctors({ route, navigation }) {
   useEffect(() => {
     const fetch = async () => {
       try {
-        console.log(timestamp);
         const response = await api.post('/agenda/availableDoctors', {
           timestamp,
         });
@@ -35,7 +34,6 @@ export default function AvailableDoctors({ route, navigation }) {
     try {
       const value = await AsyncStorage.getItem('@AmparaApp:health');
       const { token, displayName, email, phone } = JSON.parse(value);
-      console.log('Agendar consulta');
       await api.post('/agenda/availableDoctors', {
         timestamp,
         volunteerToken: item.token,

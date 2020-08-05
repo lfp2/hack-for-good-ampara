@@ -15,9 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 const LoginTroubleshootScreen = () => {
   const navigation = useNavigation();
   const formRef = useRef();
-  const handleSubmit = (data) => {
-    console.log(data);
-  };
+  const handleSubmit = (data) => {};
   return (
     <Container>
       <Illustration />

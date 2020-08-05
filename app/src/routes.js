@@ -31,6 +31,7 @@ import AvailableDoctorsScreen from './pages/health_professional/AvailableDoctors
 import MyInfoScreen from './pages/MyInfoScreen';
 
 const Drawer = createDrawerNavigator();
+
 const Stack = createStackNavigator();
 
 function VolunteerHomeTabs() {
@@ -48,6 +49,7 @@ function VolunteerHomeTabs() {
 
 function HealthHomeTabs() {
   const orientation = useOrientation();
+
   return (
     <Drawer.Navigator
       initialRouteName="Perfil"
@@ -61,6 +63,7 @@ function HealthHomeTabs() {
 
 export default function Routes() {
   return (
+    // <SafeAreaView>
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="FirstScreen"
@@ -96,5 +99,6 @@ export default function Routes() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    // </SafeAreaView>
   );
 }

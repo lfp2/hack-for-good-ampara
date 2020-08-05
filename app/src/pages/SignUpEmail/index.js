@@ -18,9 +18,6 @@ export default function SignUpEmailScreen() {
     (actions) => actions.user.setCredentials,
   );
   const formRef = useRef();
-  useEffect(() => {
-    console.log(d);
-  }, [d]);
   const handleSubmit = async (data) => {
     const isValid = await validate(schema, data, formRef);
     if (!isValid) {

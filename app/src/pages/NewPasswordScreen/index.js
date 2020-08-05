@@ -5,9 +5,7 @@ import Header from 'src/components/Header';
 
 const NewPasswordScreen = () => {
   const formRef = React.useRef();
-  const handleSubmit = (data) => {
-    console.log(data);
-  };
+  const handleSubmit = (data) => {};
   return (
     <Container>
       <Header title="Senha" type="secondary" />

@@ -41,7 +41,6 @@ const healthModel = {
     actions.set(payload);
   }),
   update: thunk(async (actions, payload) => {
-    console.log(payload);
     const {
       token,
       displayName,
@@ -65,7 +64,6 @@ const healthModel = {
         city,
         cep,
       });
-      console.log(response.data);
       await actions.setUser({
         token,
         displayName,
@@ -78,7 +76,7 @@ const healthModel = {
         cep,
       });
     } catch (err) {
-      console.log(err.response);
+      // console.log(err.response);
     }
   }),
   reset: thunk(async (actions, payload) => {

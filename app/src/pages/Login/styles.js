@@ -1,6 +1,6 @@
-import React from 'react';
-import styled, { css } from 'styled-components/native';
-import { TouchableOpacity } from 'react-native';
+import React from "react";
+import styled, { css } from "styled-components/native";
+import { TouchableOpacity } from "react-native";
 
 export const Container = styled.ScrollView`
   background-color: ${(props) => props.theme.white};
@@ -13,7 +13,7 @@ const centerize = css`
 `;
 
 export const Logo = styled.Image.attrs({
-  source: require('src/assets/images/Ampara-Simbolo.png'),
+  source: require("src/assets/images/Ampara-Simbolo.png"),
 })`
   resize-mode: contain;
   min-width: 150px;

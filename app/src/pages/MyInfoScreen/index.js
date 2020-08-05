@@ -42,7 +42,6 @@ export default function MyInfoScreen() {
       data,
       formRef,
     );
-    console.log(data, isValid);
     if (!isValid) {
       return;
     }
@@ -53,7 +52,6 @@ export default function MyInfoScreen() {
       });
       navigation.goBack();
     } catch (err) {
-      console.log(err);
       toggle(false);
     }
   };

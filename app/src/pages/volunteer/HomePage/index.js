@@ -41,7 +41,7 @@ const VolunteerProfile = () => {
         await turnOn({ displayName, phoneNumber, token });
       }
     } catch (err) {
-      console.log(err.response);
+      // console.log(err.response);
     }
   };
 

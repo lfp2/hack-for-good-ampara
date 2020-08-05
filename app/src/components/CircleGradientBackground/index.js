@@ -1,10 +1,10 @@
-import styled from 'styled-components/native';
-import LinearGradient from 'react-native-linear-gradient';
+import styled from "styled-components/native";
+import { LinearGradient } from "expo-linear-gradient";
 
 const CircleGradientBackground = styled(LinearGradient).attrs(
   ({ theme: { white, lightBlue } }) => ({
     colors: [lightBlue, white],
-  }),
+  })
 )`
   position: absolute;
   height: 30%;

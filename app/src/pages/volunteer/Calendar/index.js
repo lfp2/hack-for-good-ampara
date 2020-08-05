@@ -4,7 +4,7 @@ import { MyScreen, RectangleBackground, CalendarView } from './styles';
 import { View, Text, FlatList, ScrollView } from 'react-native';
 import moment from 'moment';
 import 'moment-timezone';
-import * as RNLocalize from 'react-native-localize';
+import * as Localization from 'expo-localization';
 import Header from 'src/components/Header';
 import CalendarStrip from 'src/components/CalendarStrip';
 import Button from 'src/components/Button';
@@ -19,7 +19,7 @@ export default function CalendarScreen() {
 
   const today = moment(new Date()).add(1, 'd').format('MM/DD/YYYY');
 
-  const deviceTimezone = RNLocalize.getTimeZone();
+  const deviceTimezone = Localization.timezone;
 
   const [timeSelected, setTime] = useState('');
 
@@ -72,7 +72,7 @@ export default function CalendarScreen() {
 
       setData(response.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -113,7 +113,7 @@ export default function CalendarScreen() {
 
       setUploadTimestamp(timestamp);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 

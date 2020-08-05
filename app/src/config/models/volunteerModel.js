@@ -37,7 +37,6 @@ const volunteerModel = {
     };
   }),
   setUser: thunk(async (actions, payload) => {
-    console.log('setting', payload);
     await AsyncStorage.setItem('@AmparaApp:volunteer', JSON.stringify(payload));
     actions.set(payload);
   }),
@@ -76,9 +75,7 @@ const volunteerModel = {
         city,
         cep,
       });
-    } catch (err) {
-      console.log(err.response);
-    }
+    } catch (err) {}
   }),
   reset: thunk(async (actions, payload) => {
     await AsyncStorage.removeItem('@AmparaApp:volunteer');
