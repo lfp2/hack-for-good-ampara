@@ -66,7 +66,7 @@ export default function Routes() {
     // <SafeAreaView>
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="FirstScreen"
+        initialRouteName="SignUpProfile"
         screenOptions={{ headerShown: false }}>
         <Stack.Screen name="MyInfo" component={MyInfoScreen} />
         <Stack.Screen name="FirstScreen" component={FirstScreen} />

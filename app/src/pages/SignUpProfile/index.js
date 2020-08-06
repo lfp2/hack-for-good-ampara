@@ -87,13 +87,12 @@ export default function SignUpProfileScreen() {
   const numberRegistryRef = useRef();
   return (
     <Container ref={scrollRef}>
-      <CircleGradientBackground />
-      <Header title="Perfil" type="secondary" />
-      <Description>
-        Falta pouco para você acessar o Ampara. Preencha seus dados abaixo:
-      </Description>
-
       <Form ref={formRef} onSubmit={handleSubmit}>
+        <CircleGradientBackground />
+        <Header title="Perfil" type="secondary" />
+        <Description>
+          Falta pouco para você acessar o Ampara. Preencha seus dados abaixo:
+        </Description>
         <Camera />
         <IconedInput
           name="displayName"
@@ -187,15 +186,15 @@ export default function SignUpProfileScreen() {
         )}
         <Switch label="Habilitar notificações" name="notifications" />
         <Switch label="Concordo com os Termos de Uso" name="terms" />
+        <LoadingButton
+          isLoading={isLoading}
+          onPress={() => formRef.current.submitForm()}>
+          CADASTRAR
+        </LoadingButton>
+        <SeeTerms to="/Terms">
+          VER TERMOS DE USO E POLÍTICA DE PRIVACIDADE
+        </SeeTerms>
       </Form>
-      <LoadingButton
-        isLoading={isLoading}
-        onPress={() => formRef.current.submitForm()}>
-        CADASTRAR
-      </LoadingButton>
-      <SeeTerms to="/Terms">
-        VER TERMOS DE USO E POLÍTICA DE PRIVACIDADE
-      </SeeTerms>
     </Container>
   );
 }

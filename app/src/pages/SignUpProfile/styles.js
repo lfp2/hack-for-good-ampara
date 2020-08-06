@@ -5,6 +5,8 @@ import { Link } from '@react-navigation/native';
 
 export const Container = styled.ScrollView`
   background-color: ${(props) => props.theme.white};
+  position: relative;
+  flex: 1;
 `;
 
 export const Description = styled.Text`

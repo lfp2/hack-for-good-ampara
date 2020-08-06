@@ -95,11 +95,12 @@ export const ModalOverlay = styled.KeyboardAvoidingView.attrs({
   left: 0;
   right: 0;
   bottom: 0;
-  /* height: 100%;
-  width: 100%; */
-  /* flex: 1; */
+  height: 100%;
+  width: 100%;
+  flex: 1;
   background-color: ${(props) => props.theme.white};
-  z-index: 10;
+  z-index: 1000;
+  elevation: 100;
 `;
 
 export const InnerModal = styled.View`
