@@ -6,8 +6,8 @@ export const LoadingButton = ({ children, isLoading = false, ...props }) => {
       <ButtonText>{children}</ButtonText>
       <Spinner
         isVisible={isLoading}
-        size={28}
-        type="ThreeBounce"
+        size={35}
+        // type="ThreeBounce"
         color="white"
       />
     </Container>

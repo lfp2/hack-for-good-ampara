@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import BaseSpinner from 'react-native-spinkit';
+import { Flow } from 'react-native-animated-spinkit';
 
 const SpinnerWrapper = styled.View`
   position: absolute;
   width: 80%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +18,7 @@ const SpinnerWrapper = styled.View`
 
 export const Spinner = styled((props) => (
   <SpinnerWrapper isVisible={props.isVisible}>
-    <BaseSpinner {...props} />
+    <Flow loading={props.isVisible} {...props} />
   </SpinnerWrapper>
 ))`
   /* height: 30px; */
