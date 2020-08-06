@@ -80,7 +80,7 @@ export const Eye = styled(({ name, ...props }) => (
 ))`
   position: absolute;
   right: 0;
-  top: 0;
+  top: 10px;
   height: 100%;
   justify-content: center;
   align-items: center;
