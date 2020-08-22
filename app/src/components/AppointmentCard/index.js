@@ -14,21 +14,32 @@ import {
   CircleButton,
 } from './styles';
 export { AppointmentCards } from './styles';
+import * as Localization from 'expo-localization';
+import moment from 'moment';
 
-const AppointmentCard = ({ acceptAction, finishAction, cancelAction }) => {
+const AppointmentCard = ({
+  acceptAction,
+  finishAction,
+  cancelAction,
+  data,
+}) => {
+  const deviceTimezone = Localization.timezone;
+  const timestamp = moment(data.timestamp).tz(deviceTimezone);
+  moment.locale('pt-br');
+
   return (
     <Container>
       <Row>
         <ProfilePic />
         <Info>
-          <Name>Emanuelly Figueiredo</Name>
+          <Name>{data.healthDisplayName}</Name>
           <T>Técnica em Enfermagem</T>
           <Desc>COREN 58963</Desc>
         </Info>
       </Row>
       <DateSection>
-        <DateRow time="Dia:">05/05/2020</DateRow>
-        <DateRow time="Hora:">12:00</DateRow>
+        <DateRow time="Dia:">{timestamp.format('L')}</DateRow>
+        <DateRow time="Hora:">{timestamp.format('LT')}</DateRow>
       </DateSection>
       <Row>
         <CircleButton
