@@ -8,7 +8,6 @@ import * as Localization from 'expo-localization';
 import Header from 'src/components/Header';
 import CalendarStrip from 'src/components/CalendarStrip';
 import Button from 'src/components/Button';
-import AsyncStorage from '@react-native-community/async-storage';
 import api from 'src/services/api';
 import DataCard from 'src/components/DataCard';
 import useToggle from 'react-use/lib/useToggle';
@@ -115,6 +114,22 @@ export default function CalendarScreen() {
     }
   }
 
+  const removeAvailableHour = (timestamp, index) => async () => {
+    try {
+      console.log(token);
+      console.log(timestamp);
+      const response = await api.delete('/available_hours', {
+        token,
+        timestamp,
+      });
+      console.log(response);
+      const filteredData = data.filter((item) => item.index !== index);
+      setData(filteredData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <MyScreen>
@@ -139,7 +154,12 @@ export default function CalendarScreen() {
         <FlatList
           data={data}
           keyExtractor={(item, index) => index}
-          renderItem={({ item }) => <DataCard data={item} />}
+          renderItem={({ item, index }) => (
+            <DataCard
+              data={item}
+              removeAction={removeAvailableHour(item.timestamp, index)}
+            />
+          )}
         />
       </MyScreen>
       <Modal
