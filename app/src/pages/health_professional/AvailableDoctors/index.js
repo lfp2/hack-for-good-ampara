@@ -17,14 +17,14 @@ export default function AvailableDoctors({ route, navigation }) {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await api.post('/agenda/availableDoctors', {
+        const response = await api.post('/appointments/list', {
           timestamp,
         });
         // console.log(response);
         setData(response.data);
       } catch (error) {
-        console.warn('erro');
-        // console.warn(error.response);
+        // console.warn('erro');
+        console.warn(error.response);
       }
     };
     fetch();
