@@ -98,7 +98,7 @@ class AvailableHourController {
           error: "Já existe uma consulta marcada para este horário",
         });
       }
-
+    }
       let batch = db.batch();
 
       let volunteerAgendaRef = volunteerRef
