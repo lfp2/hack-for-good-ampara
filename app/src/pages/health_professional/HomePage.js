@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import Button from 'src/components/Button';
 import { useStoreState } from 'easy-peasy';
 import healthTypes from 'src/assets/strings/healthTypes';
+import * as Linking from 'expo-linking';
 
 const HomePageScreen = () => {
   const { displayName, profession } = useStoreState((state) => state.health);
@@ -36,7 +37,13 @@ const HomePageScreen = () => {
           Consultas
         </ProfileButton>
       </ProfileButtons>
-      <Button width="80%">QUERO ATENDIMENTO AGORA</Button>
+      <Button
+        width="80%"
+        onPress={() => {
+          Linking.openURL('tel:+551132303536');
+        }}>
+        QUERO ATENDIMENTO AGORA
+      </Button>
     </Profile>
   );
 };
