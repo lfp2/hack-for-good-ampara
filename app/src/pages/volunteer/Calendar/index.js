@@ -40,7 +40,6 @@ export default function CalendarScreen() {
     city,
   } = useStoreState((state) => state.volunteer);
 
-
   const [isDateAlreadyTaken, toggleIsDateAlreadyTaken] = useToggle(false);
   const [modalVisibility, toggleModalVisibility] = useToggle(false);
 
@@ -115,6 +114,22 @@ export default function CalendarScreen() {
     }
   }
 
+  const removeAvailableHour = (timestamp, index) => async () => {
+    try {
+      console.log(token);
+      console.log(timestamp);
+      const response = await api.delete('/available_hours', {
+        token,
+        timestamp,
+      });
+      console.log(response);
+      const filteredData = data.filter((item) => item.index !== index);
+      setData(filteredData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <MyScreen>
@@ -138,8 +153,13 @@ export default function CalendarScreen() {
 
         <FlatList
           data={data}
-          keyExtractor={(item, index) => index}
-          renderItem={({ item }) => <DataCard data={item} />}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => (
+            <DataCard
+              data={item}
+              removeAction={removeAvailableHour(item.timestamp, index)}
+            />
+          )}
         />
       </MyScreen>
       <Modal
