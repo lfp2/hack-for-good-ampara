@@ -16,11 +16,11 @@ class AppointmentsController {
         .doc(timestamp)
         .collection("doctors")
         .get();
-
+      
       if (getDoctorsSnapshot.empty) {
-        return res
-          .status(204)
-          .json({ error: "Não há voluntários disponíveis nesse horário" });
+          return res
+            .status(400)
+            .json({ error: "Não há voluntários disponíveis nesse horário" });
       }
       var doctors = [];
 
@@ -30,6 +30,7 @@ class AppointmentsController {
 
       return res.json(doctors);
     } catch (err) {
+      console.log(err);
       return res.status(500).json({ err });
     }
   }
@@ -189,6 +190,42 @@ class AppointmentsController {
       console.log(err);
       return res.status(500).json({ err });
     }
+  }
+
+  async update(req, res){
+    try{
+    const {
+      token,
+      status,
+      volunteerEmail,
+      healthEmail,
+      timestamp
+    } = req.body;
+
+    await appointmentRef.doc(token).update(appointmentAgendaRef, {
+      status
+    });
+
+    Mail.sendMail({
+      to: [volunteerEmail, healthEmail],
+      subject: "Ampara - Status da Consulta",
+      template: "status",
+      context: {
+        email_volunteer: volunteerEmail,
+        email_health: healthEmail,
+        date: timestamp,
+        status
+      },
+    });
+
+    return res.json({
+      token,
+      status
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ err });
+  }
   }
 }
 

@@ -9,6 +9,7 @@ const AvailableHoursController = require("./app/controllers/AvailableHoursContro
 const AppointmentsController = require("./app/controllers/AppointmentsController");
 const EmergencyLineController = require("./app/controllers/EmergencyLineController");
 const VolunteerAppointmentsController = require("./app/controllers/VolunteerAppointmentsController");
+const HealthAppointmentsController = require("./app/controllers/HealthAppointmentsController");
 const Twilio = require("./app/twilio/Twilio");
 
 const routes = new Router();
@@ -22,6 +23,8 @@ routes.post("/appointments/list", AppointmentsController.index);
 routes.delete("/appointments", AppointmentsController.destroy);
 
 routes.post("/appointments", AppointmentsController.store);
+
+routes.put("/appointments", AppointmentsController.update);
 
 routes.post("/volunteer/sign_in", VolunteerSessionController.store);
 
@@ -37,6 +40,11 @@ routes.post(
 );
 
 routes.post("/health", HealthController.store);
+
+routes.post(
+  "/health/list_appointments",
+  HealthAppointmentsController.store
+);
 
 routes.post("/health/sign_in", HealthSessionController.store);
 
