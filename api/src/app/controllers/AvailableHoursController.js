@@ -85,15 +85,9 @@ class AvailableHourController {
         .where("timestamp", "==", timestamp)
         .get();
 
-<<<<<<< HEAD
       if(!verifyHealthAppointmentSnapshot.empty){
         let findAnotherAppointment = false;
         verifyHealthAppointmentSnapshot.forEach((doc) => {
-=======
-      let findAnotherAppointment = false;
-
-      verifyHealthAppointmentSnapshot.forEach((doc) => {
->>>>>>> 2b0d1796594d2bb33992beeb3ef97bb42c5abba8
         if (doc.data().status != "Consulta cancelada") {
           findAnotherAppointment = true;
         }
