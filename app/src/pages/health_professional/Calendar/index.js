@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import TimeSelector from "src/components/TimeSelector";
-import { MyScreen, RectangleBackground, CalendarView } from "./styles";
-import moment from "moment";
-import "moment-timezone";
-import * as Localization from "expo-localization";
-import Header from "src/components/Header";
-import CalendarStrip from "src/components/CalendarStrip";
-import AppointmentButton from "src/components/Button";
+import React, { useState } from 'react';
+import TimeSelector from 'src/components/TimeSelector';
+import { MyScreen, RectangleBackground, CalendarView } from './styles';
+import moment from 'moment';
+import 'moment-timezone';
+import * as Localization from 'expo-localization';
+import Header from 'src/components/Header';
+import CalendarStrip from 'src/components/CalendarStrip';
+import AppointmentButton from 'src/components/Button';
+import 'moment/locale/pt-br';
 
 export default function CalendarScreen({ navigation }) {
   moment.locale("pt-br");
