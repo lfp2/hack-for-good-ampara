@@ -4,7 +4,7 @@ import BaseButton from 'src/components/Button';
 export const Button = styled(BaseButton)`
   padding: 5px 10px;
   width: 70%;
-  margin: 15px auto;
+  margin: 25px auto;
 `;
 
 export const Container = styled.View`
@@ -25,14 +25,13 @@ export const Header = styled.View`
   align-items: center;
   width: 100%;
   padding: 0 20px;
-  margin: 0px auto;
 `;
 
 export const ProfilePic = styled.Image.attrs({
   source: require('src/assets/images/emanuelly.png'),
 })`
   border-radius: 500px;
-  margin: 5px 10px;
+  margin: 10px;
   aspect-ratio: 1;
   border-width: 6px;
   border-color: #74e8e2;
@@ -47,7 +46,6 @@ export const T = styled.Text`
   font-size: 15px;
   color: ${(props) => props.theme.black};
   font-family: Poppins;
-  margin: 0px auto;
 `;
 
 export const Name = styled.Text`
@@ -61,5 +59,6 @@ export const Section = styled.View`
   flex-direction: column;
   align-items: flex-start;
   flex: 1;
-  margin: 0px auto;
+  padding: 0 40px;
+  margin-left: 80px;
 `;

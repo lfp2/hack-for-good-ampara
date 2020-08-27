@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Time, Times } from './styles';
 import { FlatList } from 'react-native';
-const times = [...Array(24)].map((e, index) =>
+const times = [...Array(25)].map((e, index) =>
   index < 10 ? `0${index}:00` : `${index}:00`,
 );
 

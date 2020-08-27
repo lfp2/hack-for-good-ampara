@@ -8,11 +8,11 @@ import * as Localization from 'expo-localization';
 import Header from 'src/components/Header';
 import CalendarStrip from 'src/components/CalendarStrip';
 import Button from 'src/components/Button';
+import AsyncStorage from '@react-native-community/async-storage';
 import api from 'src/services/api';
 import DataCard from 'src/components/DataCard';
 import useToggle from 'react-use/lib/useToggle';
 import Modal from 'src/components/Modal';
-import { useStoreState } from 'easy-peasy';
 
 export default function CalendarScreen() {
   moment.locale('pt-br');
@@ -31,17 +31,6 @@ export default function CalendarScreen() {
 
   const [isDateAlreadyTaken, toggleIsDateAlreadyTaken] = useToggle(false);
   const [modalVisibility, toggleModalVisibility] = useToggle(false);
-  const {
-    displayName,
-    documentNumber,
-    documentName,
-    email,
-    phoneNumber,
-    token,
-    bio,
-    uf,
-    city,
-  } = useStoreState((state) => state.volunteer);
 
   useEffect(() => {
     const timestamp = moment
@@ -73,7 +62,11 @@ export default function CalendarScreen() {
 
   async function retrieveAgenda() {
     try {
-      const response = await api.post('/available_hours/list', {
+      const value = await AsyncStorage.getItem('@AmparaApp:volunteer');
+
+      const { token } = JSON.parse(value);
+
+      const response = await api.post('/volunteer/retrieveAvailableHours', {
         token,
       });
 
@@ -95,7 +88,19 @@ export default function CalendarScreen() {
         deviceTimezone,
       );
 
-      await api.post('/available_hours', {
+      const value = await AsyncStorage.getItem('@AmparaApp:volunteer');
+
+      const {
+        displayName,
+        documentNumber,
+        documentName,
+        email,
+        phoneNumber,
+        token,
+        bio,
+      } = JSON.parse(value);
+
+      const response = await api.post('/volunteer/makeAvailableHours', {
         token,
         displayName,
         bio,
@@ -104,31 +109,13 @@ export default function CalendarScreen() {
         timestamp,
         email,
         phoneNumber,
-        uf,
-        city,
       });
 
       setUploadTimestamp(timestamp);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
-
-  const removeAvailableHour = (timestamp, index) => async () => {
-    try {
-      console.log(token);
-      console.log(timestamp);
-      const response = await api.delete('/available_hours', {
-        token,
-        timestamp,
-      });
-      console.log(response);
-      const filteredData = data.filter((item) => item.index !== index);
-      setData(filteredData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <>
@@ -154,12 +141,7 @@ export default function CalendarScreen() {
         <FlatList
           data={data}
           keyExtractor={(item, index) => index}
-          renderItem={({ item, index }) => (
-            <DataCard
-              data={item}
-              removeAction={removeAvailableHour(item.timestamp, index)}
-            />
-          )}
+          renderItem={({ item }) => <DataCard data={item} />}
         />
       </MyScreen>
       <Modal
