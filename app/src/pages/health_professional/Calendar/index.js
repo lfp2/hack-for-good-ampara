@@ -10,26 +10,26 @@ import AppointmentButton from 'src/components/Button';
 import 'moment/locale/pt-br';
 
 export default function CalendarScreen({ navigation }) {
-  moment.locale("pt-br");
+  moment.locale('pt-br');
 
-  const today = moment(new Date()).add(1, "d").format("MM/DD/YYYY");
+  const today = moment(new Date()).add(1, 'd').format('MM/DD/YYYY');
   const deviceTimezone = Localization.timezone;
 
-  const [timeSelected, setTime] = useState("");
+  const [timeSelected, setTime] = useState('');
   const [dateSelected, setDate] = useState(today);
 
   const onDateSelected = (date) => {
-    setDate(date.format("MM/DD/YYYY"));
+    setDate(date.format('MM/DD/YYYY'));
   };
 
   const handleSubmit = () => {
     const timestamp = moment
-      .tz(dateSelected + " " + timeSelected, "MM/DD/YYYY hh:mm", deviceTimezone)
+      .tz(dateSelected + ' ' + timeSelected, 'MM/DD/YYYY hh:mm', deviceTimezone)
       .toISOString();
 
     // console.log(timestamp);
 
-    navigation.navigate("AvailableDoctors", {
+    navigation.navigate('AvailableDoctors', {
       timestamp,
     });
   };
@@ -44,7 +44,7 @@ export default function CalendarScreen({ navigation }) {
           useIsoWeekday={false}
           selectedDate={today}
           minDate={today}
-          maxDate={moment(new Date()).add(1, "M")}
+          maxDate={moment(new Date()).add(1, 'M')}
           onDateSelected={onDateSelected}
         />
       </CalendarView>
