@@ -3,6 +3,7 @@ import { FlatList, AsyncStorage } from 'react-native';
 import AvailableCard from 'src/components/AvailableCard';
 import api from 'src/services/api';
 import Modal from 'src/components/Modal';
+import Header from 'src/components/Header';
 import useToggle from 'react-use/lib/useToggle';
 import { useStoreState } from 'easy-peasy';
 
@@ -54,6 +55,7 @@ export default function AvailableDoctors({ route, navigation }) {
 
   return (
     <>
+      <Header title="Voluntários disponíveis" />
       <FlatList
         data={data}
         renderItem={({ item }) => (

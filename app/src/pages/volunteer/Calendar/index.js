@@ -120,7 +120,7 @@ export default function CalendarScreen() {
       console.log(timestamp);
       const response = await api.delete('/available_hours', {
         token,
-        timestamp,
+        timestamp
       });
       console.log(response);
       const filteredData = data.filter((item) => item.index !== index);

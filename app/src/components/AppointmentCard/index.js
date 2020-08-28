@@ -33,8 +33,8 @@ const AppointmentCard = ({
         <ProfilePic />
         <Info>
           <Name>{data.healthDisplayName}</Name>
-          <T>Técnica em Enfermagem</T>
-          <Desc>COREN 58963</Desc>
+          <T>{data.healthPhone}</T>
+          <Desc>{data.healthEmail}</Desc>
         </Info>
       </Row>
       <DateSection>
