@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Container } from './styles';
 import Header from 'src/components/Header';
 import AppointmentCard, {
@@ -7,9 +7,6 @@ import AppointmentCard, {
 import { FlatList } from 'react-native-gesture-handler';
 import Modal from 'src/components/Modal';
 import useToggle from 'react-use/lib/useToggle';
-import { useStoreState } from 'easy-peasy';
-import api from 'src/services/api';
-
 const AppointmentScreen = () => {
   const [isConfirmedModalVisible, toggleConfirmedModalVisibility] = useToggle(
     false,
@@ -21,33 +18,14 @@ const AppointmentScreen = () => {
     isCancelationModalVisible,
     toggleCancelationModalVisibility,
   ] = useToggle(false);
-  const { token } = useStoreState((state) => state.volunteer);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    retrieveAgenda();
-  }, []);
-
-  async function retrieveAgenda() {
-    try {
-      const response = await api.post('/volunteer/list_appointments', {
-        token,
-      });
-
-      setData(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   return (
     <Container>
       <Header title="Consultas" />
       <AppointmentCards>
         <FlatList
           keyExtractor={(e) => e.toString()}
-          data={data}
-          renderItem={({ item }) => (
+          data={[0, 1, 2]}
+          renderItem={() => (
             <AppointmentCard
               acceptAction={() => {
                 toggleConfirmedModalVisibility(true);
@@ -58,7 +36,6 @@ const AppointmentScreen = () => {
               cancelAction={() => {
                 toggleCancelationModalVisibility(true);
               }}
-              data={item}
             />
           )}
         />

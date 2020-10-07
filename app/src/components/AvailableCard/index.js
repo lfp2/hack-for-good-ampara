@@ -33,3 +33,4 @@ const AvailableCard = ({ appointmentAction, data }) => {
 };
 
 export default AvailableCard;
+
