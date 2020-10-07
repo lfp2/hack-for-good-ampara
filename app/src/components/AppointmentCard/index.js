@@ -21,9 +21,9 @@ const AppointmentCard = ({ acceptAction, finishAction, cancelAction }) => {
       <Row>
         <ProfilePic />
         <Info>
-          <Name>Emanuelly Figueiredo</Name>
-          <T>Técnica em Enfermagem</T>
-          <Desc>COREN 58963</Desc>
+          <Name>{data.healthDisplayName}</Name>
+          <T>{data.healthPhone}</T>
+          <Desc>{data.healthEmail}</Desc>
         </Info>
       </Row>
       <DateSection>

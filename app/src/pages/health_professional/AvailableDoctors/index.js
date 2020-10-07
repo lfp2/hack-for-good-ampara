@@ -3,28 +3,35 @@ import { FlatList, AsyncStorage } from 'react-native';
 import AvailableCard from 'src/components/AvailableCard';
 import api from 'src/services/api';
 import Modal from 'src/components/Modal';
+import Header from 'src/components/Header';
 import useToggle from 'react-use/lib/useToggle';
-import Container from './styles';
+import { useStoreState } from 'easy-peasy';
 
 export default function AvailableDoctors({ route, navigation }) {
   const { timestamp } = route.params;
   const [data, setData] = useState([]);
   const [isLoading, toggleLoading] = useToggle(true);
+  const [isDoctorsAvailable, toggleDoctorsAvailable] = useToggle(true);
   const [isConfirmedModalVisible, toggleConfirmedModalVisibility] = useToggle(
     false,
   );
 
+  const {
+    displayName,
+    phoneNumber,
+    token,
+    email
+  } = useStoreState((state) => state.health);
+
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await api.post('/agenda/availableDoctors', {
+        const response = await api.post('/appointments/list', {
           timestamp,
         });
-        // console.log(response);
         setData(response.data);
       } catch (error) {
-        console.warn('erro');
-        // console.warn(error.response);
+        console.log(error);
       }
     };
     fetch();
@@ -32,9 +39,7 @@ export default function AvailableDoctors({ route, navigation }) {
 
   async function appointmentAction(item) {
     try {
-      const value = await AsyncStorage.getItem('@AmparaApp:health');
-      const { token, displayName, email, phone } = JSON.parse(value);
-      await api.post('/agenda/availableDoctors', {
+      await api.post('/appointments', {
         timestamp,
         volunteerToken: item.token,
         volunteerDisplayName: item.displayName,
@@ -42,7 +47,7 @@ export default function AvailableDoctors({ route, navigation }) {
         healthDisplayName: displayName,
         healthEmail: email,
         healthToken: token,
-        healthPhone: phone,
+        healthPhone: phoneNumber,
       });
       toggleConfirmedModalVisibility(true);
     } catch (error) {}
@@ -50,6 +55,7 @@ export default function AvailableDoctors({ route, navigation }) {
 
   return (
     <>
+      <Header title="Voluntários disponíveis" />
       <FlatList
         data={data}
         renderItem={({ item }) => (
@@ -62,6 +68,10 @@ export default function AvailableDoctors({ route, navigation }) {
         )}
         keyExtractor={(item, index) => index}
       />
+      <Modal 
+        isOn={!isDoctorsAvailable}
+        title="Não há voluntários disponíveis neste horário">
+      </Modal>
       <Modal
         isOn={isConfirmedModalVisible}
         icon={require('src/assets/images/appointment_confirmation.png')}
@@ -70,6 +80,9 @@ export default function AvailableDoctors({ route, navigation }) {
         <Modal.BigButton
           onPress={() => {
             toggleConfirmedModalVisibility(false);
+            navigation.navigate('HealthHome', {
+              timestamp,
+            });
           }}>
           OK
         </Modal.BigButton>

@@ -1,24 +1,62 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container } from './styles';
 import Header from 'src/components/Header';
 import MyAppointmentCard from 'src/components/MyAppointmentCard';
 import { FlatList } from 'react-native';
 import useToggle from 'react-use/lib/useToggle';
 import Modal from 'src/components/Modal';
+import { useStoreState } from 'easy-peasy';
+import api from 'src/services/api';
+import * as Localization from 'expo-localization';
+
 const MyAppointmentScreen = () => {
   const [cancelModal, toggleCancelModal] = useToggle(false);
   const [canceledModal, toggleCanceledModal] = useToggle(false);
+  const { token, email } = useStoreState((state) => state.health);
+  const [data, setData] = useState([]);
+  const [selectedItem, setItem] = useState('');
+
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const response = await api.post('/health/list_appointments', {
+          token
+        });
+        setData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetch();
+  }, []);
+  
+  async function cancelAction() {
+    try {
+      await api.delete('/appointments', {
+        timestamp: selectedItem.timestamp,
+        healthEmail: email,
+        accountType: "healthProfessional"
+      });
+      toggleCanceledModal(true);
+      toggleCancelModal(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <Container>
         <Header title="Minhas Consultas" />
         <FlatList
-          keyExtractor={(e) => e.toString()}
-          data={[0, 1, 2]}
-          renderItem={() => (
+          keyExtractor={(item, index) => index}
+          data={data}
+          renderItem={({item}) => (
             <MyAppointmentCard
+              data={item}
               cancelAction={() => {
                 toggleCancelModal(true);
+                setItem(item);
               }}
             />
           )}
@@ -38,8 +76,7 @@ const MyAppointmentScreen = () => {
           </Modal.SmallButton>
           <Modal.SmallButton
             onPress={() => {
-              toggleCanceledModal(true);
-              toggleCancelModal(false);
+              cancelAction()
             }}>
             SIM
           </Modal.SmallButton>

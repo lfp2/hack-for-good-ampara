@@ -17,12 +17,9 @@ const AvailableCard = ({ appointmentAction, data }) => {
         <ProfilePic />
         <Info>
           <Name>{data.displayName}</Name>
+          <T>CRP: {data.documentNumber}</T>
         </Info>
       </Header>
-      <Section>
-        <T>{data.bio}</T>
-        <T>CRP: {data.documentNumber}</T>
-      </Section>
       <Button
         onPress={() => {
           if (appointmentAction) {
@@ -36,3 +33,4 @@ const AvailableCard = ({ appointmentAction, data }) => {
 };
 
 export default AvailableCard;
+

@@ -10,6 +10,8 @@ import AppointmentButton from 'src/components/Button';
 import 'moment/locale/pt-br';
 
 export default function CalendarScreen({ navigation }) {
+  moment.locale('pt-br');
+
   const today = moment(new Date()).add(1, 'd').format('MM/DD/YYYY');
   const deviceTimezone = Localization.timezone;
 
